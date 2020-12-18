@@ -1,0 +1,28 @@
+/* Basic style */
+#gumax-nav { display: block; margin: 0; padding: 0; position: relative; }
+#gumax-nav li { display: block; list-style: none; margin: 0; padding: 0; float: left; position: relative; }
+#gumax-nav a { display: block; font-family: 'Trebuchet MS', Georgia, Verdana, Sans-serif, Arial; font-size: 110%; text-decoration: none; }
+#gumax-nav ul { display: none; position: absolute; left: 0; margin: 0; padding: 0; z-index: 500; }
+* html #gumax-nav ul { line-height: 0; } /* IE6 "fix" */
+#gumax-nav ul a { zoom: 1; } /* IE6/7 fix */
+#gumax-nav ul li { float: none; }
+#gumax-nav ul ul { top: 0; }
+
+/* Essentials */
+#gumax-nav ul { min-width: 200px; width: 200px; }
+#gumax-nav ul ul { left: 201px; }
+
+/* theming */
+#gumax-nav { height: 28px; background: transparent url('images/stripe-grey.gif') left repeat-x; border-top: 1px solid #c7c7c7; border-bottom: 1px solid #e7e7e7;}
+#gumax-nav *:hover { background-color: none; }
+#gumax-nav a {
+	font-weight: bold;
+	color: #333;
+	padding: 8px 10px;
+	line-height: 1;
+	}
+#gumax-nav li.hover a, #gumax-nav ul li a { background-color: #5e5a5a; /* drop down background */ }
+#gumax-nav ul { top: 27px; }
+#gumax-nav ul li a { font-weight: normal; color: #eee; padding: 4px 10px; /* white-space: nowrap; /* wrap long item */ }
+#gumax-nav a.hover, #gumax-nav ul a.hover { background-color: #999; color: #eee; }
+#gumax-nav ul { border: none; opacity: 0.9; filter: alpha(opacity=90); }

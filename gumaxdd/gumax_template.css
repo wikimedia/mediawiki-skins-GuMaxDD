@@ -1,0 +1,517 @@
+/*
+ * ----------------------------------------------------------------------------
+ * 'GuMaxDD' style sheet for CSS2-capable browsers.
+ *	   Loosely based on the monobook style
+ *
+ * @Version 1.0
+ * @Author Paul Y. Gu, <gu.paul@gmail.com>
+ * @Copyright paulgu.com 2006 - http://www.paulgu.com/
+ * @License: GPL (http://www.gnu.org/copyleft/gpl.html)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ * ----------------------------------------------------------------------------
+ */
+
+/* Basic Structure
+-----------------------------------------------------------------------------*/
+body {
+	font-size: x-small; margin: 0; padding: 0; min-width: 700px;
+	/* background: #fafafa url('headbg.jpg') top left no-repeat fixed; /**/
+	background: none;
+}
+
+body, td, th, input, textarea, pre, h1, h2, h3, h4, h5, h6 { color: #222; }
+body, td, th, input, textarea { font-family: Verdana, Arial, 'Trebuchet MS'; }
+pre { font-family: Monospace, Courier, Arial; }
+
+
+#gumax-page { 
+	background: transparent;
+	font-size: 110%; /* web page font size */
+	width: 890px; /* page width */
+	margin: 0 auto;
+}
+
+
+
+#gumax-userloginForm {
+	z-index: 200; position: absolute; /*needed to use z-index */
+	top:  0; right: 0px; /* logo position */
+	overflow: visible;
+}
+
+/* Logo
+-----------------------------------------------------------------------------*/
+#p-logo,
+#p-logo a,
+#p-logo a:hover {
+	/* border: 1px solid #000; /*debuging*/
+	width: 135px;
+	height: 96px;
+}
+#p-logo {
+	z-index: 200; position: absolute;
+	top: 20px; left: 0px; /* logo position */
+	overflow: visible;
+}
+#p-logo h5 { display: none; }
+#p-logo a, #p-logo a:hover {
+	display: block;
+	background-repeat: no-repeat;
+	background-position: center left !important;
+	text-decoration: none;
+}
+
+/* Header
+-----------------------------------------------------------------------------*/
+/* gumax-header */
+#gumax-header {
+	/* border: 1px solid #000; /*debuging*/
+	position: relative;
+	z-index: 100;  /* make logo visible over content*/
+	min-height: 110px;  /* height of header */
+	height: 112px;  /* need for IE */
+	margin: 0 auto;
+	padding: 0;
+}
+
+/* Login
+-----------------------------------------------------------------------------*/
+#gumax-p-login {
+	/* border: 1px solid #000; /*debuging*/
+	font-size: 90%;
+	margin: 0; padding: 0 0 9px 0;
+	text-align: right;
+}
+
+#gumax-p-login ul {
+	position: relative;
+	width: auto;
+	list-style: none;
+	padding: 0; margin: 0;
+}
+
+#gumax-p-login ul li {
+	position: relative;
+	display: inline;
+	margin: 0; padding: 0;
+	font-size: 100%;
+}
+
+#gumax-p-login ul li a {
+	color: #777;
+	padding: 2px 0 2px 10px;
+	text-decoration: none; 
+}
+
+#gumax-p-login ul li a:hover { color: #333; }
+
+li#pt-userpage,
+li#pt-anonuserpage,
+li#pt-login {
+	background: none;
+	font-weight: bold;
+}
+
+
+/* Search
+-----------------------------------------------------------------------------*/
+#gumax-p-search {
+	/* border:  1px solid #FFCC00; /*debuging*/
+	position: absolute;
+	z-index: 3;
+	top: 45px;
+	right: 0;
+}
+
+#gumax-p-search .gumax-pBody, #gumax-searchBody {
+	background: none;
+	position: relative;
+	padding: 0;
+	margin-right: 0;  /* right side margin of search, same as content margin */
+	text-align: left;
+	white-space: nowrap;	/* for Opera */
+	vertical-align: middle;
+}
+
+#gumax-p-search form #searchInput {
+	font-size: 100%;
+	width: 12em;   /* text field width */
+	text-align: left;
+	vertical-align: middle;
+	border: 1px solid #bbb; /* text field border style */
+	background: #f7f7f7; /* background color of the text field */
+}
+
+#gumax-p-search form #searchGoButton,
+#gumax-p-search form #mw-searchButton {
+	font-family: Verdana, Sans-serif, Arial;
+	vertical-align: middle;
+	font-size: 100%;
+	color: #555;  /* font color */
+	text-decoration: none;
+	/* background: #ddd; /* button background */
+	/* border: 1px outset #999; /* border: 1px inset #777; */
+	/* text-transform: uppercase; */
+	padding: 0;
+	margin: 0;
+}
+#gumax-p-search form #mw-searchButton {
+	/*font-weight: normal;*/
+}
+
+#searchGoButton:link, #searchGoButton:visited, #searchGoButton:hover, #searchGoButton:active,
+#mw-searchButton:link, #mw-searchButton:visited, #mw-searchButton:hover, #mw-searchButton:active {
+	cursor: pointer;
+}
+
+#gumax-header form #searchInput:hover,
+#gumax-header form #searchInput:focus {
+	background: #fff;
+	/* width: 18em;  /* text field width when focused */
+	border: 1px solid #FFCC99;
+}
+
+
+/* dynamic article picture
+-----------------------------------------------------------------------------*/
+#gumax-article-picture {
+	border:  1px solid #ccc;
+	background: #fff;
+	text-align: left;
+	padding: 0;
+	/* margin: 2px 15px; /* same margin as content */
+	margin: 2px 0;
+	/* display: none; /* disable gumax-article-picture */
+}
+
+#gumax-article-picture,
+#gumax-article-picture a,
+#gumax-article-picture a:hover {
+	height:	 108px;
+	min-height: 108px; /* height of header */
+	display: block;
+	background-repeat: no-repeat;
+	background-position: center center;
+	text-decoration: none;
+	color: #eee;
+	font-weight: bolder;
+	font-size: 102%;
+}
+
+#gumax_menupic_spacer {
+	height: 15px;
+}
+
+/* Navigation Menu
+-----------------------------------------------------------------------------*/
+#gumax_mainmenu_spacer {
+	height: 7px;
+	/* border-top: 2px solid #FF8800; /**/
+}
+
+/* siteNotice
+-----------------------------------------------------------------------------*/
+#siteNotice {
+	border: 1px solid #FF9933;
+	background: #FFFFCC;
+	margin: 0;
+	padding: .9em;
+	font-size: 100%;
+}
+#siteNotice p {
+	margin: 0;
+	padding: 0;
+}
+#siteNotice table {
+	background: transparent;
+	margin: 0;
+	padding: 0;
+}
+
+/* content
+-----------------------------------------------------------------------------*/
+/* article title */
+.gumax-firstHeading {
+	font-weight: bold;
+	font-size: 130%;
+	color: #777;
+	padding-bottom: 2px;
+}
+
+
+#gumax-content-body { padding: 0; margin: 0; width: 100%; }
+
+#content {
+	border: none;
+	background: transparent;
+	margin: 0;
+	/* padding: 0px 15px 1.2em 15px;  /* content margin */
+	padding: 0 0 1.2em 0;
+	position: static; /* need for IE positioning problem */
+	z-index: 2;
+	clear: both;
+	color: black;
+	line-height: 1.4em; /* value other than 'normal' needed for WinIE */
+	overflow-x: visible;	/* need for Firefox, extreme long string :( */
+}
+
+#bodyContent { width: 100%; }
+
+/* AJax search style */
+div#searchTargetContainer {
+	left: 0px; top: 0px;
+	width: 100%;
+	background: white;
+	overflow-x: visible;  /* need for Firefox, extreme long string :( */
+	word-wrap: break-word;  /* need for IE, extreme long string :( */
+}
+div#searchTarget { padding: 10px; margin: 5px; background: #fefefe; border: solid 1px #FFCC00; }
+div#searchTarget h2 { padding-top: 1em; margin-bottom: .5em; }
+div#searchTarget a { position: relative; z-index: 300; /* fix the hide link button */ }
+
+/* table of content styles */
+#toc, .toc, .mw-warning {
+	font-size: 100%;
+	border: 1px solid #DDD;
+	background-color: #F7F7F7;
+	padding: .5em;
+	margin-bottom: 1.2em;
+}
+
+#toc h2, .toc h2 {
+	font-size: 110%;
+	border: none;
+	margin: 0;  /* fix toc top margin */
+	padding-right: .2em;  /* margin between title and hide/show link */
+	display: inline;  /* display the hide/show link after Contents */
+}
+
+#toc #toctitle, .toc #toctitle, #toc .toctitle, .toc .toctitle { text-align: left; /* left adjust of title */ }
+
+#toc ul, .toc ul {
+	list-style-type: none;
+	list-style-image: none;
+	margin:  0;
+	padding: .3em 0 0 .7em; /* margin of the item list */
+	text-align: left;
+}
+#toc ul ul, .toc ul ul, #toc ul ul ul, .toc ul ul ul { margin: 0 0 0 .7em; /* toclevel-2 margin */ }
+#toc .tocindent  { margin-left: 1em; }
+#toc .tocline { margin-bottom: 0; }
+#toc p { margin: 0 }
+#toc .toctoggle { font-size: 90%; }
+
+#toc .editsection { margin-top: .3em; font-size: 90%; }
+
+/* body content */
+h1, h2 { margin-top: 1.32em; padding: .35em .1em .3em 0; border-bottom: 3px solid #eee; }
+h3, h4, h5, h6 { margin-top: 1em; padding: .2em .1em .3em 0; border-bottom: 1px solid #eee; }
+
+ul { margin: .3em 0 0 1.5em; list-style-image: url("arrow.gif"); }
+li { margin-left: .5em; margin-bottom: .1em; padding: 0; /* margin between bullet and content */ }
+
+#editform { width: 100%; }  /* prevent overflow in IE when editing */
+
+textarea {
+	font-size: 100%;
+	width: 99%;	 /* fix the textarea oversize in IE */
+	padding: 2px 0 0 2px;
+	margin: 0;
+	border: 1px solid #3399FF;
+	/* height: 500px; */
+}
+
+/* pre{ */
+/* white-space: pre;			/* CSS2 */
+/* white-space: -moz-pre-wrap;  /* Mozilla */
+/* white-space: -hp-pre-wrap;   /* HP printers */
+/* white-space: -o-pre-wrap;	/* Opera 7 */
+/* white-space: -pre-wrap;	  /* Opera 4-6 */
+/* white-space: pre-wrap;	   /* CSS 2.1 */
+/* white-space: pre-line;	   /* CSS 3 (and 2.1 as well, actually) */
+/* word-wrap: break-word;	   /* IE */
+/* } */
+
+pre {
+	white-space: -moz-pre-wrap;  /* need for Firefox */
+	overflow-x: visible;  /* need for Firefox, extreme long string :( */
+	padding: 1em;
+	border: 1px dashed #2f6fab;
+	color: black;
+	background: #FBFCF6; /* background: #FFFFEE; */
+	line-height: 1.2em;
+	margin: 1.1em 0;
+}
+* html pre { word-wrap: break-word;  /* IE fix */ }
+.visualClear { clear: both;}
+
+.errorbox, .successbox { margin-top:	 .2em; margin-bottom:  1em; }
+
+#contentSub, #contentSub2 { font-size: 90%; line-height: 1.2em; margin: 0.5em 0 1.4em 0; color: #7d7d7d; width: auto; }
+
+/* Table pager (e.g. Special:Imagelist) */
+.TablePager_nav a { text-decoration: none; }
+.TablePager th { background-color: #eeeeff; }
+.TablePager td { background-color: #ffffff; }
+.TablePager tr:hover td { background-color: #eeeeff; }
+
+
+/* edit section
+-----------------------------------------------------------------------------*/
+* html div.editsection { font-size: 90%; }
+.editsection { font-size: 90%; margin-top: 1px; color: #ddd; /* color for [] */ }
+.editsection a, .editsection a:visited { color: #CC6600; }
+.editsection a:hover { color: #FF3300; }
+
+
+/* content-actions
+-----------------------------------------------------------------------------*/
+#gumax-content-actions {
+	text-align: center; /* menu location */
+	height: 27px;  /* need for IE win */
+	white-space: nowrap;
+	background: transparent url('images/stripe-dark.gif') left repeat-x;
+	color: #999;
+}
+
+#gumax-content-actions ul { list-style: none; margin: 0; padding: 5px 5px; }
+#gumax-content-actions ul li { display: inline; margin: 0; padding: 0;}
+#gumax-content-actions ul li a {
+	padding: 4px 10px;
+	text-decoration: none;
+	font-size: 100%; font-family: Verdana, 'Trebuchet MS', Sans-serif,  Arial;
+	color: #bbb; white-space: nowrap;
+}
+
+#gumax-content-actions ul li a:hover, #gumax-content-actions ul li.selected a {
+	background: transparent url('images/stripe-wide.gif') left repeat-x;
+}
+
+
+/* Footer
+-----------------------------------------------------------------------------*/
+#gumax_footer_spacer { height: 15px; }
+
+#gumax-footer {
+	/* border:  1px solid #000; /*debuging*/
+	text-align: left; /* page footer location */
+	background: transparent url("images/stripe-wide.gif") center repeat-x; 
+	padding: 6px 5px;
+}
+
+#gumax-footer a { font-family: Verdana,'Trebuchet MS', Georgia, Sans-serif, Arial; font-size: 85%; text-decoration: none; }
+
+#gumax-footer ul { list-style: none; padding: 0; margin: 0; }
+#gumax-footer ul li { display: inline; overflow: visible; margin: 0; }
+#gumax-footer ul li a { color: #bbb; padding: 3px 5px; }
+#gumax-footer ul li a:hover { color: #ddd; }
+
+
+
+#gumax-f-message { padding-top: 3px; display: none; }
+
+
+
+
+#gumax-f-list {
+	/* border: 1px solid #CC0033; /*debuging*/
+	font-size: 90%;
+	margin: 0; padding: 7px 0;
+	text-align: right;
+}
+
+#gumax-f-list ul {
+	position: relative;
+	width: auto;
+	list-style: none;
+	padding: 0; margin: 0;
+}
+
+#gumax-f-list ul li {
+	position: relative;
+	display: inline;
+	margin: 0; padding: 0;
+	font-size: 100%;
+}
+
+#gumax-f-list ul li a {
+	color: #777;
+	padding: 3px 0 3px 10px;
+	text-decoration: none; 
+}
+
+#gumax-f-list ul li a:hover { color: #333; }
+
+
+
+#gumax_page_spacer { height: 10px; }
+
+/* Special:Specialpages
+-----------------------------------------------------------------------------*/
+/* system message table fix */
+#allmessagestable { table-layout: fixed; width: 100%; max-width: 100%; margin-top: 20px; border-collapse: collapse; }
+#allmessagestable, #allmessagestable th, #allmessagestable td { border: 1px solid #777; padding: 3px 5px; }
+
+table.mw-listgrouprights-table { width: 100%; }
+
+/* image list table fix */
+table.imagelist, table.TablePager { width: 100%; max-width: 100%; margin-top: 0.3em; }
+.TablePager td, .TablePager th { border: 1px solid #777; }
+.imagelist td, .imagelist th { white-space: normal; }
+/* remove line wrapping for TablePager_col_links */
+.imagelist .TablePager_col_links { white-space: nowrap; }
+
+h4.mw-specialpagesgroup {
+	background: none; /**/
+	border-bottom: 2px solid #ddd;
+}
+
+
+/* Random HTML
+-----------------------------------------------------------------------------*/
+hr { height: 1px; color: #aaa; background-color: #aaa; border: 0; margin: .2em 0 .2em 0; }
+
+/* for margin between paragraphs */
+.cc { font-size: 10%; padding: 0.2em 0 0.2em 0; margin: 0; }
+/*-------------------------------------
+	<div class="cc">&nbsp;</div>
+-------------------------------------*/
+
+/* Force Opera / Moz / Netscape to display an _IN_active vertical scrollbar (like IE) */
+html { overflow-y: scroll; }
+
+/*
+make a few corners round
+only supported by moz/firefox/other gecko browsers for now
+-----------------------------------------------------------
+*/
+div.breadcrumbs {
+	-moz-border-radius-topleft: 0.5em;
+	-moz-border-radius-topright: 0.5em;
+	-moz-border-radius-bottomleft: 0.5em;
+	-moz-border-radius-bottomright: 0.5em;
+}
+
+/* IE/Mac fixes
+-----------------------------------------------------------------------------*/
+/* the positioning of preferences */
+/* float/negative margin brokenness */
+* html #preferences { width: 90%; }
+
+/* login form fix */
+div#userloginForm form, form#userlogin2 { width: 500px; }
+
