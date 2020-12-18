@@ -1,0 +1,12 @@
+/*
+ * Right-to-left fixes for GuMaxDD
+ */
+ 
+#gumax-nav li { float: right; }
+
+#p-logo { float: right; }
+
+#gumax-searchBody {	float: left; }
+
+#gumax-p-login { text-align: left; }
+

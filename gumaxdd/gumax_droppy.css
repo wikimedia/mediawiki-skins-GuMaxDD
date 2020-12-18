@@ -1,27 +1,8 @@
 /*
  * ----------------------------------------------------------------------------
- * 'GuMaxDD' style sheet for CSS2-capable browsers.
- *       Loosely based on the monobook style
  *
- * @Version 1.3
- * @Author Paul Y. Gu, <gu.paul@gmail.com>
- * @Copyright paulgu.com 2006 - http://www.paulgu.com/
- * @License: GPL (http://www.gnu.org/copyleft/gpl.html)
+ * Drop Down menu style
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License along
- * with this program; if not, write to the Free Software Foundation, Inc.,
- * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- * http://www.gnu.org/copyleft/gpl.html
  * ----------------------------------------------------------------------------
  */
 
@@ -35,23 +16,33 @@
 #gumax-nav ul li { float: none; }
 #gumax-nav ul ul { top: 0; }
 
+
 /* Essentials */
 #gumax-nav ul { min-width: 200px; width: 200px; }
 #gumax-nav ul ul { left: 201px; }
 
 /* theming */
 /*#gumax-nav { height: 29px; background: #333; border-top: 1px solid #c7c7c7; border-bottom: 1px solid #e7e7e7;}/**/
-#gumax-nav { height: 29px; background: #333;}
+#gumax-nav { height: 33px; background: #9e9e9e; }
 #gumax-nav *:hover { background-color: none; }
 #gumax-nav a {
 	font-weight: bold;
-	color: #bbb;
-	padding: 8px 10px;
+	color: #333333;
+	padding: 11px 10px;
 	line-height: 1;
 	}
-#gumax-nav li.hover a, #gumax-nav ul li, #gumax-nav ul li a { background-color: #5e5a5a; /* drop down background */ border-bottom: 1px solid #777;}
-#gumax-nav ul { top: 27px; }
-#gumax-nav ul li a { font-weight: bold; color: #fff; padding: 4px 10px; /* white-space: nowrap; /* wrap long item */ }
-#gumax-nav a.hover, #gumax-nav ul a.hover { background-color: #999; color: #eee; }
-#gumax-nav ul { border: none; opacity: 0.9; filter: alpha(opacity=90); }
+#gumax-nav li.hover a, #gumax-nav ul li, #gumax-nav ul li a { background-color: #3b3b3b; /* drop down background */ }
+#gumax-nav ul { top: 33px; }
+#gumax-nav ul li a { font-weight: bold; color: #fff; padding: 5px 10px; /* white-space: nowrap; /* wrap long item */ }
+#gumax-nav a.hover, #gumax-nav ul a.hover { background-color: #5b5b5b; color: #eee; }
+#gumax-nav ul { border: none; opacity: 0.97; filter: alpha(opacity=97); }
+
+
+/* Rounded Corners */
+#gumax-nav {
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	behavior: url(border-radius.htc);
+	}
 

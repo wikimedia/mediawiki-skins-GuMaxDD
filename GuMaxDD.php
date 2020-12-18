@@ -4,7 +4,7 @@
  * 'GuMaxDD' style sheet for CSS2-capable browsers.
  *       Loosely based on the monobook style
  *
- * @Version 1.3
+ * @Version 1.4.0
  * @Author Paul Y. Gu, <gu.paul@gmail.com>
  * @Copyright paulgu.com 2007 - http://www.paulgu.com/
  * @License: GPL (http://www.gnu.org/copyleft/gpl.html)
@@ -61,7 +61,7 @@ class SkinGuMaxDD extends SkinTemplate {
 		$out->addStyle( 'gumaxdd/IE60Fixes.css', 'screen', 'IE 6' );
 		$out->addStyle( 'gumaxdd/IE70Fixes.css', 'screen', 'IE 7' );
 
-		$out->addStyle( 'gumaxdd/rtl.css', 'screen', '', 'rtl' );
+		$out->addStyle( 'gumaxdd/gumax_rtl.css', 'screen', '', 'rtl' );
 
 		$out->addStyle( 'gumaxdd/gumax_print.css', 'print' );
 	}
@@ -126,10 +126,11 @@ class GuMaxDDTemplate extends QuickTemplate {
 <?php	}
 		if($this->data['trackbackhtml']) print $this->data['trackbackhtml']; ?>
 
-
-	<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/scripts/jquery-1.4.2.min.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"></script>
+    <!-- Drop Down menu script -->
+	<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/scripts/jquery-1.3.2.min.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"></script>
 	<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/scripts/jquery.droppy.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"></script>
 	<script type="<?php $this->text('jsmimetype') ?>"> jQuery(function() { jQuery('#gumax-nav').droppy({speed: 200}); });</script>
+    <!-- End of Drop Down menu script -->
 
 </head>
 
@@ -144,25 +145,23 @@ class GuMaxDDTemplate extends QuickTemplate {
 	<!-- ///// gumax-header ///// -->
 	<div id="gumax-header">
 
-		<!-- gumax-p-logo -->
-		<div id="gumax-p-logo">
-			<?php $this->logoBox(); ?>
-		</div>
-		<!-- end of gumax-p-logo -->
-
 		<!-- Login Tools -->
 		<div id="gumax-p-login">
 			<?php $this->personalLoginBox(); ?>
 		</div>
 		<!-- end of Login Tools -->
-
+		<!-- gumax-p-logo -->
+		<div id="gumax-p-logo">
+			<?php $this->logoBox(); ?>
+		</div>
+		<!-- end of gumax-p-logo -->
 		<!-- Search -->
 		<?php $this->searchBox(); ?>
 		<!-- end of Search -->
 
 	</div>
 	<!-- ///// end of gumax-header ///// -->
-
+	<div style="clear:both"></div>
 
 
 	<!-- Navigation Menu -->
@@ -346,7 +345,7 @@ class GuMaxDDTemplate extends QuickTemplate {
 				<li id="t-ispermalink"<?php echo $this->skin->tooltip('t-ispermalink') ?>><?php $this->msg('permalink') ?></li><?php
 		}
 
-        wfRunHooks( 'MonoBookTemplateToolboxEnd', array( &$this ) );
+		wfRunHooks( 'MonoBookTemplateToolboxEnd', array( &$this ) );
 		wfRunHooks( 'GuMaxDDTemplateToolboxEnd', array( &$this ) );
 		wfRunHooks( 'SkinTemplateToolboxEnd', array( &$this ) );
 
@@ -751,7 +750,7 @@ class GuMaxDDTemplate extends QuickTemplate {
 				<li id="t-ispermalink"><?php $this->msg('permalink') ?></li><?php
 		}
 
-		wfRunHooks( 'GuMaxTemplateToolboxEnd', array( &$this ) );
+		wfRunHooks( 'GuMaxDDTemplateToolboxEnd', array( &$this ) );
 		wfRunHooks( 'SkinTemplateToolboxEnd', array( &$this ) ); ?>
 			</ul>
 		</div>

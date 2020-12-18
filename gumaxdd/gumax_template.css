@@ -3,7 +3,7 @@
  * 'GuMaxDD' style sheet for CSS2-capable browsers.
  *	   Loosely based on the monobook style
  *
- * @Version 1.3
+ * @Version 1.4.0
  * @Author Paul Y. Gu, <gu.paul@gmail.com>
  * @Copyright paulgu.com 2006 - http://www.paulgu.com/
  * @License: GPL (http://www.gnu.org/copyleft/gpl.html)
@@ -27,12 +27,16 @@
 
 /* Basic Structure
 -----------------------------------------------------------------------------*/
+html, body { 
+	/* background: #fafafa url('headbg.jpg') top left no-repeat fixed; /**/
+	/* background: #f9f9f9 url(headbg.jpg) 0 0 no-repeat; /**/
+	/* background: #fff url('images/bg_headvisual.jpg') left 22px repeat-x; /**/
+	/*background: none; /**/
+	background: #F6F6F8 url(images/gradient_texture_201101.jpg) repeat-x 0 0;
+}
+
 body {
 	font-size: x-small; margin: 0; padding: 0; min-width: 700px;
-	/* background: #fafafa url('headbg.jpg') top left no-repeat fixed; /**/
-    background: #f9f9f9 url(headbg.jpg) 0 0 no-repeat; /**/
-	/* background: #fff url('images/bg_headvisual.jpg') left 22px repeat-x; /**/
-    /* background: none; /**/
 }
 
 body, td, th, input, textarea, pre, h1, h2, h3, h4, h5, h6 { color: #222; }
@@ -43,45 +47,51 @@ pre { font-family: Monospace, Courier, Arial; }
 #gumax-page {
 	background: transparent;
 	font-size: 110%; /* web page font size */
-	width: 890px; /* page width */
+	width: 990px; /* page width */
 	margin: 0 auto;
 }
 
 
-/* Logo
------------------------------------------------------------------------------*/
-#p-logo,
-#p-logo a,
-#p-logo a:hover {
-	/* border: 1px solid #000; /*debuging*/
-	width: 135px;
-	height: 96px;
-}
-#p-logo {
-	z-index: 200; position: absolute;
-	top: 20px; left: 0px; /* logo position */
-	overflow: visible;
-}
-#p-logo h5 { display: none; }
-#p-logo a, #p-logo a:hover {
-	display: block;
-	background-repeat: no-repeat;
-	background-position: center left !important;
-	text-decoration: none;
-}
 
 /* Header
 -----------------------------------------------------------------------------*/
 /* gumax-header */
 #gumax-header {
 	/* border: 1px solid #000; /*debuging*/
-	position: relative;
 	z-index: 100;  /* make logo visible over content*/
-	min-height: 130px;  /* height of header */
-	height: 132px;  /* need for IE */
 	margin: 0 auto;
 	padding: 0;
-	/* background: #ddd url('images/stripe-wide.gif') top left repeat; /**/
+}
+
+
+/* Logo
+-----------------------------------------------------------------------------*/
+#p-logo h5 { display: none; }
+
+#p-logo,
+#p-logo a,
+#p-logo a:hover {
+	height: 105px;
+	/*border: 1px solid #000; /*debuging*/
+}
+
+#p-logo {
+	z-index: 200;
+	position: relative; /*needed to use z-index */
+	float: left;
+	text-align: left;
+	margin: 10px 0 20px 0;
+	overflow: visible;
+	display: block;
+	padding: 0;
+}
+
+#p-logo a,
+#p-logo a:hover {
+	display: block;
+	background-repeat: no-repeat;
+	background-position: 0% 50% !important;
+	text-decoration: none;
 }
 
 /* Login
@@ -125,60 +135,32 @@ li#pt-login {
 
 /* Search
 -----------------------------------------------------------------------------*/
-#gumax-p-search {
-	/* border:  1px solid #FFCC00; /*debuging*/
-	position: absolute;
-	z-index: 3;
-	bottom: 45px;
-	right: 0;
-}
+#gumax-p-search h5 { display: none }
 
-#gumax-p-search .gumax-pBody, #gumax-searchBody {
-	background: none;
+#gumax-searchBody {
 	position: relative;
+	float: right;
+	z-index: 3;
 	padding: 0;
-	margin-right: 0;  /* right side margin of search, same as content margin */
-	text-align: left;
-	white-space: nowrap;	/* for Opera */
+	margin: 40px 0;
+	text-align: right;
 	vertical-align: middle;
 }
 
-#gumax-p-search form #searchInput {
+input.searchButton {
 	font-size: 100%;
-	width: 12em;   /* text field width */
-	text-align: left;
-	vertical-align: middle;
-	border: 1px solid #bbb; /* text field border style */
-	background: #f7f7f7; /* background color of the text field */
 }
 
-#gumax-p-search form #searchGoButton,
-#gumax-p-search form #mw-searchButton {
-	font-family: Verdana, Sans-serif, Arial;
-	vertical-align: middle;
-	font-size: 100%;
-	color: #555;  /* font color */
-	text-decoration: none;
-	/* background: #ddd; /* button background */
-	/* border: 1px outset #999; /* border: 1px inset #777; */
-	/* text-transform: uppercase; */
-	padding: 0;
+#searchInput {
+	width: 15em;
+	height:1.5em;
 	margin: 0;
-}
-#gumax-p-search form #mw-searchButton {
-	/*font-weight: normal;*/
-}
-
-#searchGoButton:link, #searchGoButton:visited, #searchGoButton:hover, #searchGoButton:active,
-#mw-searchButton:link, #mw-searchButton:visited, #mw-searchButton:hover, #mw-searchButton:active {
-	cursor: pointer;
+	font-size: 100%;
+	border: 1px solid #777;
 }
 
-#gumax-header form #searchInput:hover,
-#gumax-header form #searchInput:focus {
-	background: #fff;
-	/* width: 18em;  /* text field width when focused */
-	border: 1px solid #FFCC99;
+.os-suggest {
+	font-size: 100%; /* search suggest font */
 }
 
 
@@ -218,7 +200,7 @@ li#pt-login {
 	margin-top: 10px;
 }
 .gumax-p-navigation-spacer {
-	height: 20px;
+	height: 10px;
 	/* border-top: 2px solid #FF8800; /**/
 }
 
@@ -245,9 +227,8 @@ li#pt-login {
 -----------------------------------------------------------------------------*/
 /* article title */
 .gumax-firstHeading {
-	font-weight: bold;
-	font-size: 130%;
-	color: #3399FF;
+	font-size: 170%;
+	color: #000;
 	padding-bottom: 2px;
 }
 
@@ -255,8 +236,8 @@ li#pt-login {
 
 #content {
 	border: none;
-	border-top: 1px solid #99CCFF;
-	border-bottom: 1px solid #99CCFF;
+	border-top: 1px solid #999;
+	/* border-bottom: 1px solid #99CCFF; /**/
 	background: transparent;
 	margin: 0;
 	/* padding: 0px 15px 1.2em 15px;  /* content margin */
@@ -316,10 +297,6 @@ div#searchTarget a { position: relative; z-index: 300; /* fix the hide link butt
 #toc .toctoggle { font-size: 90%; }
 
 #toc .editsection { margin-top: .3em; font-size: 90%; }
-
-/* body content */
-h1, h2 { margin-top: 1.32em; padding: .35em .1em .3em 0; border-bottom: 3px solid #eee; }
-h3, h4, h5, h6 { margin-top: 1em; padding: .2em .1em .3em 0; border-bottom: 1px solid #eee; }
 
 ul { margin: .3em 0 0 1.5em; list-style-image: url("arrow.gif"); }
 li { margin-left: .5em; margin-bottom: .1em; padding: 0; /* margin between bullet and content */ }
@@ -387,7 +364,7 @@ pre {
 	background: none;
 	color: #999;
 }
-* html #gumax-content-actions { margin-top: -5px; } /* WTF, IE fix */
+/** html #gumax-content-actions { margin-top: -5px; } /* WTF, IE fix */
 
 #gumax-content-actions ul { list-style: none; margin: 0; padding: 7px; }
 #gumax-content-actions ul li { display: inline; margin: 0; padding: 0;}
@@ -410,19 +387,19 @@ pre {
 
 #gumax-footer {
 	/* border:  1px solid #000; /*debuging*/
-	border-top: 4px solid #9b876f;
+	border-top: 5px solid #C6C6C6;
 	text-align: left; /* page footer location */
-	background: #333;
-	padding: 7px 5px;
-	height: 18px;
+	background: #e1e1e1;
+	padding: 4px 5px;
+	height: 20px;
 }
 
 
 #gumax-special-tools a { font-family: Verdana,'Trebuchet MS', Georgia, Sans-serif, Arial; font-size: 85%; text-decoration: none; }
 #gumax-special-tools ul { list-style: none; padding: 0; margin: 0; }
 #gumax-special-tools ul li { display: inline; overflow: visible; margin: 0; }
-#gumax-special-tools ul li a { color: #aaa; padding: 3px 5px; }
-#gumax-special-tools ul li a:hover { color: #ccc; }
+#gumax-special-tools ul li a { color: #555; padding: 3px 5px; }
+#gumax-special-tools ul li a:hover { color: #333; }
 
 
 #gumax-article-message { padding-top: 3px; display: none; }
@@ -459,7 +436,7 @@ pre {
 
 
 
-#gumax_page_spacer { height: 10px; }
+#gumax_page_spacer { height: 30px; }
 
 
 /* Special:Specialpages
@@ -524,7 +501,7 @@ div#userloginForm form, form#userlogin2 { width: 500px; }
 -----------------------------------------------------------------------------*/
 table.gumax-content-table {
 	border-collapse: collapse;
-	background: #fff;
+	background: #e1e1e1;
 }
 * html table.gumax-content-table { margin-top: -5px; } /* WTF, IE fix */
 
@@ -534,11 +511,31 @@ td.gumax-content-td-topleft {
 	/*background: transparent url(images/side-l.png) top left no-repeat;*/
 }
 td.gumax-content-td-center {
-	padding: 10px 0px; /* content padding */
+	padding: 20px; /* content padding */
 	/*background: transparent url(images/content_top.gif) top center repeat-x;*/
 }
 td.gumax-content-td-topright {
 	width: 0px;
 	/*background: transparent url(images/side-r.png) top right no-repeat;*/
 }
+
+
+/* Rounded Corners
+-----------------------------------------------------------------------------*/
+#gumax-article-picture,
+table.gumax-content-table,
+#gumax-footer {
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	behavior: url(border-radius.htc);
+	}
+
+#gumax-content-actions ul li a,
+#searchInput {
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	behavior: url(border-radius.htc);
+	}
 

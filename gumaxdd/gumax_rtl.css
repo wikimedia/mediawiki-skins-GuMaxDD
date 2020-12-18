@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------------------
  * 'GuMaxDD' style sheet for CSS2-capable browsers.
- *	   Loosely based on the monobook style
+ *       Loosely based on the monobook style
  *
  * @Version 1.4.0
  * @Author Paul Y. Gu, <gu.paul@gmail.com>
@@ -24,28 +24,11 @@
  * http://www.gnu.org/copyleft/gpl.html
  * ----------------------------------------------------------------------------
  */
-@import url("main.css");
-@import url("gumax_template.css");
 
+/* 
+ * Note: be aware of the order
+ */
 
-body
-{
-	padding-top: 10px;
-	padding-bottom: 10px;
-}
+@import url("rtl.css");
+@import url("gumax_rtl_template.css");
 
-#gumax-header,
-#gumax-p-login,
-#gumax_mainmenu_spacer,
-#gumax-p-navigation,
-#gumax-article-picture,
-#gumax-content-actions,
-#gumax_footer_spacer,
-#gumax-footer,
-#gumax-f-list {
-	display: none; /* Hides all the elements irrelevant for printing */
-}
-
-.gumax-rbcontentwrap { background: none; }
-.gumax-rbcontent { background: none; }
-* html .gumax-page { border: none; }
