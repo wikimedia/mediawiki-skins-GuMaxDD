@@ -1,11 +1,8 @@
 /* 7.0 - only fixes */
-/* content area */
+/* content area */ 
 /* workaround for various ie float bugs */
 
 /* This bit is needed to make links clickable... WTF */
-
-#gumax-content-actions { margin-top: 0; }
-
 #column-content #content {
 	margin-left: 12.2em;
 	margin-top: 3em;
@@ -21,6 +18,16 @@
 	margin-top: 160px;
 }
 
+.rtl #bodyContent a.external {
+	background-image: url(external-rtl.png);
+	padding: 0 13px 0 0;
+}
+
+.rtl a.feedlink {
+	background-position: right;
+	padding-right: 0;
+	padding-left: 16px;
+}
 /* the tabs */
 
 #p-cactions {
@@ -75,5 +82,3 @@ div.tleft {
 	/* Work around bug with inline <li> tags with right margins and nowrap */
 	margin-right: 0;
 }
-
-div#searchTargetContainer, * html pre { word-wrap: break-word;  /* IE fix */ }

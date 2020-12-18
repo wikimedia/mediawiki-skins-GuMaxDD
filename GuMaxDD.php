@@ -4,7 +4,7 @@
  * 'GuMaxDD' style sheet for CSS2-capable browsers.
  *       Loosely based on the monobook style
  *
- * @Version 1.2
+ * @Version 1.3
  * @Author Paul Y. Gu, <gu.paul@gmail.com>
  * @Copyright paulgu.com 2007 - http://www.paulgu.com/
  * @License: GPL (http://www.gnu.org/copyleft/gpl.html)
@@ -583,7 +583,7 @@ class GuMaxDDTemplate extends QuickTemplate {
 	function mainContentBox() {
 ?>
 	<div id="gumax-content-body">
-	<div class="gumax-firstHeading"><?php $this->data['displaytitle']!=""?$this->html('title'):$this->text('title') ?></div>
+	<div class="gumax-firstHeading"><?php $this->html('title') ?></div>
 	<div class="visualClear"></div>
     <!-- content -->
     <div id="content">
@@ -622,7 +622,7 @@ class GuMaxDDTemplate extends QuickTemplate {
 	<!-- content border -->
 
 	<div id="gumax-content-body">
-	<div class="gumax-firstHeading"><?php $this->data['displaytitle']!=""?$this->html('title'):$this->text('title') ?></div>
+	<div class="gumax-firstHeading"><?php $this->html('title') ?></div>
 	<div class="visualClear"></div>
     <!-- content -->
     <div id="content">
@@ -667,7 +667,7 @@ class GuMaxDDTemplate extends QuickTemplate {
 	<!-- content border -->
 
 	<div id="gumax-content-body">
-	<div class="gumax-firstHeading"><?php $this->data['displaytitle']!=""?$this->html('title'):$this->text('title') ?></div>
+	<div class="gumax-firstHeading"><?php $this->html('title') ?></div>
 	<div class="visualClear"></div>
     <!-- content -->
     <div id="content">
