@@ -4,7 +4,7 @@
  * 'GuMaxDD' style sheet for CSS2-capable browsers.
  *       Loosely based on the monobook style
  *
- * @Version 1.5.0
+ * @Version 1.5.1
  * @Author Paul Y. Gu, <gu.paul@gmail.com>
  * @Copyright paulgu.com 2007 - http://www.paulgu.com/
  * @License: GPL (http://www.gnu.org/copyleft/gpl.html)
@@ -104,7 +104,7 @@ class GuMaxDDTemplate extends QuickTemplate {
 		<!--[if lt IE 7]><script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/common/IEFixes.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"></script>
 		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
 
-		<?php print Skin::makeGlobalVariablesScript( $this->data ); ?>
+		<?php wfRunHooks( 'MakeGlobalVariablesScript', array( $this->data ) ); ?>
 
 		<!-- /// From MediaWiki 1.17 and later on these are modernized into an object oriented library stored in ResourceLoader modules ///
 		<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath' ) ?>/common/wikibits.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"></script>
@@ -250,8 +250,7 @@ class GuMaxDDTemplate extends QuickTemplate {
 ?>
 	<div id="p-logo">
 		<a style="background-image: url(<?php $this->text('logopath') ?>);" <?php
-			?>href="<?php echo htmlspecialchars($this->data['nav_urls']['mainpage']['href'])?>"<?php
-			echo $this->data['skin']->tooltipAndAccesskey('n-mainpage') ?>></a>
+			?>href="<?php echo htmlspecialchars($this->data['nav_urls']['mainpage']['href'])?>"   ></a>
 	</div>
 	<script type="<?php $this->text('jsmimetype') ?>"> if (window.isMSIE55) fixalpha(); </script>
 <?php
@@ -265,12 +264,12 @@ class GuMaxDDTemplate extends QuickTemplate {
 		if ($menu) { ?>
 			<li class=""><span>
 			<form action="<?php $this->text('searchaction') ?>" id="searchform"><div>
-			<input id="searchInput" name="search" type="text"<?php echo $this->skin->tooltipAndAccesskey('search');
+			<input id="searchInput" name="search" type="text"<?php   
 			if( isset( $this->data['search'] ) ) {
 				?> value="<?php $this->text('search') ?>"
 <?php 		} ?> />
-			<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="<?php $this->msg('searcharticle') ?>"<?php echo $this->skin->tooltipAndAccesskey( 'search-go' ); ?> />&nbsp;
-			<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="<?php $this->msg('searchbutton') ?>"<?php echo $this->skin->tooltipAndAccesskey( 'search-fulltext' ); ?> />
+			<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="<?php $this->msg('searcharticle') ?>"   />&nbsp;
+			<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="<?php $this->msg('searchbutton') ?>"   />
 			</div></form>
 			</span></li>
 <?php		return;
@@ -281,11 +280,11 @@ class GuMaxDDTemplate extends QuickTemplate {
 		<!--h5><label for="searchInput"><?php $this->msg('search') ?></label></h5-->
 		<div id="gumax-searchBody">
 			<form action="<?php $this->text('searchaction') ?>" id="searchform"><div>
-				<input id="searchInput" name="search" type="text"<?php echo $this->skin->tooltipAndAccesskey('search');
+				<input id="searchInput" name="search" type="text"<?php   
 					if( isset( $this->data['search'] ) ) {
 						?> value="<?php $this->text('search') ?>"<?php } ?> />
-				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="<?php $this->msg('searcharticle') ?>"<?php echo $this->skin->tooltipAndAccesskey( 'search-go' ); ?> />&nbsp;
-				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="<?php $this->msg('searchbutton') ?>"<?php echo $this->skin->tooltipAndAccesskey( 'search-fulltext' ); ?> />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="<?php $this->msg('searcharticle') ?>"   />&nbsp;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="<?php $this->msg('searchbutton') ?>"   />
 			</div></form>
 		</div>
 	</div>
@@ -304,26 +303,28 @@ class GuMaxDDTemplate extends QuickTemplate {
 		<div class="pBody">
 			<ul>
 <?php	}
+
+
 		if($this->data['notspecialpage']) { ?>
 				<li id="t-whatlinkshere"><a href="<?php
 				echo htmlspecialchars($this->data['nav_urls']['whatlinkshere']['href'])
-				?>"<?php echo $this->skin->tooltipAndAccesskey('t-whatlinkshere') ?>><?php $this->msg('whatlinkshere') ?></a></li>
+				?>"   ><?php $this->msg('whatlinkshere') ?></a></li>
 <?php
 			if( $this->data['nav_urls']['recentchangeslinked'] ) { ?>
 				<li id="t-recentchangeslinked"><a href="<?php
 				echo htmlspecialchars($this->data['nav_urls']['recentchangeslinked']['href'])
-				?>"<?php echo $this->skin->tooltipAndAccesskey('t-recentchangeslinked') ?>><?php $this->msg('recentchangeslinked') ?></a></li>
+				?>"   ><?php $this->msg('recentchangeslinked') ?></a></li>
 <?php 		}
 		}
 		if(isset($this->data['nav_urls']['trackbacklink'])) { ?>
 			<li id="t-trackbacklink"><a href="<?php
 				echo htmlspecialchars($this->data['nav_urls']['trackbacklink']['href'])
-				?>"<?php echo $this->skin->tooltipAndAccesskey('t-trackbacklink') ?>><?php $this->msg('trackbacklink') ?></a></li>
+				?>"   ><?php $this->msg('trackbacklink') ?></a></li>
 <?php 	}
 		if($this->data['feeds']) { ?>
 			<li id="feedlinks"><?php foreach($this->data['feeds'] as $key => $feed) {
 					?><span id="feed-<?php echo Sanitizer::escapeId($key) ?>"><a href="<?php
-					echo htmlspecialchars($feed['href']) ?>"<?php echo $this->skin->tooltipAndAccesskey('feed-'.$key) ?>><?php echo htmlspecialchars($feed['text'])?></a>&nbsp;</span>
+					echo htmlspecialchars($feed['href']) ?>"   ><?php echo htmlspecialchars($feed['text'])?></a>&nbsp;</span>
 					<?php } ?></li><?php
 		}
 
@@ -331,25 +332,26 @@ class GuMaxDDTemplate extends QuickTemplate {
 
 			if($this->data['nav_urls'][$special]) {
 				?><li id="t-<?php echo $special ?>"><a href="<?php echo htmlspecialchars($this->data['nav_urls'][$special]['href'])
-				?>"<?php echo $this->skin->tooltipAndAccesskey('t-'.$special) ?>><?php $this->msg($special) ?></a></li>
+				?>"   ><?php $this->msg($special) ?></a></li>
 <?php		}
 		}
 
 		if(!empty($this->data['nav_urls']['print']['href'])) { ?>
 				<li id="t-print"><a href="<?php echo htmlspecialchars($this->data['nav_urls']['print']['href'])
-				?>"<?php echo $this->skin->tooltipAndAccesskey('t-print') ?>><?php $this->msg('printableversion') ?></a></li><?php
+				?>"   ><?php $this->msg('printableversion') ?></a></li><?php
 		}
 
 		if(!empty($this->data['nav_urls']['permalink']['href'])) { ?>
 				<li id="t-permalink"><a href="<?php echo htmlspecialchars($this->data['nav_urls']['permalink']['href'])
-				?>"<?php echo $this->skin->tooltipAndAccesskey('t-permalink') ?>><?php $this->msg('permalink') ?></a></li><?php
+				?>"   ><?php $this->msg('permalink') ?></a></li><?php
 		} elseif ($this->data['nav_urls']['permalink']['href'] === '') { ?>
-				<li id="t-ispermalink"<?php echo $this->skin->tooltip('t-ispermalink') ?>><?php $this->msg('permalink') ?></li><?php
+				<li id="t-ispermalink"   ><?php $this->msg('permalink') ?></li><?php
 		}
 
+
 		wfRunHooks( 'MonoBookTemplateToolboxEnd', array( &$this ) );
-		wfRunHooks( 'GuMaxDDTemplateToolboxEnd', array( &$this ) );
 		wfRunHooks( 'SkinTemplateToolboxEnd', array( &$this ) );
+		wfRunHooks( 'GuMaxDDTemplateToolboxEnd', array( &$this ) );
 
 		if (!$menu) {
 ?>
@@ -391,7 +393,7 @@ class GuMaxDDTemplate extends QuickTemplate {
 	/*************************************************************************************************/
 	function customBox( $bar, $cont ) {
 ?>
-	<div class='generated-sidebar portlet' id='p-<?php echo Sanitizer::escapeId($bar) ?>'<?php echo $this->skin->tooltip('p-'.$bar) ?>>
+	<div class='generated-sidebar portlet' id='p-<?php echo Sanitizer::escapeId($bar) ?>'   >
 		<h5><?php $out = wfMsg( $bar ); if (wfEmptyMsg($bar, $out)) echo $bar; else echo $out; ?></h5>
 		<div class='pBody'>
 <?php   if ( is_array( $cont ) ) { ?>
@@ -399,7 +401,7 @@ class GuMaxDDTemplate extends QuickTemplate {
 <?php 			foreach($cont as $key => $val) { ?>
 				<li id="<?php echo Sanitizer::escapeId($val['id']) ?>"<?php
 					if ( $val['active'] ) { ?> class="active" <?php }
-				?>><a href="<?php echo htmlspecialchars($val['href']) ?>"<?php echo $this->skin->tooltipAndAccesskey($val['id']) ?>><?php echo htmlspecialchars($val['text']) ?></a></li>
+				?>><a href="<?php echo htmlspecialchars($val['href']) ?>"   ><?php echo htmlspecialchars($val['text']) ?></a></li>
 <?php			} ?>
 			</ul>
 <?php   } else {
@@ -470,7 +472,7 @@ class GuMaxDDTemplate extends QuickTemplate {
 <?php 				foreach($cont as $key => $val) { ?>
  					<li id="<?php echo Sanitizer::escapeId($val['id']) ?>"<?php
  						if ( $val['active'] ) { ?> class="active" <?php }
- 						?>><a href="<?php echo htmlspecialchars($val['href']) ?>"<?php echo $this->data['skin']->tooltipAndAccesskey($val['id']) ?>><?php echo htmlspecialchars($val['text']) ?></a></li>
+ 						?>><a href="<?php echo htmlspecialchars($val['href']) ?>"   ><?php echo htmlspecialchars($val['text']) ?></a></li>
 <?php				} ?>
 				<li><p style="margin:0; padding: 7px 0;"></p></li>
  				</ul>
@@ -495,7 +497,7 @@ class GuMaxDDTemplate extends QuickTemplate {
 <?php 		foreach($this->data['personal_urls'] as $key => $item) { ?>
 			<li id="pt-<?php echo Sanitizer::escapeId($key) ?>"<?php
 				if ($item['active']) { ?> class="active"<?php } ?>><a href="<?php
-			echo htmlspecialchars($item['href']) ?>"<?php echo $this->data['skin']->tooltipAndAccesskey('pt-'.$key) ?><?php
+			echo htmlspecialchars($item['href']) ?>"   <?php
 			if(!empty($item['class'])) { ?> class="<?php
 			echo htmlspecialchars($item['class']) ?>"<?php } ?>><?php
 			echo htmlspecialchars($item['text']) ?></a></li>
@@ -528,12 +530,7 @@ class GuMaxDDTemplate extends QuickTemplate {
 				# give the edit tab an accesskey, because that's fairly su-
 				# perfluous and conflicts with an accesskey (Ctrl-E) often
 				# used for editing in Safari.
-				if( in_array( $action, array( 'edit', 'submit' ) )
-				&& in_array( $key, array( 'edit', 'watch', 'unwatch' ))) {
-					echo $skin->tooltip( "ca-$key" );
-				} else {
-					echo $skin->tooltipAndAccesskey( "ca-$key" );
-				}
+
 				echo '>'.htmlspecialchars($tab['text']).'</a></li>';
 			} ?>
 
@@ -739,8 +736,10 @@ class GuMaxDDTemplate extends QuickTemplate {
 				<li id="t-ispermalink"><?php $this->msg('permalink') ?></li><?php
 		}
 
+		wfRunHooks( 'MonoBookTemplateToolboxEnd', array( &$this ) );
+		wfRunHooks( 'SkinTemplateToolboxEnd', array( &$this ) );
 		wfRunHooks( 'GuMaxDDTemplateToolboxEnd', array( &$this ) );
-		wfRunHooks( 'SkinTemplateToolboxEnd', array( &$this ) ); ?>
+	?>
 			</ul>
 		</div>
 
