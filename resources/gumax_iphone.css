@@ -36,7 +36,7 @@
     
     #gumax-page { width: 960px; /* page width */ }
 
-    #gumax-p-search {bottom: 10px;  }
+    #gumax-p-search { bottom: 10px; }
 
     /* article-picture */
     #gumax-article-picture, .gumax-article-picture-spacer { display: none; }
@@ -87,4 +87,3 @@
     #gumax-footer {	height: 55px; }
 
 }
-

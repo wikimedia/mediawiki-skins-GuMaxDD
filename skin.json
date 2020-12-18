@@ -1,0 +1,70 @@
+{
+	"name": "GuMaxDD",
+	"version": "1.6",
+	"author": [
+		"[http://paulgu.com/ Paul Y. Gu]",
+		"Jack Phoenix"
+	],
+	"url": "https://www.mediawiki.org/wiki/Skin:GuMaxDD",
+	"description": "GuMax skin, drop-down menu variant",
+	"license-name": "GPL-2.0-or-later",
+	"type": "skin",
+	"requires": {
+		"MediaWiki": ">= 1.35.0"
+	},
+	"ValidSkinNames": {
+		"gumaxdd": "GuMaxDD"
+	},
+	"MessagesDirs": {
+		"SkinGuMaxDD": [
+			"i18n"
+		]
+	},
+	"AutoloadClasses": {
+		"SkinGuMaxDD": "GuMaxDD.skin.php",
+		"GuMaxDDTemplate": "GuMaxDD.skin.php"
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "resources",
+		"remoteSkinPath": "GuMaxDD/resources"
+	},
+	"ResourceModules": {
+		"skins.gumaxdd": {
+			"class": "ResourceLoaderSkinModule",
+			"features": [
+				"normalize",
+				"elements",
+				"content",
+				"interface",
+				"logo",
+				"legacy"
+			],
+			"styles": {
+				"main.css": {
+					"media": "screen"
+				},
+				"gumax_template.css": {
+					"media": "screen"
+				},
+				"gumax_droppy.css": {
+					"media": "screen"
+				},
+				"print.css": {
+					"media": "print"
+				}
+			}
+		},
+		"skins.gumaxdd.js": {
+			"scripts": [
+				"scripts/jquery.droppy.js",
+				"scripts/jquery.clickmenu.js"
+			]
+		}
+	},
+	"ResourceModuleSkinStyles": {
+		"gumaxdd": {
+			"+ext.echo.styles.badge": "skinStyles/echo.badge.css"
+		}
+	},
+	"manifest_version": 2
+}

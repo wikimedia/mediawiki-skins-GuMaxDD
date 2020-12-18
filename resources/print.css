@@ -7,9 +7,7 @@
 @import url("main.css");
 @import url("gumax_template.css");
 
-
-body
-{
+body {
 	padding-top: 10px;
 	padding-bottom: 10px;
 }

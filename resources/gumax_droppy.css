@@ -1,0 +1,130 @@
+/*
+ * -----------------------------------------
+ * Drop Down menu style for GuMaxDD
+ * -----------------------------------------
+ */
+
+/* Basic style */
+#gumax-nav {
+	display: block;
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+
+#gumax-nav li {
+	display: block;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	float: left;
+	position: relative;
+}
+
+#gumax-nav a {
+	display: block;
+	font-family: 'Trebuchet MS', Georgia, Verdana, Sans-serif, Arial;
+	font-size: 110%;
+	text-decoration: none;
+}
+
+#gumax-nav ul {
+	display: none;
+	position: absolute;
+	left: 0;
+	margin: 0;
+	padding: 0;
+	z-index: 900;
+}
+
+* html #gumax-nav ul { line-height: 0; } /* IE6 "fix" */
+#gumax-nav ul a { zoom: 1; } /* IE6/7 fix */
+
+#gumax-nav ul li {
+	float: none;
+}
+
+#gumax-nav ul ul {
+	top: 0;
+}
+
+/* heading style */
+#gumax-nav li a.gumax-nav-heading {
+	font-size: 150%;
+}
+
+#gumax-nav ul li span {
+	padding: 3px 5px;
+}
+
+/* ashley 24 October 2020: replaces the <span> in top search box to make it valid HTML5;
+ * as an added bonus, this looks better than with the span, where the above rule applied.
+ * Nothing like fixing two bugs with one line of CSS!
+ */
+#gumax-nav .gumax-nav-search-box li {
+	padding: 3px 5px;
+}
+
+/* Essentials */
+#gumax-nav ul {
+	min-width: 200px;
+	width: 200px;
+}
+
+#gumax-nav ul ul {
+	left: 201px;
+	padding-bottom: 20px;
+}
+
+/* theming */
+/*#gumax-nav { height: 29px; background: #333; border-top: 1px solid #c7c7c7; border-bottom: 1px solid #e7e7e7;}/**/
+#gumax-nav {
+	height: 32px;
+	background: none;
+}
+
+#gumax-nav *:hover {
+	background-color: none;
+}
+
+#gumax-nav a {
+	font-weight: bold;
+	color: #333;
+	padding: 10px 10px;
+	line-height: 1;
+}
+
+#gumax-nav li.hover a,
+#gumax-nav ul li,
+#gumax-nav ul li a {
+	background-color: #333; /* drop down background */
+}
+
+/* No-JS version of the above, or rather, the only JS-only rule in the above group
+ * Other no-JS rules can be found in gumax_template.css
+ */
+.client-nojs #gumax-nav li:hover a {
+	background-color: #333;
+}
+
+#gumax-nav ul {
+	top: 36px; /* drop down Y position */
+}
+
+#gumax-nav ul li a {
+	font-weight: normal;
+	color: #ccc;
+	padding: 6px 10px; /* white-space: nowrap; /* wrap long item */
+}
+
+#gumax-nav a.hover,
+#gumax-nav ul a.hover {
+	background-color: none;
+	color: #fff;
+}
+
+#gumax-nav ul {
+	border: none;
+	opacity: 100.0;
+	filter: alpha(opacity=100.0);
+}

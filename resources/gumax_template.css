@@ -1,0 +1,682 @@
+/*
+ * -----------------------------------
+ * GuMax Template
+ * -----------------------------------
+ */
+
+/* Basic Structure
+-----------------------------------------------------------------------------*/
+html, body {
+	/* background: #fafafa url('headbg.jpg') top left no-repeat fixed; /**/
+	/* background: #f9f9f9 url(headbg.jpg) 0 0 no-repeat; /**/
+	/* background: none; /**/
+	/* background: url(images/gradient_texture_20110116.jpg) repeat-x 0 0 #F6F7F8; /**/
+	/* background: url(images/gradient_texture_20110117.jpg) repeat-x scroll 0 0 #eeeeee; /**/
+	/* @embed */
+	background: url(images/bg.jpg) repeat-x scroll center 0 #E2E1DF;
+}
+
+body {
+	font-size: x-small;
+	margin: 0;
+	padding: 0;
+	min-width: 700px;
+}
+
+body, td, th, input, textarea, pre, h1, h2, h3, h4, h5, h6 {
+	color: #222;
+}
+
+body, td, th, input, textarea {
+	font-family: Verdana, Arial, 'Trebuchet MS';
+}
+
+pre {
+	font-family: Monospace, Courier, Arial;
+}
+
+#gumax-page {
+	background: transparent;
+	font-size: 110%; /* web page font size */
+	width: 990px; /* page width */
+	margin: 0 auto;
+}
+
+/* Header
+-----------------------------------------------------------------------------*/
+/* gumax-header */
+#gumax-header {
+	/* border: 1px solid #000; /*debuging*/
+	z-index: 100; /* make logo visible over content*/
+	margin: 0 auto;
+	padding: 0;
+}
+
+/* Logo
+-----------------------------------------------------------------------------*/
+#p-logo h5 {
+	display: none;
+}
+
+#p-logo,
+#p-logo a,
+#p-logo a:hover {
+	height: 105px;
+}
+
+#p-logo {
+	z-index: 200;
+	position: relative; /* needed to use z-index */
+	float: left;
+	text-align: left;
+	margin: 10px 0 20px 0;
+	overflow: visible;
+	display: block;
+	padding: 0;
+}
+
+#p-logo a,
+#p-logo a:hover {
+	display: block;
+	background-repeat: no-repeat;
+	background-position: 0% 50% !important;
+	text-decoration: none;
+}
+
+/* Login
+-----------------------------------------------------------------------------*/
+#gumax-p-login {
+	font-size: 90%;
+	margin: 0;
+	padding: 7px 0 5px 0;
+	text-align: right;
+}
+
+#gumax-p-login ul {
+	position: relative;
+	width: auto;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+#gumax-p-login ul li {
+	position: relative;
+	display: inline;
+	margin: 0;
+	padding: 0;
+	font-size: 100%;
+}
+
+#gumax-p-login ul li a {
+	color: #777;
+	padding: 2px 0 2px 10px;
+	text-decoration: none;
+}
+
+#gumax-p-login ul li a:hover {
+	color: #333;
+}
+
+li#pt-userpage,
+li#pt-anonuserpage,
+li#pt-login {
+	background: none;
+	font-weight: bold;
+}
+
+
+/* Search
+-----------------------------------------------------------------------------*/
+#gumax-p-search h5 {
+	display: none;
+}
+
+#gumax-searchBody {
+	position: relative;
+	float: right;
+	z-index: 3;
+	padding: 0;
+	margin: 40px 0;
+	text-align: right;
+	vertical-align: middle;
+}
+
+input.searchButton {
+	font-size: 100%;
+}
+
+#searchInput {
+	width: 15em;
+	/* was 1.5em but 2em looks better in my opinion */
+	height: 2em;
+	margin: 0;
+	font-size: 100%;
+	border: 1px solid #777;
+}
+
+.os-suggest {
+	font-size: 100%; /* search suggest font */
+}
+
+/* dynamic article picture
+-----------------------------------------------------------------------------*/
+#gumax-article-picture {
+	border: 1px solid #e3e4e5;
+	background-color: #fff;
+	text-align: left;
+	padding: 0;
+	/* margin: 2px 15px; /* same margin as content */
+	margin: 2px 0;
+	/* display: none; /* disable gumax-article-picture */
+}
+* html #gumax-article-picture { margin-top: -5px; } /* WTF, IE fix */
+
+#gumax-article-picture,
+#gumax-article-picture a,
+#gumax-article-picture a:hover {
+	height:	 108px;
+	min-height: 108px; /* height of header */
+	display: block;
+	background-repeat: no-repeat;
+	background-position: center center;
+	text-decoration: none;
+	color: #eee;
+	font-weight: bolder;
+	font-size: 102%;
+}
+
+.gumax-article-picture-spacer {
+	height: 7px;
+}
+
+/* Navigation Menu
+-----------------------------------------------------------------------------*/
+#gumax-p-navigation {
+	position: relative;
+	z-index: 900;
+	margin-top: 10px;
+}
+.gumax-p-navigation-spacer {
+	height: 10px;
+	/* border-top: 2px solid #FF8800; /**/
+}
+
+/* siteNotice
+-----------------------------------------------------------------------------*/
+#siteNotice {
+	border: 1px solid #ff9933;
+	background: #ffffcc;
+	margin: 0;
+	padding: .9em;
+	font-size: 100%;
+}
+#siteNotice p {
+	margin: 0;
+	padding: 0;
+}
+#siteNotice table {
+	background: transparent;
+	margin: 0;
+	padding: 0;
+}
+
+/* content
+-----------------------------------------------------------------------------*/
+/* article title */
+.gumax-firstHeading {
+	font-size: 170%;
+	color: #000;
+	padding-bottom: 2px;
+}
+
+#gumax-content-body {
+	/* background: #f7f8f9; /* content background */
+	/* background: #e7e8e9; /* content background */
+	background: #fff; /* content background */
+	border: 1px solid #e3e4e5;
+	padding: 20px; /* content padding */
+	margin: 0;
+}
+* html #gumax-content-body { margin-top: -5px; } /* WTF, IE fix */
+
+div#content {
+	border: none;
+	border-top: 1px solid #999;
+	/* border-bottom: 1px solid #99CCFF; /**/
+	background: transparent;
+	margin: 0;
+	/* padding: 0px 15px 1.2em 15px; /* content margin */
+	padding: 0 0 10px 0;
+	position: static; /* need for IE positioning problem */
+	z-index: 2;
+	clear: both;
+	color: black;
+	line-height: 1.4em; /* value other than 'normal' needed for WinIE */
+	overflow-x: visible; /* need for Firefox, extreme long string :( */
+}
+
+#bodyContent {
+	width: 100%;
+}
+
+/* table of content styles */
+#toc, .toc, .mw-warning {
+	font-size: 100%;
+	border: 1px solid #DDD;
+	background-color: #F7F7F7;
+	padding: .5em;
+	margin-bottom: 1.2em;
+}
+
+#toc h2, .toc h2 {
+	font-size: 110%;
+	border: none;
+	margin: 0; /* fix toc top margin */
+	padding-right: .2em; /* margin between title and hide/show link */
+	display: inline; /* display the hide/show link after Contents */
+}
+
+#toc #toctitle,
+.toc #toctitle,
+#toc .toctitle,
+.toc .toctitle {
+	text-align: left; /* left adjust of title */
+}
+
+#toc ul, .toc ul {
+	list-style-type: none;
+	list-style-image: none;
+	margin: 0;
+	padding: .3em 0 0 .7em; /* margin of the item list */
+	text-align: left;
+}
+
+#toc ul ul,
+.toc ul ul,
+#toc ul ul ul,
+.toc ul ul ul {
+	margin: 0 0 0 .7em; /* toclevel-2 margin */
+}
+
+#toc .tocindent {
+	margin-left: 1em;
+}
+
+#toc .tocline {
+	margin-bottom: 0;
+}
+
+#toc p {
+	margin: 0;
+}
+
+#toc .toctoggle {
+	font-size: 90%;
+}
+
+#toc .editsection {
+	margin-top: .3em;
+	font-size: 90%;
+}
+
+ul {
+	margin: .3em 0 0 1.5em;
+	/* @embed */
+	list-style-image: url("arrow.gif");
+}
+li {
+	margin-left: .5em;
+	margin-bottom: .1em;
+	padding: 0; /* margin between bullet and content */
+}
+
+#editform {
+	width: 100%; /* prevent overflow in IE when editing */
+}
+
+textarea {
+	font-size: 100%;
+	width: 99%; /* fix the textarea oversize in IE */
+	padding: 2px 0 0 2px;
+	margin: 0;
+	border: 1px solid #3399ff;
+	/* height: 500px; */
+}
+
+pre {
+/* white-space: pre; /* CSS2 */
+/* white-space: -hp-pre-wrap; /* HP printers */
+/* white-space: -o-pre-wrap; /* Opera 7 */
+/* white-space: -pre-wrap; /* Opera 4-6 */
+	white-space: pre-wrap; /* CSS 2.1 */
+	white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */
+	white-space: -moz-pre-wrap; /* Mozilla Firefox */
+	word-wrap: break-word; /* IE */
+
+	overflow-x: visible; /* need for Firefox, extreme long string :( */
+}
+
+.visualClear {
+	clear: both;
+}
+
+.errorbox, .successbox {
+	margin-top: .2em;
+	margin-bottom: 1em;
+}
+
+#contentSub, #contentSub2 {
+	font-size: 90%;
+	line-height: 1.2em;
+	margin: 0.5em 0 1.4em 0;
+	color: #7d7d7d;
+	width: auto;
+}
+
+/* Table pager (e.g. Special:FileList) */
+.TablePager_nav a { text-decoration: none; }
+.TablePager th { background-color: #eeeeff; }
+.TablePager td { background-color: #ffffff; }
+.TablePager tr:hover td { background-color: #eeeeff; }
+
+
+/* edit section
+-----------------------------------------------------------------------------*/
+* html div.editsection {
+	font-size: 90%;
+}
+
+.editsection {
+	font-size: 90%;
+	margin-top: 1px;
+	color: #ddd; /* color for [] */
+}
+
+.editsection a,
+.editsection a:visited {
+	color: #cc6600;
+}
+
+.editsection a:hover {
+	color: #ff3300;
+}
+
+/* content actions
+-----------------------------------------------------------------------------*/
+#gumax-content-actions {
+	text-align: center; /* menu location */
+	height: 27px; /* need for IE win */
+	white-space: nowrap;
+	background: none;
+	color: #999;
+}
+/** html #gumax-content-actions { margin-top: -5px; } /* WTF, IE fix */
+
+#gumax-content-actions ul {
+	list-style: none;
+	margin: 0;
+	padding: 7px;
+}
+#gumax-content-actions ul li {
+	display: inline;
+	margin: 0;
+	padding: 0;
+}
+#gumax-content-actions ul li a {
+	padding: 5px 10px;
+	text-decoration: none;
+	font-size: 100%;
+	font-family: Verdana, 'Trebuchet MS', Sans-serif, Arial;
+	color: #777;
+	white-space: nowrap;
+}
+
+#gumax-content-actions ul li a:hover,
+#gumax-content-actions ul li.selected a {
+	color: #000;
+}
+
+#gumax-content-actions li#ca-edit a {
+	font-size: 120%;
+	font-style: italic;
+	color: #555;
+}
+
+/* Footer
+-----------------------------------------------------------------------------*/
+.gumax-footer-spacer {
+	height: 7px;
+}
+
+#gumax-footer {
+	border-bottom: 3px solid #c6c6c6;
+	text-align: left; /* page footer location */
+	padding: 4px 5px;
+	height: 20px;
+}
+
+#gumax-special-tools a {
+	font-family: Verdana,'Trebuchet MS', Georgia, Sans-serif, Arial;
+	font-size: 90%;
+	text-decoration: none;
+}
+#gumax-special-tools ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+#gumax-special-tools ul li {
+	display: inline;
+	overflow: visible;
+	margin: 0;
+}
+#gumax-special-tools ul li a {
+	color: #555;
+	padding: 3px 5px;
+}
+#gumax-special-tools ul li a:hover {
+	color: #333;
+}
+
+#gumax-article-message {
+	padding-top: 3px;
+	display: none;
+}
+
+#gumax-credit-list {
+	font-size: 90%;
+	margin: 0;
+	padding: 7px;
+	text-align: right;
+}
+
+#gumax-credit-list ul {
+	position: relative;
+	width: auto;
+	list-style: none;
+	padding: 0; margin: 0;
+}
+
+#gumax-credit-list ul li {
+	position: relative;
+	display: inline;
+	margin: 0; padding: 0;
+	font-size: 100%;
+}
+
+#gumax-credit-list ul li a {
+	color: #555;
+	padding: 3px 0 3px 10px;
+	text-decoration: none;
+}
+
+#gumax-credit-list ul li a:hover {
+	color: #333;
+}
+
+#gumax_page_spacer {
+	height: 30px;
+}
+
+/* Special:SpecialPages
+-----------------------------------------------------------------------------*/
+/* system message table fix */
+#mw-allmessagestable {
+	table-layout: fixed;
+	width: 100%;
+	max-width: 100%;
+	margin-top: 20px;
+	border-collapse: collapse;
+}
+
+#mw-allmessagestable, #mw-allmessagestable th, #mw-allmessagestable td {
+	border: 1px solid #777;
+	padding: 3px 5px;
+}
+
+/* Special:ListGroupRights */
+table.mw-listgrouprights-table {
+	width: 100%;
+}
+
+/* image list table fix */
+table.imagelist,
+table.TablePager {
+	width: 100%;
+	max-width: 100%;
+	margin-top: 0.3em;
+}
+
+.TablePager td,
+.TablePager th {
+	border: 1px solid #777;
+}
+
+.imagelist td,
+.imagelist th {
+	white-space: normal;
+}
+
+/* remove line wrapping for TablePager_col_links */
+.imagelist .TablePager_col_links {
+	white-space: nowrap;
+}
+
+/* Special:SpecialPages itself */
+h4.mw-specialpagesgroup {
+	background: none;
+	border-bottom: 2px solid #ddd;
+}
+
+/* Random HTML
+-----------------------------------------------------------------------------*/
+hr {
+	height: 1px;
+	color: #aaa;
+	background-color: #aaa;
+	border: 0;
+	margin: .2em 0 .2em 0;
+}
+
+/* for margin between paragraphs */
+.cc {
+	font-size: 10%;
+	padding: 0.2em 0 0.2em 0;
+	margin: 0;
+}
+/*-------------------------------------
+	<div class="cc">&nbsp;</div>
+-------------------------------------*/
+
+/* Force Opera / Moz / Netscape to display an _IN_active vertical scrollbar (like IE) */
+html {
+	overflow-y: scroll;
+}
+
+/*
+make a few corners round
+only supported by moz/firefox/other gecko browsers for now
+-----------------------------------------------------------
+*/
+div.breadcrumbs {
+	-moz-border-radius-topleft: 0.5em;
+	-moz-border-radius-topright: 0.5em;
+	-moz-border-radius-bottomleft: 0.5em;
+	-moz-border-radius-bottomright: 0.5em;
+}
+
+/* IE/Mac fixes
+-----------------------------------------------------------------------------*/
+/* the positioning of preferences */
+/* float/negative margin brokenness */
+* html #preferences {
+	width: 90%;
+}
+
+/* login form fix */
+div#userloginForm form,
+form#userlogin2 {
+	width: 500px;
+}
+
+/* Rounded Corners
+-----------------------------------------------------------------------------*/
+#gumax-content-actions ul li a,
+#searchInput {
+	/*position: relative; /**/
+	/*zoom: 1; /* For IE6 /**/
+
+	-moz-border-radius: 3px; /**/
+	-webkit-border-radius: 3px; /**/
+	border-radius: 3px; /**/
+	/*behavior: url('/skins/gumaxdd/border-radius.htc'); /**/
+}
+
+#gumax-nav,
+#gumax-footer {
+	/*position: relative; /**/
+	/*zoom: 1; /* For IE6 /**/
+
+	-moz-border-radius: 5px; /**/
+	-webkit-border-radius: 5px; /**/
+	border-radius: 5px; /**/
+	/*behavior: url('/skins/gumaxdd/border-radius.htc'); /**/
+}
+
+ul#gumax-nav li.hover {
+	color: #fff;
+}
+
+/* Ensure that the navigation menus work even w/o JS */
+.client-nojs #gumax-nav li:hover ul.gumax-nav-box {
+	display: block;
+}
+
+/* Emulate the .hover class for no-JS */
+.client-nojs #gumax-nav li:hover a {
+	color: #fff;
+}
+
+#gumax-article-picture {
+	/*zoom: 1; /* For IE6 */
+
+	-moz-border-radius: 7px; /**/
+	-webkit-border-radius: 7px; /**/
+	border-radius: 7px; /**/
+	/*behavior: url('/skins/gumaxdd/border-radius.htc'); /**/
+}
+
+#gumax-content-body {
+	/*position: relative; /**/
+	/*zoom: 1; /* For IE6 /**/
+
+	-moz-border-radius: 9px; /**/
+	-webkit-border-radius: 9px; /**/
+	border-radius: 9px; /**/
+	/*behavior: url('/skins/gumaxdd/border-radius.htc'); /**/
+}
+
+/* IE png fix
+-----------------------------------------------------------------------------*/
+/* #gumax-header { behavior: url('/skins/gumaxdd/iepngfix.htc'); } /**/
