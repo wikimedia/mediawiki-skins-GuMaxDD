@@ -6,7 +6,7 @@
 		"Jack Phoenix"
 	],
 	"url": "https://www.mediawiki.org/wiki/Skin:GuMaxDD",
-	"description": "GuMax skin, drop-down menu variant",
+	"descriptionmsg": "gumaxdd-desc",
 	"license-name": "GPL-2.0-or-later",
 	"type": "skin",
 	"requires": {
