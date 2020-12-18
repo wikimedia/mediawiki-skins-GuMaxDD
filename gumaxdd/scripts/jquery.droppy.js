@@ -1,10 +1,10 @@
 /*
- * Droppy 0.1.2
+ * Droppy 0.1.3
  * (c) 2008 Jason Frame (jason@onehackoranother.com)
  */
-$.fn.droppy = function(options) {
+jQuery.fn.droppy = function(options) {
     
-  options = $.extend({speed: 250}, options || {});
+  options = jQuery.extend({speed: 250}, options || {});
   
   this.each(function() {
     
@@ -12,7 +12,7 @@ $.fn.droppy = function(options) {
     
     function getSubnav(ele) {
       if (ele.nodeName.toLowerCase() == 'li') {
-        var subnav = $('> ul', ele);
+        var subnav = jQuery('> ul', ele);
         return subnav.length ? subnav[0] : null;
       } else {
         return ele;
@@ -21,7 +21,7 @@ $.fn.droppy = function(options) {
     
     function getActuator(ele) {
       if (ele.nodeName.toLowerCase() == 'ul') {
-        return $(ele).parents('li')[0];
+        return jQuery(ele).parents('li')[0];
       } else {
         return ele;
       }
@@ -30,30 +30,55 @@ $.fn.droppy = function(options) {
     function hide() {
       var subnav = getSubnav(this);
       if (!subnav) return;
-      $.data(subnav, 'cancelHide', false);
+      jQuery.data(subnav, 'cancelHide', false);
       setTimeout(function() {
-        if (!$.data(subnav, 'cancelHide')) {
-          $(subnav).slideUp(options.speed);
+        if (!jQuery.data(subnav, 'cancelHide')) {
+          jQuery(subnav).slideUp(options.speed);
         }
       }, 500);
+      if (document.body.filters)
+          unhideSelect();
     }
   
     function show() {
       var subnav = getSubnav(this);
       if (!subnav) return;
-      $.data(subnav, 'cancelHide', true);
-      $(subnav).css({zIndex: zIndex++}).slideDown(options.speed);
+      jQuery.data(subnav, 'cancelHide', true);
+      jQuery(subnav).css({zIndex: zIndex++}).slideDown(options.speed);
       if (this.nodeName.toLowerCase() == 'ul') {
         var li = getActuator(this);
-        $(li).addClass('hover');
-        $('> a', li).addClass('hover');
+        jQuery(li).addClass('hover');
+        jQuery('> a', li).addClass('hover');
       }
+      if (document.body.filters)
+          hideSelect();
     }
-    
-    $('ul, li', this).hover(show, hide);
-    $('li', this).hover(
-      function() { $(this).addClass('hover'); $('> a', this).addClass('hover'); },
-      function() { $(this).removeClass('hover'); $('> a', this).removeClass('hover'); }
+
+	// hide Select
+	function hideSelect() {
+		var theIframe = document.getElementsByTagName("select")
+		for (var count = 0; count < theIframe.length; count++)
+		{
+		theIframe[count].style.visibility="hidden";
+		//theIframe[count].style.zIndex =-1;
+		}
+	}
+
+	// unhide Select
+	function unhideSelect() {
+		var theIframe = document.getElementsByTagName("select")
+		for (var count = 0; count < theIframe.length; count++)
+		{
+		theIframe[count].style.visibility="";
+		//theIframe[count].style.zIndex =-1;
+		}
+	}
+
+
+    jQuery('ul, li', this).hover(show, hide);
+    jQuery('li', this).hover(
+      function() { jQuery(this).addClass('hover'); jQuery('> a', this).addClass('hover'); },
+      function() { jQuery(this).removeClass('hover'); jQuery('> a', this).removeClass('hover'); }
     );
     
   });

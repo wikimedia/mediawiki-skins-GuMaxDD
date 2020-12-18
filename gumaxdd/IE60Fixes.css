@@ -84,3 +84,4 @@ div.tleft {
 }
 /*{ border:1px solid Red !important;}*/
 
+div#searchTargetContainer, * html pre { word-wrap: break-word;  /* IE fix */ }

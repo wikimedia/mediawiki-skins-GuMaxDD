@@ -75,3 +75,5 @@ div.tleft {
 	/* Work around bug with inline <li> tags with right margins and nowrap */
 	margin-right: 0;
 }
+
+div#searchTargetContainer, * html pre { word-wrap: break-word;  /* IE fix */ }

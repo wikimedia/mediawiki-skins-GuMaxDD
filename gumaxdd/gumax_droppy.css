@@ -1,3 +1,30 @@
+/*
+ * ----------------------------------------------------------------------------
+ * 'GuMaxDD' style sheet for CSS2-capable browsers.
+ *       Loosely based on the monobook style
+ *
+ * @Version 1.1
+ * @Author Paul Y. Gu, <gu.paul@gmail.com>
+ * @Copyright paulgu.com 2006 - http://www.paulgu.com/
+ * @License: GPL (http://www.gnu.org/copyleft/gpl.html)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ * ----------------------------------------------------------------------------
+ */
+
 /* Basic style */
 #gumax-nav { display: block; margin: 0; padding: 0; position: relative; }
 #gumax-nav li { display: block; list-style: none; margin: 0; padding: 0; float: left; position: relative; }
@@ -13,16 +40,17 @@
 #gumax-nav ul ul { left: 201px; }
 
 /* theming */
-#gumax-nav { height: 28px; background: transparent url('images/stripe-grey.gif') left repeat-x; border-top: 1px solid #c7c7c7; border-bottom: 1px solid #e7e7e7;}
+#gumax-nav { height: 29px; background: #1057A7;}
 #gumax-nav *:hover { background-color: none; }
 #gumax-nav a {
 	font-weight: bold;
-	color: #333;
+	color: #fff;
 	padding: 8px 10px;
 	line-height: 1;
 	}
-#gumax-nav li.hover a, #gumax-nav ul li a { background-color: #5e5a5a; /* drop down background */ }
+#gumax-nav li.hover a, #gumax-nav ul li a { background-color: #6699CC; /* drop down background */ border-bottom: 1px solid #407FC0;}
 #gumax-nav ul { top: 27px; }
-#gumax-nav ul li a { font-weight: normal; color: #eee; padding: 4px 10px; /* white-space: nowrap; /* wrap long item */ }
-#gumax-nav a.hover, #gumax-nav ul a.hover { background-color: #999; color: #eee; }
+#gumax-nav ul li a { font-weight: bold; color: #fff; padding: 4px 10px; /* white-space: nowrap; /* wrap long item */ }
+#gumax-nav a.hover, #gumax-nav ul a.hover { background-color: #1057A7; }
 #gumax-nav ul { border: none; opacity: 0.9; filter: alpha(opacity=90); }
+

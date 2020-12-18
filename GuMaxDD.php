@@ -4,7 +4,7 @@
  * 'GuMaxDD' style sheet for CSS2-capable browsers.
  *       Loosely based on the monobook style
  *
- * @Version 1.0
+ * @Version 1.1
  * @Author Paul Y. Gu, <gu.paul@gmail.com>
  * @Copyright paulgu.com 2007 - http://www.paulgu.com/
  * @License: GPL (http://www.gnu.org/copyleft/gpl.html)
@@ -32,22 +32,44 @@ if( !defined( 'MEDIAWIKI' ) )
 /**
  * Inherit main code from SkinTemplate, set the CSS and template filter.
  * @todo document
- * @addtogroup Skins
+ * @ingroup Skins
  */
 class SkinGuMaxDD extends SkinTemplate {
 	/** Using GuMaxDD */
-	function initPage( &$out ) {
-		SkinTemplate::initPage( $out );
+	function initPage( OutputPage $out ) {
+		parent::initPage( $out );
 		$this->skinname  = 'gumaxdd';
 		$this->stylename = 'gumaxdd';
 		$this->template  = 'GuMaxDDTemplate';
-		$this->cssfiles = array( 'IE', 'IE50', 'IE55', 'IE60', 'IE70', 'rtl' );
+
+	}
+
+	function setupSkinUserCss( OutputPage $out ) {
+		global $wgHandheldStyle;
+
+		parent::setupSkinUserCss( $out );
+
+		// Append to the default screen common & print styles...
+		$out->addStyle( 'gumaxdd/gumax_main.css', 'screen' );
+		if( $wgHandheldStyle ) {
+			// Currently in testing... try 'chick/main.css'
+			$out->addStyle( $wgHandheldStyle, 'handheld' );
+		}
+
+		$out->addStyle( 'gumaxdd/IE50Fixes.css', 'screen', 'lt IE 5.5000' );
+		$out->addStyle( 'gumaxdd/IE55Fixes.css', 'screen', 'IE 5.5000' );
+		$out->addStyle( 'gumaxdd/IE60Fixes.css', 'screen', 'IE 6' );
+		$out->addStyle( 'gumaxdd/IE70Fixes.css', 'screen', 'IE 7' );
+
+		$out->addStyle( 'gumaxdd/rtl.css', 'screen', '', 'rtl' );
+
+		$out->addStyle( 'gumaxdd/gumax_print.css', 'print' );
 	}
 }
 
 /**
  * @todo document
- * @addtogroup Skins
+ * @ingroup Skins
  */
 class GuMaxDDTemplate extends QuickTemplate {
 	var $skin;
@@ -60,9 +82,6 @@ class GuMaxDDTemplate extends QuickTemplate {
 	 * @access private
 	 */
 	function execute() {
-		global $wgUser;
-		$skin = $wgUser->getSkin();
-
 		global $wgRequest;
 		$this->skin = $skin = $this->data['skin'];
 		$action = $wgRequest->getText( 'action' );
@@ -72,55 +91,50 @@ class GuMaxDDTemplate extends QuickTemplate {
 
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="<?php $this->text('xhtmldefaultnamespace') ?>" <?php
-    foreach($this->data['xhtmlnamespaces'] as $tag => $ns) {
-        ?>xmlns:<?php echo "{$tag}=\"{$ns}\" ";
-    } ?>xml:lang="<?php $this->text('lang') ?>" lang="<?php $this->text('lang') ?>" dir="<?php $this->text('dir') ?>">
-<head>
-    <meta http-equiv="Content-Type" content="<?php $this->text('mimetype') ?>; charset=<?php $this->text('charset') ?>" />
-    <?php $this->html('headlinks') ?>
-    <title><?php $this->text('pagetitle') ?></title>
-    <style type="text/css" media="screen,projection">/*<![CDATA[*/
-		@import "<?php $this->text('stylepath') ?>/common/shared.css?<?php echo $GLOBALS['wgStyleVersion'] ?>";
-		@import "<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/gumax_main.css?<?php echo $GLOBALS['wgStyleVersion'] ?>";
-	/*]]>*/</style>
-    <link rel="stylesheet" type="text/css" <?php if(empty($this->data['printable']) ) { ?>media="print"<?php } ?> href="<?php $this->text('stylepath') ?>/common/commonPrint.css?<?php echo $GLOBALS['wgStyleVersion'] ?>" />
-	<link rel="stylesheet" type="text/css" <?php if(empty($this->data['printable']) ) { ?>media="print"<?php } ?> href="<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/gumax_print.css?<?php echo $GLOBALS['wgStyleVersion'] ?>" />
-    <!--[if lt IE 5.5000]><style type="text/css">@import "<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/IE50Fixes.css?<?php echo $GLOBALS['wgStyleVersion'] ?>";</style><![endif]-->
-    <!--[if IE 5.5000]><style type="text/css">@import "<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/IE55Fixes.css?<?php echo $GLOBALS['wgStyleVersion'] ?>";</style><![endif]-->
-    <!--[if IE 6]><style type="text/css">@import "<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/IE60Fixes.css?<?php echo $GLOBALS['wgStyleVersion'] ?>";</style><![endif]-->
-    <!--[if IE 7]><style type="text/css">@import "<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/IE70Fixes.css?<?php echo $GLOBALS['wgStyleVersion'] ?>";</style><![endif]-->
-    <!--[if lt IE 7]><script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/common/IEFixes.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"></script>
-    <meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+	foreach($this->data['xhtmlnamespaces'] as $tag => $ns) {
+		?>xmlns:<?php echo "{$tag}=\"{$ns}\" ";
+	} ?>xml:lang="<?php $this->text('lang') ?>" lang="<?php $this->text('lang') ?>" dir="<?php $this->text('dir') ?>">
+	<head>
+		<meta http-equiv="Content-Type" content="<?php $this->text('mimetype') ?>; charset=<?php $this->text('charset') ?>" />
+		<?php $this->html('headlinks') ?>
+		<title><?php $this->text('pagetitle') ?></title>
+		<?php $this->html('csslinks') ?>
+
+		<!--[if lt IE 7]><script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/common/IEFixes.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+
+		<?php print Skin::makeGlobalVariablesScript( $this->data ); ?>
+
+		<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath' ) ?>/common/wikibits.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+<?php $this->html('headscripts') ?>
+<?php	if($this->data['jsvarurl']) { ?>
+		<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('jsvarurl') ?>"><!-- site js --></script>
+<?php	} ?>
+<?php	if($this->data['pagecss']) { ?>
+		<style type="text/css"><?php $this->html('pagecss') ?></style>
+<?php	}
+		if($this->data['usercss']) { ?>
+		<style type="text/css"><?php $this->html('usercss') ?></style>
+<?php	}
+		if($this->data['userjs']) { ?>
+		<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('userjs' ) ?>"></script>
+<?php	}
+		if($this->data['userjsprev']) { ?>
+		<script type="<?php $this->text('jsmimetype') ?>"><?php $this->html('userjsprev') ?></script>
+<?php	}
+		if($this->data['trackbackhtml']) print $this->data['trackbackhtml']; ?>
+
+
 	<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/scripts/jquery-1.3.2.min.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"></script>
 	<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/scripts/jquery.droppy.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"></script>
-	<script type="<?php $this->text('jsmimetype') ?>"> $(function() { $('#gumax-nav').droppy({speed: 100}); }); </script>
+	<script type="<?php $this->text('jsmimetype') ?>"> jQuery(function() { jQuery('#gumax-nav').droppy({speed: 200}); });</script>
 
-    <?php print Skin::makeGlobalVariablesScript( $this->data ); ?>
-
-    <script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath' ) ?>/common/wikibits.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"><!-- wikibits js --></script>
-    <?php    if($this->data['jsvarurl'  ]) { ?>
-        <script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('jsvarurl'  ) ?>"><!-- site js --></script>
-    <?php    } ?>
-    <?php    if($this->data['pagecss'   ]) { ?>
-        <style type="text/css"><?php $this->html('pagecss'   ) ?></style>
-    <?php    }
-        if($this->data['usercss'   ]) { ?>
-        <style type="text/css"><?php $this->html('usercss'   ) ?></style>
-    <?php    }
-        if($this->data['userjs'    ]) { ?>
-        <script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('userjs' ) ?>"></script>
-    <?php    }
-        if($this->data['userjsprev']) { ?>
-        <script type="<?php $this->text('jsmimetype') ?>"><?php $this->html('userjsprev') ?></script>
-    <?php    }
-    if($this->data['trackbackhtml']) print $this->data['trackbackhtml']; ?>
-    <!-- Head Scripts -->
-    <?php $this->html('headscripts') ?>
 </head>
 
-<body <?php if($this->data['body_ondblclick']) { ?>ondblclick="<?php $this->text('body_ondblclick') ?>"<?php } ?>
-<?php if($this->data['body_onload'    ]) { ?>onload="<?php     $this->text('body_onload')     ?>"<?php } ?>
- class="mediawiki <?php $this->text('nsclass') ?> <?php $this->text('dir') ?> <?php $this->text('pageclass') ?>">
+<body<?php if($this->data['body_ondblclick']) { ?> ondblclick="<?php $this->text('body_ondblclick') ?>"<?php } ?>
+<?php if($this->data['body_onload']) { ?> onload="<?php $this->text('body_onload') ?>"<?php } ?>
+ class="mediawiki <?php $this->text('dir') ?> <?php $this->text('pageclass') ?> <?php $this->text('skinnameclass') ?>">
 
 <!-- ===== gumax-page ===== -->
 <div id="gumax-page">
@@ -128,7 +142,6 @@ class GuMaxDDTemplate extends QuickTemplate {
 
 	<!-- ///// gumax-header ///// -->
 	<div id="gumax-header">
-		<a name="top" id="contentTop"></a>
 
 		<!-- gumax-p-logo -->
 		<div id="gumax-p-logo">
@@ -136,35 +149,33 @@ class GuMaxDDTemplate extends QuickTemplate {
 		</div>
 		<!-- end of gumax-p-logo -->
 
+		<!-- Login Tools -->
+		<div id="gumax-p-login">
+			<?php $this->personalLoginBox(); ?>
+		</div>
+		<!-- end of Login Tools -->
+
 		<!-- Search -->
 		<?php $this->searchBox(); ?>
 		<!-- end of Search -->
+
 	</div>
 	<!-- ///// end of gumax-header ///// -->
 
 
 
-
-	<!-- Login Tools -->
-	<div id="gumax-p-login">
-		<?php $this->personalBox(); ?>
-	</div>
-	<!-- end of Login Tools -->
-
-
-
-
 	<!-- Navigation Menu -->
 	<div id="gumax-p-navigation">
-	<ul id="gumax-nav">
-		<?php $this->homeLink(); ?>
-		<?php $this->navigationBox(); ?>
-	</ul>
+		<?php $this->mainNavigationBox(); ?>
 	</div>
 	<!-- end of Navigation Menu -->
 	<div style="clear:both"></div>
 
+	<div class="gumax-p-navigation-spacer"></div>
 
+	<!-- gumax-article-picture -->
+	<?php $this->articlePictureBox(); ?>
+	<!-- end of gumax-article-picture -->
 
 
 	<!-- gumax-content-actions -->
@@ -172,56 +183,38 @@ class GuMaxDDTemplate extends QuickTemplate {
 		<?php $this->contentActionBox(); ?>
 	</div>
 	<!-- end of gumax-content-actions -->
-	<div id="gumax_mainmenu_spacer"></div>
-    
-	
-	
-	
-	<!-- gumax-article-picture -->
-	<?php $this->articlePicBox(); ?>
-	<!-- end of gumax-article-picture -->
-	<div id="gumax_menupic_spacer"></div>
-
-
 
 
     <!-- gumax-content-body -->
-	<?php $this->contentBox(); ?>
+	<?php $this->mainContentTopBottomBorderBox(); ?>
     <!-- end of gumax-content-body -->
 
 
-
-
-	<div id="gumax_footer_spacer"></div>
+	<div class="gumax-footer-spacer"></div>
 	<!-- ///// gumax-footer ///// -->
 	<div id="gumax-footer">
 
 
 		<!-- personal specia tools  -->
-		<?php $this->footerSpecialBox(); ?>
+		<?php $this->wikiSpecialToolBox(); ?>
 		<!-- end of personal specia tools  -->
 
 
-
-
 		<!-- gumax-f-message -->
-		<?php $this->footerMessageBox(); ?>
+		<?php $this->articleMessageBox(); ?>
 		<!-- end of gumax-f-message -->
 
 
-
-
 		<?php $this->html('bottomscripts'); /* JS call to runBodyOnloadHook */ ?>
+
+
 	</div>
 	<!-- ///// end of gumax-footer ///// -->
 
 
-
-
 		<!-- gumax-f-list -->
-		<?php $this->footerListBox(); ?>
+		<?php $this->siteCreditBox(); ?>
 		<!-- end of gumax-f-list -->
-
 
 
 </div>
@@ -238,6 +231,9 @@ class GuMaxDDTemplate extends QuickTemplate {
 -->
 <?php endif; ?>
 </body></html>
+
+
+
 
 
 
@@ -393,10 +389,11 @@ class GuMaxDDTemplate extends QuickTemplate {
 
 
 	/*************************************************************************************************/
-	function navigationBox() {
+	function mainNavigationBox() {
 ?>
+	<ul id="gumax-nav">
 	<?php foreach ($this->data['sidebar'] as $bar => $cont) { ?>
-		<li><a href="#"><?php $out = wfMsg( $bar ); if (wfEmptyMsg($bar, $out)) echo $bar; else echo $out; ?></a>
+		<li><a href="<?php $this->text('scriptpath') ?>/index.php?title=<?php echo str_replace(" ", "_", $bar); ?>"><?php $out = wfMsg( $bar ); if (wfEmptyMsg($bar, $out)) echo $bar; else echo $out; ?></a>
 <?php   if ( is_array( $cont ) ) { ?>
 		<ul>
 <?php 		foreach($cont as $key => $val) { ?>
@@ -404,6 +401,7 @@ class GuMaxDDTemplate extends QuickTemplate {
 				if ( $val['active'] ) { ?> class="active" <?php }
 			?>><a href="<?php echo htmlspecialchars($val['href']) ?>"<?php echo $this->data['skin']->tooltipAndAccesskey($val['id']) ?>><?php echo htmlspecialchars($val['text']) ?></a></li>
 <?php		} ?>
+			<li></li>
 		</ul>
 <?php   } else {
 			# allow raw HTML block to be defined by extensions
@@ -411,23 +409,14 @@ class GuMaxDDTemplate extends QuickTemplate {
 		}
 ?>
 		</li>
-	<?php
-		}
-	}
-
-
-
-	/*************************************************************************************************/
-	function homeLink() {
-?>
-	<li class="gumax-home"><a href="<?php echo htmlspecialchars($this->data['nav_urls']['mainpage']['href'])?>">Home</a></li>
+<?php	} ?>
+	</ul>
 <?php
 	}
 
 
-
 	/*************************************************************************************************/
-	function personalBox() {
+	function personalLoginBox() {
 ?>
 	<!--li><a href="#"><?php //$this->msg('personaltools') ?>My Accounts</a-->
 		<ul>
@@ -480,7 +469,7 @@ class GuMaxDDTemplate extends QuickTemplate {
 
 
 	/*************************************************************************************************/
-	function articlePicBox() {
+	function articlePictureBox() {
 ?>
 <?php	
 		$pageClasses = split(" ", $this->data['pageclass']);
@@ -489,21 +478,21 @@ class GuMaxDDTemplate extends QuickTemplate {
 		$found = false;
 		foreach ($file_ext_collection as $file_ext)
 		{
-			$filename = $_SERVER['DOCUMENT_ROOT'] . '/' . $this->data['stylepath'] . '/' . $this->data['stylename'] . '/images/header/' . $page_class . $file_ext;
-			if (file_exists($filename)) {
-				$gumax_article_picture = $this->data['stylepath'] . '/' . $this->data['stylename'] . '/images/header/' . $page_class . $file_ext;
+			$gumax_article_picture_file = $this->data['stylepath'] . '/' . $this->data['stylename'] . '/images/pages/' . $page_class . $file_ext;
+			if (file_exists( $_SERVER['DOCUMENT_ROOT'] . '/' .$gumax_article_picture_file)) {
 				$found = true;
 				break;
 			} else {
-				// $gumax_article_picture = $this->data['stylepath'] . '/' . $this->data['stylename'] . '/images/header/' . 'default.gif'; // default site logo
+				// $gumax_article_picture_file = $this->data['stylepath'] . '/' . $this->data['stylename'] . '/images/pages/' . 'page-Default.gif'; // default site logo
 			}
 		}
 		if($found) { ?>
 			<div id="gumax-article-picture">
-				<a style="background-image: url(<?php echo $gumax_article_picture ?>);" <?php
+				<a style="background-image: url(<?php echo $gumax_article_picture_file ?>);" <?php
 					?>href="<?php echo htmlspecialchars( $GLOBALS['wgTitle']->getLocalURL() )?>" <?php
 					?>title="<?php $this->data['displaytitle']!=""?$this->html('title'):$this->text('title') ?>"></a>
 			</div>
+			<div class="gumax-article-picture-spacer"></div>
 <?php
 		}
 	}
@@ -511,11 +500,11 @@ class GuMaxDDTemplate extends QuickTemplate {
 
 
 	/*************************************************************************************************/
-	function contentBox() {
+	function mainContentBox() {
 ?>
+	<div id="gumax-content-body">
 	<div class="gumax-firstHeading"><?php $this->data['displaytitle']!=""?$this->html('title'):$this->text('title') ?></div>
 	<div class="visualClear"></div>
-    <div id="gumax-content-body">
     <!-- content -->
     <div id="content">
         <a name="top" id="top"></a>
@@ -535,6 +524,97 @@ class GuMaxDDTemplate extends QuickTemplate {
     </div>
     <!-- end of content -->
     </div>
+	<!-- end of gumax-content-body -->
+
+<?php
+	}
+
+
+
+
+	/*************************************************************************************************/
+	function mainContentTopBorderBox() {
+?>
+	<!-- content border -->
+	<table class="gumax-content-table" width="100%" border="0" cellpadding="0" cellspacing="0"><tr>
+	<td class="gumax-content-td-topleft"></td>
+	<td class="gumax-content-td-center">
+	<!-- content border -->
+
+	<div id="gumax-content-body">
+	<div class="gumax-firstHeading"><?php $this->data['displaytitle']!=""?$this->html('title'):$this->text('title') ?></div>
+	<div class="visualClear"></div>
+    <!-- content -->
+    <div id="content">
+        <a name="top" id="top"></a>
+        <?php if($this->data['sitenotice']) { ?><div id="siteNotice"><?php $this->html('sitenotice') ?></div><?php } ?>
+        <div id= "bodyContent" class="gumax-bodyContent">
+            <h3 id="siteSub"><?php $this->msg('tagline') ?></h3>
+            <div id="contentSub"><?php $this->html('subtitle') ?></div>
+            <?php if($this->data['undelete']) { ?><div id="contentSub2"><?php $this->html('undelete') ?></div><?php } ?>
+            <?php if($this->data['newtalk'] ) { ?><div class="usermessage"><?php $this->html('newtalk')  ?></div><?php } ?>
+            <?php if($this->data['showjumplinks']) { ?><div id="jump-to-nav"><?php $this->msg('jumpto') ?> <a href="#column-one"><?php $this->msg('jumptonavigation') ?></a>, <a href="#searchInput"><?php $this->msg('jumptosearch') ?></a></div><?php } ?>
+            <!-- start content -->
+            <?php $this->html('bodytext') ?>
+            <?php if($this->data['catlinks']) { $this->html('catlinks'); } ?>
+            <!-- end content -->
+            <div class="visualClear"></div>
+        </div>
+    </div>
+    <!-- end of content -->
+
+    </div>
+	<!-- end of gumax-content-body -->
+
+	<!-- content border -->
+	</td><td class="gumax-content-td-topright"></td>
+	</tr></table>
+	<!-- content border -->
+
+<?php
+	}
+
+
+
+
+	/*************************************************************************************************/
+	function mainContentTopBottomBorderBox() {
+?>
+	<!-- content border -->
+	<table class="gumax-content-table" width="100%" border="0" cellpadding="0" cellspacing="0"><tr>
+	<td class="gumax-content-td-topleft"></td>
+	<td class="gumax-content-td-center">
+	<!-- content border -->
+
+	<div id="gumax-content-body">
+	<div class="gumax-firstHeading"><?php $this->data['displaytitle']!=""?$this->html('title'):$this->text('title') ?></div>
+	<div class="visualClear"></div>
+    <!-- content -->
+    <div id="content">
+        <a name="top" id="top"></a>
+        <?php if($this->data['sitenotice']) { ?><div id="siteNotice"><?php $this->html('sitenotice') ?></div><?php } ?>
+        <div id= "bodyContent" class="gumax-bodyContent">
+            <h3 id="siteSub"><?php $this->msg('tagline') ?></h3>
+            <div id="contentSub"><?php $this->html('subtitle') ?></div>
+            <?php if($this->data['undelete']) { ?><div id="contentSub2"><?php $this->html('undelete') ?></div><?php } ?>
+            <?php if($this->data['newtalk'] ) { ?><div class="usermessage"><?php $this->html('newtalk')  ?></div><?php } ?>
+            <?php if($this->data['showjumplinks']) { ?><div id="jump-to-nav"><?php $this->msg('jumpto') ?> <a href="#column-one"><?php $this->msg('jumptonavigation') ?></a>, <a href="#searchInput"><?php $this->msg('jumptosearch') ?></a></div><?php } ?>
+            <!-- start content -->
+            <?php $this->html('bodytext') ?>
+            <?php if($this->data['catlinks']) { $this->html('catlinks'); } ?>
+            <!-- end content -->
+            <div class="visualClear"></div>
+        </div>
+    </div>
+    <!-- end of content -->
+
+    </div>
+	<!-- end of gumax-content-body -->
+
+	<!-- content border -->
+	</td><td class="gumax-content-td-topright"></td>
+	</tr></table>
+	<!-- content border -->
 
 <?php
 	}
@@ -542,7 +622,7 @@ class GuMaxDDTemplate extends QuickTemplate {
 
 
 	/*************************************************************************************************/
-	function footerSpecialBox() {
+	function wikiSpecialToolBox() {
 ?>
 
 		<div id="gumax-special-tools">
@@ -602,10 +682,10 @@ class GuMaxDDTemplate extends QuickTemplate {
 
 
 	/*************************************************************************************************/
-	function footerMessageBox() {
+	function articleMessageBox() {
 ?>
 
-		<div id="gumax-f-message">
+		<div id="gumax-article-message">
 			<?php if($this->data['lastmod']) { ?><span id="f-lastmod"><?php $this->html('lastmod') ?></span>
 			<?php } ?><?php if($this->data['viewcount']) { ?><span id="f-viewcount"><?php  $this->html('viewcount') ?> </span>
 			<?php } ?>
@@ -617,10 +697,10 @@ class GuMaxDDTemplate extends QuickTemplate {
 
 
 	/*************************************************************************************************/
-	function footerListBox() {
+	function siteCreditBox() {
 ?>
 
-		<div id="gumax-f-list">
+		<div id="gumax-credit-list">
 			<ul>
 				<?php
 						$footerlinks = array(

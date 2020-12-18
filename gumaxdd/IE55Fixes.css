@@ -83,3 +83,5 @@ body { font-size: xx-small; }
 #editform {
 	width: 100%;
 }
+
+div#searchTargetContainer, * html pre { word-wrap: break-word;  /* IE fix */ }

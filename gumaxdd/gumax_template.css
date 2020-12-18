@@ -3,7 +3,7 @@
  * 'GuMaxDD' style sheet for CSS2-capable browsers.
  *	   Loosely based on the monobook style
  *
- * @Version 1.0
+ * @Version 1.1
  * @Author Paul Y. Gu, <gu.paul@gmail.com>
  * @Copyright paulgu.com 2006 - http://www.paulgu.com/
  * @License: GPL (http://www.gnu.org/copyleft/gpl.html)
@@ -29,8 +29,9 @@
 -----------------------------------------------------------------------------*/
 body {
 	font-size: x-small; margin: 0; padding: 0; min-width: 700px;
-	/* background: #fafafa url('headbg.jpg') top left no-repeat fixed; /**/
 	background: none;
+	/* background: #fafafa url('headbg.jpg') top left no-repeat fixed; /**/
+	background: #ddd url('images/gumax_grey.gif') top left repeat-x; /**/
 }
 
 body, td, th, input, textarea, pre, h1, h2, h3, h4, h5, h6 { color: #222; }
@@ -45,13 +46,6 @@ pre { font-family: Monospace, Courier, Arial; }
 	margin: 0 auto;
 }
 
-
-
-#gumax-userloginForm {
-	z-index: 200; position: absolute; /*needed to use z-index */
-	top:  0; right: 0px; /* logo position */
-	overflow: visible;
-}
 
 /* Logo
 -----------------------------------------------------------------------------*/
@@ -82,10 +76,11 @@ pre { font-family: Monospace, Courier, Arial; }
 	/* border: 1px solid #000; /*debuging*/
 	position: relative;
 	z-index: 100;  /* make logo visible over content*/
-	min-height: 110px;  /* height of header */
-	height: 112px;  /* need for IE */
+	min-height: 130px;  /* height of header */
+	height: 132px;  /* need for IE */
 	margin: 0 auto;
 	padding: 0;
+	/* background: #ddd url('images/stripe-wide.gif') top left repeat; /**/
 }
 
 /* Login
@@ -93,7 +88,7 @@ pre { font-family: Monospace, Courier, Arial; }
 #gumax-p-login {
 	/* border: 1px solid #000; /*debuging*/
 	font-size: 90%;
-	margin: 0; padding: 0 0 9px 0;
+	margin: 0; padding: 7px 0 5px 0;
 	text-align: right;
 }
 
@@ -133,7 +128,7 @@ li#pt-login {
 	/* border:  1px solid #FFCC00; /*debuging*/
 	position: absolute;
 	z-index: 3;
-	top: 45px;
+	bottom: 45px;
 	right: 0;
 }
 
@@ -190,7 +185,7 @@ li#pt-login {
 -----------------------------------------------------------------------------*/
 #gumax-article-picture {
 	border:  1px solid #ccc;
-	background: #fff;
+	background-color: #fff;
 	text-align: left;
 	padding: 0;
 	/* margin: 2px 15px; /* same margin as content */
@@ -212,13 +207,13 @@ li#pt-login {
 	font-size: 102%;
 }
 
-#gumax_menupic_spacer {
-	height: 15px;
+.gumax-article-picture-spacer {
+	height: 7px;
 }
 
 /* Navigation Menu
 -----------------------------------------------------------------------------*/
-#gumax_mainmenu_spacer {
+.gumax-p-navigation-spacer {
 	height: 7px;
 	/* border-top: 2px solid #FF8800; /**/
 }
@@ -248,19 +243,20 @@ li#pt-login {
 .gumax-firstHeading {
 	font-weight: bold;
 	font-size: 130%;
-	color: #777;
+	color: #3399FF;
 	padding-bottom: 2px;
 }
-
 
 #gumax-content-body { padding: 0; margin: 0; width: 100%; }
 
 #content {
 	border: none;
+	border-top: 1px solid #99CCFF;
+	border-bottom: 1px solid #99CCFF;
 	background: transparent;
 	margin: 0;
 	/* padding: 0px 15px 1.2em 15px;  /* content margin */
-	padding: 0 0 1.2em 0;
+	padding: 0 0 10px 0;
 	position: static; /* need for IE positioning problem */
 	z-index: 2;
 	clear: both;
@@ -277,7 +273,7 @@ div#searchTargetContainer {
 	width: 100%;
 	background: white;
 	overflow-x: visible;  /* need for Firefox, extreme long string :( */
-	word-wrap: break-word;  /* need for IE, extreme long string :( */
+	/* word-wrap: break-word;  /* need for IE, extreme long string :( */
 }
 div#searchTarget { padding: 10px; margin: 5px; background: #fefefe; border: solid 1px #FFCC00; }
 div#searchTarget h2 { padding-top: 1em; margin-bottom: .5em; }
@@ -356,7 +352,7 @@ pre {
 	line-height: 1.2em;
 	margin: 1.1em 0;
 }
-* html pre { word-wrap: break-word;  /* IE fix */ }
+
 .visualClear { clear: both;}
 
 .errorbox, .successbox { margin-top:	 .2em; margin-bottom:  1em; }
@@ -378,87 +374,87 @@ pre {
 .editsection a:hover { color: #FF3300; }
 
 
-/* content-actions
+/* content actions
 -----------------------------------------------------------------------------*/
 #gumax-content-actions {
 	text-align: center; /* menu location */
 	height: 27px;  /* need for IE win */
 	white-space: nowrap;
-	background: transparent url('images/stripe-dark.gif') left repeat-x;
+	background: none;
 	color: #999;
 }
+* html #gumax-content-actions { margin-top: -5px; } /* WTF, IE fix */
 
-#gumax-content-actions ul { list-style: none; margin: 0; padding: 5px 5px; }
+#gumax-content-actions ul { list-style: none; margin: 0; padding: 7px; }
 #gumax-content-actions ul li { display: inline; margin: 0; padding: 0;}
 #gumax-content-actions ul li a {
-	padding: 4px 10px;
+	padding: 5px 10px;
 	text-decoration: none;
 	font-size: 100%; font-family: Verdana, 'Trebuchet MS', Sans-serif,  Arial;
-	color: #bbb; white-space: nowrap;
+	color: #777;
+	white-space: nowrap;
 }
 
 #gumax-content-actions ul li a:hover, #gumax-content-actions ul li.selected a {
-	background: transparent url('images/stripe-wide.gif') left repeat-x;
+	background: transparent url('images/stripe-grey.gif') left repeat-x;
 }
 
 
 /* Footer
 -----------------------------------------------------------------------------*/
-#gumax_footer_spacer { height: 15px; }
+.gumax-footer-spacer { height: 7px; }
 
 #gumax-footer {
 	/* border:  1px solid #000; /*debuging*/
 	text-align: left; /* page footer location */
-	background: transparent url("images/stripe-wide.gif") center repeat-x; 
-	padding: 6px 5px;
+	background: transparent url("images/stripe-grey.gif") center repeat-x; 
+	padding: 5px 5px;
 }
 
-#gumax-footer a { font-family: Verdana,'Trebuchet MS', Georgia, Sans-serif, Arial; font-size: 85%; text-decoration: none; }
 
-#gumax-footer ul { list-style: none; padding: 0; margin: 0; }
-#gumax-footer ul li { display: inline; overflow: visible; margin: 0; }
-#gumax-footer ul li a { color: #bbb; padding: 3px 5px; }
-#gumax-footer ul li a:hover { color: #ddd; }
-
-
-
-#gumax-f-message { padding-top: 3px; display: none; }
+#gumax-special-tools a { font-family: Verdana,'Trebuchet MS', Georgia, Sans-serif, Arial; font-size: 85%; text-decoration: none; }
+#gumax-special-tools ul { list-style: none; padding: 0; margin: 0; }
+#gumax-special-tools ul li { display: inline; overflow: visible; margin: 0; }
+#gumax-special-tools ul li a { color: #777; padding: 3px 5px; }
+#gumax-special-tools ul li a:hover { color: #333; }
 
 
+#gumax-article-message { padding-top: 3px; display: none; }
 
 
-#gumax-f-list {
+#gumax-credit-list {
 	/* border: 1px solid #CC0033; /*debuging*/
 	font-size: 90%;
-	margin: 0; padding: 7px 0;
+	margin: 0; padding: 7px;
 	text-align: right;
 }
 
-#gumax-f-list ul {
+#gumax-credit-list ul {
 	position: relative;
 	width: auto;
 	list-style: none;
 	padding: 0; margin: 0;
 }
 
-#gumax-f-list ul li {
+#gumax-credit-list ul li {
 	position: relative;
 	display: inline;
 	margin: 0; padding: 0;
 	font-size: 100%;
 }
 
-#gumax-f-list ul li a {
+#gumax-credit-list ul li a {
 	color: #777;
 	padding: 3px 0 3px 10px;
 	text-decoration: none; 
 }
 
-#gumax-f-list ul li a:hover { color: #333; }
+#gumax-credit-list ul li a:hover { color: #333; }
 
 
 
 #gumax_page_spacer { height: 10px; }
+
 
 /* Special:Specialpages
 -----------------------------------------------------------------------------*/
@@ -506,6 +502,8 @@ div.breadcrumbs {
 	-moz-border-radius-bottomright: 0.5em;
 }
 
+
+
 /* IE/Mac fixes
 -----------------------------------------------------------------------------*/
 /* the positioning of preferences */
@@ -514,4 +512,27 @@ div.breadcrumbs {
 
 /* login form fix */
 div#userloginForm form, form#userlogin2 { width: 500px; }
+
+
+/* content grey background
+-----------------------------------------------------------------------------*/
+table.gumax-content-table {
+	border-collapse: collapse;
+	background: #fff;
+}
+* html table.gumax-content-table { margin-top: -5px; } /* WTF, IE fix */
+
+td.gumax-content-td-topleft {
+	width: 8px;
+	height: 100px;
+	background: transparent url(images/content_topleft.gif) top left no-repeat;
+}
+td.gumax-content-td-center {
+	padding: 10px 5px; /* content padding */
+	background: transparent url(images/content_top.gif) top center repeat-x;
+}
+td.gumax-content-td-topright {
+	width: 8px;
+	background: transparent url(images/content_topright.gif) top right no-repeat;
+}
 
