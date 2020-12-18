@@ -4,7 +4,7 @@
  * 'GuMaxDD' style sheet for CSS2-capable browsers.
  *       Loosely based on the monobook style
  *
- * @Version 1.5.1
+ * @Version 1.5.2
  * @Author Paul Y. Gu, <gu.paul@gmail.com>
  * @Copyright paulgu.com 2007 - http://www.paulgu.com/
  * @License: GPL (http://www.gnu.org/copyleft/gpl.html)
@@ -36,17 +36,14 @@ if( !defined( 'MEDIAWIKI' ) )
  */
 class SkinGuMaxDD extends SkinTemplate {
 	/** Using GuMaxDD */
-	function initPage( OutputPage $out ) {
-		parent::initPage( $out );
-		$this->skinname  = 'gumaxdd';
-		$this->stylename = 'gumaxdd';
-		$this->template  = 'GuMaxDDTemplate';
-	}
+	var $skinname = 'gumaxdd', $stylename = 'gumaxdd',
+		$template = 'GuMaxDDTemplate', $useHeadElement = true;
 
 	function setupSkinUserCss( OutputPage $out ) {
 		global $wgHandheldStyle;
 
 		parent::setupSkinUserCss( $out );
+
 
 		// Append to the default screen common & print styles...
 		$out->addStyle( 'gumaxdd/gumax_main.css', 'screen' );
@@ -61,7 +58,6 @@ class SkinGuMaxDD extends SkinTemplate {
 		$out->addStyle( 'gumaxdd/IE70Fixes.css', 'screen', 'IE 7' );
 
 		$out->addStyle( 'gumaxdd/rtl.css', 'screen', '', 'rtl' );
-
 		$out->addStyle( 'gumaxdd/gumax_print.css', 'print' );
 	}
 }
@@ -70,7 +66,7 @@ class SkinGuMaxDD extends SkinTemplate {
  * @todo document
  * @ingroup Skins
  */
-class GuMaxDDTemplate extends QuickTemplate {
+class GuMaxDDTemplate extends BaseTemplate {
 	var $skin;
 	/**
 	 * Template filter callback for GuMaxDD skin.
@@ -81,57 +77,18 @@ class GuMaxDDTemplate extends QuickTemplate {
 	 * @access private
 	 */
 	function execute() {
-		global $wgRequest;
-
-		$this->skin = $skin = $this->data['skin'];
-		$action = $wgRequest->getText( 'action' );
+		$this->skin = $this->data['skin'];
 
 		// Suppress warnings to prevent notices about missing indexes in $this->data
 		wfSuppressWarnings();
 
-?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="<?php $this->text('xhtmldefaultnamespace') ?>" <?php
-	foreach($this->data['xhtmlnamespaces'] as $tag => $ns) {
-		?>xmlns:<?php echo "{$tag}=\"{$ns}\" ";
-	} ?>xml:lang="<?php $this->text('lang') ?>" lang="<?php $this->text('lang') ?>" dir="<?php $this->text('dir') ?>">
-	<head>
-		<meta http-equiv="Content-Type" content="<?php $this->text('mimetype') ?>; charset=<?php $this->text('charset') ?>" />
-		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-		<?php $this->html('headlinks') ?>
-		<title><?php $this->text('pagetitle') ?></title>
-		<?php $this->html('csslinks') ?>
-
-		<!--[if lt IE 7]><script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/common/IEFixes.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"></script>
-		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
-
-		<?php wfRunHooks( 'MakeGlobalVariablesScript', array( $this->data ) ); ?>
-
-		<!-- /// From MediaWiki 1.17 and later on these are modernized into an object oriented library stored in ResourceLoader modules ///
-		<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath' ) ?>/common/wikibits.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"></script>
-		-->
-
-		<!-- Head Scripts -->
-<?php $this->html('headscripts') ?>
-<?php	if($this->data['jsvarurl']) { ?>
-		<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('jsvarurl') ?>"><!-- site js --></script>
-<?php	} ?>
-<?php	if($this->data['pagecss']) { ?>
-		<style type="text/css"><?php $this->html('pagecss') ?></style>
-<?php	}
-		if($this->data['usercss']) { ?>
-		<style type="text/css"><?php $this->html('usercss') ?></style>
-<?php	}
-		if($this->data['userjs']) { ?>
-		<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('userjs' ) ?>"></script>
-<?php	}
-		if($this->data['userjsprev']) { ?>
-		<script type="<?php $this->text('jsmimetype') ?>"><?php $this->html('userjsprev') ?></script>
-<?php	}
-		if($this->data['trackbackhtml']) print $this->data['trackbackhtml']; ?>
-
+		$this->html( 'headelement' );
+?><div id="gumax-page">
 	<!--///===== Drop Down menu script =====///-->
 
+	<!--/// no need for mediawiki 1.17.0 and up
 	<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/scripts/jquery-1.4.2.min.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"></script>
+	    ///-->
 
 	<!--/// click style
 	<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/scripts/jquery.droppy-0.1.2.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"></script>
@@ -140,18 +97,10 @@ class GuMaxDDTemplate extends QuickTemplate {
 
 	<!--/// auto style ///-->
 	<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/scripts/jquery.droppy.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"></script>
-	<script type="<?php $this->text('jsmimetype') ?>">jQuery(document).ready( function($){  $(function(){ $('#gumax-nav').droppy({speed: 0}); })  } );</script>
+	<script type="<?php $this->text('jsmimetype') ?>">jQuery(document).ready( function($){  $(function(){ $('#gumax-nav').droppy({speed: 10}); })  } );</script>
 
 	<!--///===== End of Drop Down menu =====///-->
 
-</head>
-
-<body<?php if($this->data['body_ondblclick']) { ?> ondblclick="<?php $this->text('body_ondblclick') ?>"<?php } ?>
-<?php if($this->data['body_onload']) { ?> onload="<?php $this->text('body_onload') ?>"<?php } ?>
- class="mediawiki <?php $this->text('dir') ?> <?php $this->text('pageclass') ?> <?php $this->text('skinnameclass') ?>">
-
-
-<div id="gumax-page">
 
 	<div id="gumax-header">
 
@@ -349,9 +298,8 @@ class GuMaxDDTemplate extends QuickTemplate {
 		}
 
 
-		wfRunHooks( 'MonoBookTemplateToolboxEnd', array( &$this ) );
-		wfRunHooks( 'SkinTemplateToolboxEnd', array( &$this ) );
 		wfRunHooks( 'GuMaxDDTemplateToolboxEnd', array( &$this ) );
+		wfRunHooks( 'SkinTemplateToolboxEnd', array( &$this ) );
 
 		if (!$menu) {
 ?>
@@ -547,8 +495,9 @@ class GuMaxDDTemplate extends QuickTemplate {
 	function articlePictureBox() {
 ?>
 <?php
-		$pageClasses = preg_split("/[\s]+/", $this->data['pageclass']); //echo $this->data['pageclass'];
-		$page_class = end( $pageClasses );  //echo end( $pageClasses );
+		$pageClasses = preg_split("/[\s]+/", $this->data['pageclass']); /* echo $this->data['pageclass']; */
+		foreach($pageClasses as $item){ if(strpos($item, "page-") !== false){ $page_class = $item; /* echo $page_class; */ } }
+
 		$file_ext_collection = array('.jpg', '.gif', '.png');
 		$found = false;
 		foreach ($file_ext_collection as $file_ext)
@@ -736,9 +685,8 @@ class GuMaxDDTemplate extends QuickTemplate {
 				<li id="t-ispermalink"><?php $this->msg('permalink') ?></li><?php
 		}
 
-		wfRunHooks( 'MonoBookTemplateToolboxEnd', array( &$this ) );
-		wfRunHooks( 'SkinTemplateToolboxEnd', array( &$this ) );
 		wfRunHooks( 'GuMaxDDTemplateToolboxEnd', array( &$this ) );
+		wfRunHooks( 'SkinTemplateToolboxEnd', array( &$this ) );
 	?>
 			</ul>
 		</div>

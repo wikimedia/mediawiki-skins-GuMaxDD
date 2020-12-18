@@ -53,7 +53,8 @@
           $(li).addClass('hover');
           $('> a', li).addClass('hover');
         }
-        return false;
+      if (document.body.filters)
+          hideSelect();
       };
       
       if (options.trigger == 'click') {
