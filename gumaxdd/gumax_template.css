@@ -1,28 +1,7 @@
 /*
- * ----------------------------------------------------------------------------
- * 'GuMaxDD' style sheet for CSS2-capable browsers.
- *	   Loosely based on the monobook style
- *
- * @Version 1.4.0
- * @Author Paul Y. Gu, <gu.paul@gmail.com>
- * @Copyright paulgu.com 2006 - http://www.paulgu.com/
- * @License: GPL (http://www.gnu.org/copyleft/gpl.html)
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License along
- * with this program; if not, write to the Free Software Foundation, Inc.,
- * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- * http://www.gnu.org/copyleft/gpl.html
- * ----------------------------------------------------------------------------
+ * -----------------------------------
+ * GuMax Template
+ * -----------------------------------
  */
 
 /* Basic Structure
@@ -30,9 +9,10 @@
 html, body { 
 	/* background: #fafafa url('headbg.jpg') top left no-repeat fixed; /**/
 	/* background: #f9f9f9 url(headbg.jpg) 0 0 no-repeat; /**/
-	/* background: #fff url('images/bg_headvisual.jpg') left 22px repeat-x; /**/
-	/*background: none; /**/
-	background: #F6F6F8 url(images/gradient_texture_201101.jpg) repeat-x 0 0;
+	/* background: none; /**/
+	/* background: url(images/gradient_texture_20110116.jpg) repeat-x 0 0 #F6F7F8; /**/
+	/* background: url(images/gradient_texture_20110117.jpg) repeat-x scroll 0 0 #eeeeee; /**/
+	background: url(images/bg.jpg) repeat-x scroll center 0 #E2E1DF; /**/
 }
 
 body {
@@ -167,7 +147,7 @@ input.searchButton {
 /* dynamic article picture
 -----------------------------------------------------------------------------*/
 #gumax-article-picture {
-	border:  1px solid #ccc;
+	border:  1px solid #e3e4e5;
 	background-color: #fff;
 	text-align: left;
 	padding: 0;
@@ -175,6 +155,7 @@ input.searchButton {
 	margin: 2px 0;
 	/* display: none; /* disable gumax-article-picture */
 }
+* html #gumax-article-picture { margin-top: -5px; } /* WTF, IE fix */
 
 #gumax-article-picture,
 #gumax-article-picture a,
@@ -197,6 +178,8 @@ input.searchButton {
 /* Navigation Menu
 -----------------------------------------------------------------------------*/
 #gumax-p-navigation {
+	position: relative;
+	z-index: 900;
 	margin-top: 10px;
 }
 .gumax-p-navigation-spacer {
@@ -232,9 +215,17 @@ input.searchButton {
 	padding-bottom: 2px;
 }
 
-#gumax-content-body { padding: 0; margin: 0; width: 100%; }
+#gumax-content-body { 
+	/* background: #f7f8f9; /* content background */
+	/* background: #e7e8e9; /* content background */
+	background: #fff; /* content background */
+	border: 1px solid #e3e4e5;
+	padding: 20px; /* content padding */
+	margin: 0;
+}
+* html #gumax-content-body { margin-top: -5px; } /* WTF, IE fix */
 
-#content {
+div#content {
 	border: none;
 	border-top: 1px solid #999;
 	/* border-bottom: 1px solid #99CCFF; /**/
@@ -312,26 +303,17 @@ textarea {
 	/* height: 500px; */
 }
 
-/* pre{ */
+pre {
 /* white-space: pre;			/* CSS2 */
-/* white-space: -moz-pre-wrap;  /* Mozilla */
 /* white-space: -hp-pre-wrap;   /* HP printers */
 /* white-space: -o-pre-wrap;	/* Opera 7 */
 /* white-space: -pre-wrap;	  /* Opera 4-6 */
-/* white-space: pre-wrap;	   /* CSS 2.1 */
-/* white-space: pre-line;	   /* CSS 3 (and 2.1 as well, actually) */
-/* word-wrap: break-word;	   /* IE */
-/* } */
+	white-space: pre-wrap;	   /* CSS 2.1 */
+	white-space: pre-line;	   /* CSS 3 (and 2.1 as well, actually) */
+	white-space: -moz-pre-wrap;  /* Mozilla Firefox */
+	word-wrap: break-word;	   /* IE */
 
-pre {
-	white-space: -moz-pre-wrap;  /* need for Firefox */
 	overflow-x: visible;  /* need for Firefox, extreme long string :( */
-	padding: 1em;
-	border: 1px dashed #2f6fab;
-	color: black;
-	background: #FBFCF6; /* background: #FFFFEE; */
-	line-height: 1.2em;
-	margin: 1.1em 0;
 }
 
 .visualClear { clear: both;}
@@ -377,9 +359,14 @@ pre {
 }
 
 #gumax-content-actions ul li a:hover, #gumax-content-actions ul li.selected a {
-	background: #ccc;
+	color: #000;
 }
 
+#gumax-content-actions li#ca-edit a {
+	font-size: 120%;
+	font-style: italic;
+	color: #555;
+}
 
 /* Footer
 -----------------------------------------------------------------------------*/
@@ -387,15 +374,14 @@ pre {
 
 #gumax-footer {
 	/* border:  1px solid #000; /*debuging*/
-	border-top: 5px solid #C6C6C6;
+	border-bottom: 3px solid #C6C6C6; /**/
 	text-align: left; /* page footer location */
-	background: #e1e1e1;
 	padding: 4px 5px;
 	height: 20px;
 }
 
 
-#gumax-special-tools a { font-family: Verdana,'Trebuchet MS', Georgia, Sans-serif, Arial; font-size: 85%; text-decoration: none; }
+#gumax-special-tools a { font-family: Verdana,'Trebuchet MS', Georgia, Sans-serif, Arial; font-size: 90%; text-decoration: none; }
 #gumax-special-tools ul { list-style: none; padding: 0; margin: 0; }
 #gumax-special-tools ul li { display: inline; overflow: visible; margin: 0; }
 #gumax-special-tools ul li a { color: #555; padding: 3px 5px; }
@@ -497,45 +483,51 @@ div.breadcrumbs {
 div#userloginForm form, form#userlogin2 { width: 500px; }
 
 
-/* content grey background
------------------------------------------------------------------------------*/
-table.gumax-content-table {
-	border-collapse: collapse;
-	background: #e1e1e1;
-}
-* html table.gumax-content-table { margin-top: -5px; } /* WTF, IE fix */
-
-td.gumax-content-td-topleft {
-	width: 0px;
-	/* height: 356px; */
-	/*background: transparent url(images/side-l.png) top left no-repeat;*/
-}
-td.gumax-content-td-center {
-	padding: 20px; /* content padding */
-	/*background: transparent url(images/content_top.gif) top center repeat-x;*/
-}
-td.gumax-content-td-topright {
-	width: 0px;
-	/*background: transparent url(images/side-r.png) top right no-repeat;*/
-}
-
 
 /* Rounded Corners
 -----------------------------------------------------------------------------*/
-#gumax-article-picture,
-table.gumax-content-table,
-#gumax-footer {
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
-	behavior: url(border-radius.htc);
-	}
-
 #gumax-content-actions ul li a,
 #searchInput {
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
-	behavior: url(border-radius.htc);
+	/*position: relative;  /**/
+	/*zoom: 1; /* For IE6  /**/
+
+	-moz-border-radius: 3px;  /**/
+	-webkit-border-radius: 3px; /**/
+	border-radius: 3px; /**/
+	/*behavior: url('/skins/gumaxdd/border-radius.htc'); /**/
 	}
 
+#gumax-nav,
+#gumax-footer {
+    /*position: relative;  /**/
+	/*zoom: 1; /* For IE6  /**/
+
+	-moz-border-radius: 5px; /**/
+	-webkit-border-radius: 5px; /**/
+	border-radius: 5px; /**/
+	/*behavior: url('/skins/gumaxdd/border-radius.htc'); /**/
+	}
+
+#gumax-article-picture {
+	/*zoom: 1; /* For IE6 */
+
+	-moz-border-radius: 7px; /**/
+	-webkit-border-radius: 7px; /**/
+	border-radius: 7px; /**/
+	/*behavior: url('/skins/gumaxdd/border-radius.htc'); /**/
+	}
+
+#gumax-content-body {
+    /*position: relative;  /**/
+	/*zoom: 1; /* For IE6  /**/
+
+	-moz-border-radius: 9px; /**/
+	-webkit-border-radius: 9px; /**/
+	border-radius: 9px; /**/
+	/*behavior: url('/skins/gumaxdd/border-radius.htc'); /**/
+	}
+
+
+/* IE png fix
+-----------------------------------------------------------------------------*/
+/* #gumax-header { behavior: url('/skins/gumaxdd/iepngfix.htc'); } /**/

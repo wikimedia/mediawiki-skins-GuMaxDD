@@ -4,7 +4,7 @@
  * 'GuMaxDD' style sheet for CSS2-capable browsers.
  *       Loosely based on the monobook style
  *
- * @Version 1.4.0
+ * @Version 1.5.0
  * @Author Paul Y. Gu, <gu.paul@gmail.com>
  * @Copyright paulgu.com 2007 - http://www.paulgu.com/
  * @License: GPL (http://www.gnu.org/copyleft/gpl.html)
@@ -41,7 +41,6 @@ class SkinGuMaxDD extends SkinTemplate {
 		$this->skinname  = 'gumaxdd';
 		$this->stylename = 'gumaxdd';
 		$this->template  = 'GuMaxDDTemplate';
-
 	}
 
 	function setupSkinUserCss( OutputPage $out ) {
@@ -61,7 +60,7 @@ class SkinGuMaxDD extends SkinTemplate {
 		$out->addStyle( 'gumaxdd/IE60Fixes.css', 'screen', 'IE 6' );
 		$out->addStyle( 'gumaxdd/IE70Fixes.css', 'screen', 'IE 7' );
 
-		$out->addStyle( 'gumaxdd/gumax_rtl.css', 'screen', '', 'rtl' );
+		$out->addStyle( 'gumaxdd/rtl.css', 'screen', '', 'rtl' );
 
 		$out->addStyle( 'gumaxdd/gumax_print.css', 'print' );
 	}
@@ -83,6 +82,7 @@ class GuMaxDDTemplate extends QuickTemplate {
 	 */
 	function execute() {
 		global $wgRequest;
+
 		$this->skin = $skin = $this->data['skin'];
 		$action = $wgRequest->getText( 'action' );
 
@@ -106,7 +106,10 @@ class GuMaxDDTemplate extends QuickTemplate {
 
 		<?php print Skin::makeGlobalVariablesScript( $this->data ); ?>
 
-		<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath' ) ?>/common/wikibits.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"><!-- wikibits js --></script>
+		<!-- /// From MediaWiki 1.17 and later on these are modernized into an object oriented library stored in ResourceLoader modules ///
+		<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath' ) ?>/common/wikibits.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"></script>
+		-->
+
 		<!-- Head Scripts -->
 <?php $this->html('headscripts') ?>
 <?php	if($this->data['jsvarurl']) { ?>
@@ -126,11 +129,20 @@ class GuMaxDDTemplate extends QuickTemplate {
 <?php	}
 		if($this->data['trackbackhtml']) print $this->data['trackbackhtml']; ?>
 
-    <!-- Drop Down menu script -->
-	<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/scripts/jquery-1.3.2.min.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"></script>
+	<!--///===== Drop Down menu script =====///-->
+
+	<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/scripts/jquery-1.4.2.min.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"></script>
+
+	<!--/// click style
+	<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/scripts/jquery.droppy-0.1.2.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"></script>
+	<script type="<?php $this->text('jsmimetype') ?>">jQuery(document).ready( function($){  $(function(){ $('#gumax-nav').droppy({trigger: 'click'}); })  } );</script>
+	    ///-->
+
+	<!--/// auto style ///-->
 	<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/scripts/jquery.droppy.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"></script>
-	<script type="<?php $this->text('jsmimetype') ?>"> jQuery(function() { jQuery('#gumax-nav').droppy({speed: 200}); });</script>
-    <!-- End of Drop Down menu script -->
+	<script type="<?php $this->text('jsmimetype') ?>">jQuery(document).ready( function($){  $(function(){ $('#gumax-nav').droppy({speed: 0}); })  } );</script>
+
+	<!--///===== End of Drop Down menu =====///-->
 
 </head>
 
@@ -138,109 +150,99 @@ class GuMaxDDTemplate extends QuickTemplate {
 <?php if($this->data['body_onload']) { ?> onload="<?php $this->text('body_onload') ?>"<?php } ?>
  class="mediawiki <?php $this->text('dir') ?> <?php $this->text('pageclass') ?> <?php $this->text('skinnameclass') ?>">
 
-<!-- ===== gumax-page ===== -->
+
 <div id="gumax-page">
 
-
-	<!-- ///// gumax-header ///// -->
 	<div id="gumax-header">
 
-		<!-- Login Tools -->
 		<div id="gumax-p-login">
 			<?php $this->personalLoginBox(); ?>
-		</div>
-		<!-- end of Login Tools -->
-		<!-- gumax-p-logo -->
+		</div> <!-- end of Login Tools -->
+
 		<div id="gumax-p-logo">
 			<?php $this->logoBox(); ?>
-		</div>
-		<!-- end of gumax-p-logo -->
-		<!-- Search -->
-		<?php $this->searchBox(); ?>
-		<!-- end of Search -->
+		</div> <!-- end of gumax-p-logo -->
 
-	</div>
-	<!-- ///// end of gumax-header ///// -->
+		<?php $this->searchBox(); ?>
+
+	</div> <!-- ///// end of gumax-header ///// -->
+
 	<div style="clear:both"></div>
 
 
-	<!-- Navigation Menu -->
 	<div id="gumax-p-navigation">
 		<?php $this->mainNavigationBox(); ?>
-	</div>
-	<!-- end of Navigation Menu -->
+	</div> <!-- end of Navigation Menu -->
+
 	<div style="clear:both"></div>
 
 	<!-- gumax-content-actions -->
 	<div id="gumax-content-actions">
 		<?php $this->contentActionBox(false); ?>
 	</div>
-    
-	<div class="gumax-p-navigation-spacer"></div>
+	<!-- end of gumax-content-actions -->
 
+	<div class="gumax-p-navigation-spacer"></div>
 
 	<!-- gumax-article-picture -->
 	<?php $this->articlePictureBox(); ?>
 	<!-- end of gumax-article-picture -->
 
-    <!-- gumax-content-body -->
-	<?php $this->mainContentTopBottomBorderBox(); ?>
-    <!-- end of gumax-content-body -->
+	<!-- gumax-content-body -->
+	<?php $this->GuMaxMainContentBox(); ?>
+	<!-- end of gumax-content-body -->
 
 
 	<div class="gumax-footer-spacer"></div>
-	<!-- ///// gumax-footer ///// -->
-	<div id="gumax-footer">
 
+
+	<div id="gumax-footer">
 
 		<!-- personal specia tools  -->
 		<?php $this->wikiSpecialToolBox(); ?>
 		<!-- end of personal specia tools  -->
 
-
 		<!-- gumax-f-message -->
 		<?php $this->articleMessageBox(); ?>
 		<!-- end of gumax-f-message -->
 
-
 		<?php $this->html('bottomscripts'); /* JS call to runBodyOnloadHook */ ?>
 
-
-	</div>
-	<!-- ///// end of gumax-footer ///// -->
+	</div> <!-- ///// end of gumax-footer ///// -->
 
 
-		<!-- gumax-f-list -->
-		<?php $this->siteCreditBox(); ?>
-		<!-- end of gumax-f-list -->
+	<!-- gumax-f-list -->
+	<?php $this->siteCreditBox(); ?>
+	<!-- end of gumax-f-list -->
 
 
-</div>
-<!-- ===== end of gumax-page ===== -->
-<div class="visualClear"></div><div id="gumax_page_spacer"></div>
+</div> <!-- ===== end of gumax-page ===== -->
 
+	<div style="clear:both"></div>
+
+	<div id="gumax_page_spacer"></div>
 
 
 <?php $this->html('reporttime') ?>
 <?php if ( $this->data['debug'] ): ?>
 <!-- Debug output:
 <?php $this->text( 'debug' ); ?>
-
 -->
 <?php endif; ?>
+
 </body></html>
 
 
 
-
-
-
-	<!-- ======================================== FUNCTIONS ======================================= -->
+	
 <?php
 	wfRestoreWarnings();
-	}
-	// end of execute() method
 
+	} // end of execute() method
+
+
+
+	/* ======================================== FUNCTIONS ======================================= */
 
 
 	/*************************************************************************************************/
@@ -442,7 +444,7 @@ class GuMaxDDTemplate extends QuickTemplate {
 				else
 					$txtOut = $out;
 			} ?>
-			<li><a href="#"><?php print $txtOut; ?></a>
+			<li><a id="gumax-nav-heading" href="#"><?php print $txtOut; ?>  &raquo;</a>
 <?php
 			# XXX JaTu fix
 			if ( $bar == 'SEARCH' ) { ?>
@@ -470,7 +472,7 @@ class GuMaxDDTemplate extends QuickTemplate {
  						if ( $val['active'] ) { ?> class="active" <?php }
  						?>><a href="<?php echo htmlspecialchars($val['href']) ?>"<?php echo $this->data['skin']->tooltipAndAccesskey($val['id']) ?>><?php echo htmlspecialchars($val['text']) ?></a></li>
 <?php				} ?>
-				<li></li>
+				<li><p style="margin:0; padding: 7px 0;"></p></li>
  				</ul>
 <?php   		} else {
  				# allow raw HTML block to be defined by extensions
@@ -612,43 +614,30 @@ class GuMaxDDTemplate extends QuickTemplate {
 
 
 	/*************************************************************************************************/
-	function mainContentTopBorderBox() {
+	function GuMaxMainContentBox() {
 ?>
-	<!-- content border -->
-	<table class="gumax-content-table" width="100%" border="0" cellpadding="0" cellspacing="0"><tr>
-	<td class="gumax-content-td-topleft"></td>
-	<td class="gumax-content-td-center">
-	<!-- content border -->
-
 	<div id="gumax-content-body">
-	<div class="gumax-firstHeading"><?php $this->html('title') ?></div>
-	<div class="visualClear"></div>
-    <!-- content -->
-    <div id="content">
-        <a name="top" id="top"></a>
-        <?php if($this->data['sitenotice']) { ?><div id="siteNotice"><?php $this->html('sitenotice') ?></div><?php } ?>
-        <div id= "bodyContent" class="gumax-bodyContent">
-            <h3 id="siteSub"><?php $this->msg('tagline') ?></h3>
-            <div id="contentSub"><?php $this->html('subtitle') ?></div>
-            <?php if($this->data['undelete']) { ?><div id="contentSub2"><?php $this->html('undelete') ?></div><?php } ?>
-            <?php if($this->data['newtalk'] ) { ?><div class="usermessage"><?php $this->html('newtalk')  ?></div><?php } ?>
-            <?php if($this->data['showjumplinks']) { ?><div id="jump-to-nav"><?php $this->msg('jumpto') ?> <a href="#column-one"><?php $this->msg('jumptonavigation') ?></a>, <a href="#searchInput"><?php $this->msg('jumptosearch') ?></a></div><?php } ?>
-            <!-- start content -->
-            <?php $this->html('bodytext') ?>
-            <?php if($this->data['catlinks']) { $this->html('catlinks'); } ?>
-            <!-- end content -->
-            <div class="visualClear"></div>
-        </div>
-    </div>
-    <!-- end of content -->
+		<div class="gumax-firstHeading"><?php $this->html('title') ?></div>
+		<div class="visualClear"></div>
+		<!-- content -->
+		<div id="content">
+			<a name="top" id="top"></a>
+			<?php if($this->data['sitenotice']) { ?><div id="siteNotice"><?php $this->html('sitenotice') ?></div><?php } ?>
+			<div id= "bodyContent" class="gumax-bodyContent">
+				<h3 id="siteSub"><?php $this->msg('tagline') ?></h3>
+				<div id="contentSub"><?php $this->html('subtitle') ?></div>
+				<?php if($this->data['undelete']) { ?><div id="contentSub2"><?php $this->html('undelete') ?></div><?php } ?>
+				<?php if($this->data['newtalk'] ) { ?><div class="usermessage"><?php $this->html('newtalk')  ?></div><?php } ?>
+				<?php if($this->data['showjumplinks']) { ?><div id="jump-to-nav"><?php $this->msg('jumpto') ?> <a href="#column-one"><?php $this->msg('jumptonavigation') ?></a>, <a href="#searchInput"><?php $this->msg('jumptosearch') ?></a></div><?php } ?>
+				<!-- start content -->
+				<?php $this->html('bodytext') ?>
+				<?php if($this->data['catlinks']) { $this->html('catlinks'); } ?>
+				<!-- end content -->
+				<div class="visualClear"></div>
+			</div> <!-- end of bodyContent -->
+		</div> <!-- end of content -->
+	</div> <!-- end of gumax-content-body -->
 
-    </div>
-	<!-- end of gumax-content-body -->
-
-	<!-- content border -->
-	</td><td class="gumax-content-td-topright"></td>
-	</tr></table>
-	<!-- content border -->
 
 <?php
 	}
@@ -799,8 +788,6 @@ class GuMaxDDTemplate extends QuickTemplate {
 
 <?php
 	}
-
-
 
 
 

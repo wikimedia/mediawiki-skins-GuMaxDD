@@ -1,0 +1,32 @@
+/*
+ * -----------------------------------
+ * Most wanted tags for GuMax
+ * -----------------------------------
+ */
+
+html, body {
+	/* background: url(images/gradient_texture_20110117.jpg) repeat-x scroll 0 0 #eeeeee; /* site background */
+}
+#gumax-page {
+	/* width: 990px; /* page width */
+}
+#gumax-nav { 
+    /* background: #9e9e9e; /* navigation background */
+}
+
+#p-logo, #p-logo a, #p-logo a:hover {
+	/* height: 105px; /* logo size */
+	/* width: 105px; /* enable it if needed */
+}
+
+#gumax-article-picture {
+	/* display: none; /* disable gumax-article-picture */
+}
+
+#gumax-content-body { 
+	/* background: #e7e8e9; /* content background */
+}
+
+#gumax-footer {
+	/* background: #e1e1e1; /* footer background */
+}
