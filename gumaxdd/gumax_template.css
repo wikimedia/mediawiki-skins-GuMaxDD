@@ -3,7 +3,7 @@
  * 'GuMaxDD' style sheet for CSS2-capable browsers.
  *	   Loosely based on the monobook style
  *
- * @Version 1.1
+ * @Version 1.2
  * @Author Paul Y. Gu, <gu.paul@gmail.com>
  * @Copyright paulgu.com 2006 - http://www.paulgu.com/
  * @License: GPL (http://www.gnu.org/copyleft/gpl.html)
@@ -29,9 +29,10 @@
 -----------------------------------------------------------------------------*/
 body {
 	font-size: x-small; margin: 0; padding: 0; min-width: 700px;
-	background: none;
 	/* background: #fafafa url('headbg.jpg') top left no-repeat fixed; /**/
-	background: #ddd url('images/gumax_grey.gif') top left repeat-x; /**/
+    background: #f9f9f9 url(headbg.jpg) 0 0 no-repeat; /**/
+	/* background: #fff url('images/bg_headvisual.jpg') left 22px repeat-x; /**/
+    /* background: none; /**/
 }
 
 body, td, th, input, textarea, pre, h1, h2, h3, h4, h5, h6 { color: #222; }
@@ -39,7 +40,7 @@ body, td, th, input, textarea { font-family: Verdana, Arial, 'Trebuchet MS'; }
 pre { font-family: Monospace, Courier, Arial; }
 
 
-#gumax-page { 
+#gumax-page {
 	background: transparent;
 	font-size: 110%; /* web page font size */
 	width: 890px; /* page width */
@@ -109,7 +110,7 @@ pre { font-family: Monospace, Courier, Arial; }
 #gumax-p-login ul li a {
 	color: #777;
 	padding: 2px 0 2px 10px;
-	text-decoration: none; 
+	text-decoration: none;
 }
 
 #gumax-p-login ul li a:hover { color: #333; }
@@ -213,8 +214,11 @@ li#pt-login {
 
 /* Navigation Menu
 -----------------------------------------------------------------------------*/
+#gumax-p-navigation {
+	margin-top: 10px;
+}
 .gumax-p-navigation-spacer {
-	height: 7px;
+	height: 20px;
 	/* border-top: 2px solid #FF8800; /**/
 }
 
@@ -396,7 +400,7 @@ pre {
 }
 
 #gumax-content-actions ul li a:hover, #gumax-content-actions ul li.selected a {
-	background: transparent url('images/stripe-grey.gif') left repeat-x;
+	background: #ccc;
 }
 
 
@@ -406,17 +410,19 @@ pre {
 
 #gumax-footer {
 	/* border:  1px solid #000; /*debuging*/
+	border-top: 4px solid #9b876f;
 	text-align: left; /* page footer location */
-	background: transparent url("images/stripe-grey.gif") center repeat-x; 
-	padding: 5px 5px;
+	background: #333;
+	padding: 7px 5px;
+	height: 18px;
 }
 
 
 #gumax-special-tools a { font-family: Verdana,'Trebuchet MS', Georgia, Sans-serif, Arial; font-size: 85%; text-decoration: none; }
 #gumax-special-tools ul { list-style: none; padding: 0; margin: 0; }
 #gumax-special-tools ul li { display: inline; overflow: visible; margin: 0; }
-#gumax-special-tools ul li a { color: #777; padding: 3px 5px; }
-#gumax-special-tools ul li a:hover { color: #333; }
+#gumax-special-tools ul li a { color: #aaa; padding: 3px 5px; }
+#gumax-special-tools ul li a:hover { color: #ccc; }
 
 
 #gumax-article-message { padding-top: 3px; display: none; }
@@ -444,9 +450,9 @@ pre {
 }
 
 #gumax-credit-list ul li a {
-	color: #777;
+	color: #555;
 	padding: 3px 0 3px 10px;
-	text-decoration: none; 
+	text-decoration: none;
 }
 
 #gumax-credit-list ul li a:hover { color: #333; }
@@ -523,16 +529,16 @@ table.gumax-content-table {
 * html table.gumax-content-table { margin-top: -5px; } /* WTF, IE fix */
 
 td.gumax-content-td-topleft {
-	width: 8px;
-	height: 100px;
-	background: transparent url(images/content_topleft.gif) top left no-repeat;
+	width: 0px;
+	/* height: 356px; */
+	/*background: transparent url(images/side-l.png) top left no-repeat;*/
 }
 td.gumax-content-td-center {
-	padding: 10px 5px; /* content padding */
-	background: transparent url(images/content_top.gif) top center repeat-x;
+	padding: 10px 0px; /* content padding */
+	/*background: transparent url(images/content_top.gif) top center repeat-x;*/
 }
 td.gumax-content-td-topright {
-	width: 8px;
-	background: transparent url(images/content_topright.gif) top right no-repeat;
+	width: 0px;
+	/*background: transparent url(images/side-r.png) top right no-repeat;*/
 }
 

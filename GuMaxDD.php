@@ -4,7 +4,7 @@
  * 'GuMaxDD' style sheet for CSS2-capable browsers.
  *       Loosely based on the monobook style
  *
- * @Version 1.1
+ * @Version 1.2
  * @Author Paul Y. Gu, <gu.paul@gmail.com>
  * @Copyright paulgu.com 2007 - http://www.paulgu.com/
  * @License: GPL (http://www.gnu.org/copyleft/gpl.html)
@@ -96,6 +96,7 @@ class GuMaxDDTemplate extends QuickTemplate {
 	} ?>xml:lang="<?php $this->text('lang') ?>" lang="<?php $this->text('lang') ?>" dir="<?php $this->text('dir') ?>">
 	<head>
 		<meta http-equiv="Content-Type" content="<?php $this->text('mimetype') ?>; charset=<?php $this->text('charset') ?>" />
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 		<?php $this->html('headlinks') ?>
 		<title><?php $this->text('pagetitle') ?></title>
 		<?php $this->html('csslinks') ?>
@@ -126,7 +127,7 @@ class GuMaxDDTemplate extends QuickTemplate {
 		if($this->data['trackbackhtml']) print $this->data['trackbackhtml']; ?>
 
 
-	<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/scripts/jquery-1.3.2.min.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"></script>
+	<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/scripts/jquery-1.4.2.min.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"></script>
 	<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/scripts/jquery.droppy.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"></script>
 	<script type="<?php $this->text('jsmimetype') ?>"> jQuery(function() { jQuery('#gumax-nav').droppy({speed: 200}); });</script>
 
@@ -171,19 +172,17 @@ class GuMaxDDTemplate extends QuickTemplate {
 	<!-- end of Navigation Menu -->
 	<div style="clear:both"></div>
 
+	<!-- gumax-content-actions -->
+	<div id="gumax-content-actions">
+		<?php $this->contentActionBox(false); ?>
+	</div>
+    
 	<div class="gumax-p-navigation-spacer"></div>
+
 
 	<!-- gumax-article-picture -->
 	<?php $this->articlePictureBox(); ?>
 	<!-- end of gumax-article-picture -->
-
-
-	<!-- gumax-content-actions -->
-	<div id="gumax-content-actions">
-		<?php $this->contentActionBox(); ?>
-	</div>
-	<!-- end of gumax-content-actions -->
-
 
     <!-- gumax-content-body -->
 	<?php $this->mainContentTopBottomBorderBox(); ?>
@@ -240,7 +239,7 @@ class GuMaxDDTemplate extends QuickTemplate {
 	<!-- ======================================== FUNCTIONS ======================================= -->
 <?php
 	wfRestoreWarnings();
-	} 
+	}
 	// end of execute() method
 
 
@@ -260,8 +259,23 @@ class GuMaxDDTemplate extends QuickTemplate {
 
 
 	/*************************************************************************************************/
-	function searchBox() {
+	function searchBox( $menu = false ) {
+
+		if ($menu) { ?>
+			<li class=""><span>
+			<form action="<?php $this->text('searchaction') ?>" id="searchform"><div>
+			<input id="searchInput" name="search" type="text"<?php echo $this->skin->tooltipAndAccesskey('search');
+			if( isset( $this->data['search'] ) ) {
+				?> value="<?php $this->text('search') ?>"
+<?php 		} ?> />
+			<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="<?php $this->msg('searcharticle') ?>"<?php echo $this->skin->tooltipAndAccesskey( 'search-go' ); ?> />&nbsp;
+			<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="<?php $this->msg('searchbutton') ?>"<?php echo $this->skin->tooltipAndAccesskey( 'search-fulltext' ); ?> />
+			</div></form>
+			</span></li>
+<?php		return;
+		}
 ?>
+
 	<div id="gumax-p-search">
 		<!--h5><label for="searchInput"><?php $this->msg('search') ?></label></h5-->
 		<div id="gumax-searchBody">
@@ -280,13 +294,15 @@ class GuMaxDDTemplate extends QuickTemplate {
 
 
 	/*************************************************************************************************/
-	function toolbox() {
+	function toolbox( $menu = false ) {
+
+	if (!$menu) {
 ?>
 	<div class="portlet" id="p-tb">
 		<h5><?php $this->msg('toolbox') ?></h5>
 		<div class="pBody">
 			<ul>
-<?php
+<?php	}
 		if($this->data['notspecialpage']) { ?>
 				<li id="t-whatlinkshere"><a href="<?php
 				echo htmlspecialchars($this->data['nav_urls']['whatlinkshere']['href'])
@@ -330,20 +346,25 @@ class GuMaxDDTemplate extends QuickTemplate {
 				<li id="t-ispermalink"<?php echo $this->skin->tooltip('t-ispermalink') ?>><?php $this->msg('permalink') ?></li><?php
 		}
 
+        wfRunHooks( 'MonoBookTemplateToolboxEnd', array( &$this ) );
 		wfRunHooks( 'GuMaxDDTemplateToolboxEnd', array( &$this ) );
 		wfRunHooks( 'SkinTemplateToolboxEnd', array( &$this ) );
+
+		if (!$menu) {
 ?>
 			</ul>
 		</div>
 	</div>
 <?php
+		}
 	}
 
 
 
 	/*************************************************************************************************/
 	function languageBox() {
-		if( $this->data['language_urls'] ) { 
+
+		if( $this->data['language_urls'] ) {
 ?>
 	<div id="p-lang" class="portlet">
 		<h5><?php $this->msg('otherlanguages') ?></h5>
@@ -356,6 +377,10 @@ class GuMaxDDTemplate extends QuickTemplate {
 			</ul>
 		</div>
 	</div>
+<?php
+		} else {
+?>
+			<li class="">This page does not have language versions</li>
 <?php
 		}
 	}
@@ -390,25 +415,71 @@ class GuMaxDDTemplate extends QuickTemplate {
 
 	/*************************************************************************************************/
 	function mainNavigationBox() {
+		$sidebar = $this->data['sidebar'];
+		if ( !isset( $sidebar['SEARCH'] ) ) $sidebar['SEARCH'] = true;
+		if ( !isset( $sidebar['TOOLBOX'] ) ) $sidebar['TOOLBOX'] = true;
+		if ( !isset( $sidebar['LANGUAGES'] ) ) $sidebar['LANGUAGES'] = true;
+		if ( !isset( $sidebar['ACTIONS'] ) ) $sidebar['ACTIONS'] = true;
+ ?>
+ 	<ul id="gumax-nav">
+<?php 	foreach ($this->data['sidebar'] as $bar => $cont) {
+			switch ($bar) {
+			case 'SEARCH':
+				$txtOut = wfMsg('search');
+				break;
+			case 'TOOLBOX':
+				$txtOut = wfMsg('toolbox');
+				break;
+			case 'LANGUAGES':
+				$txtOut = wfMsg('otherlanguages');
+				break;
+			case 'ACTIONS':
+				$txtOut = wfMsg('views');
+				break;
+			default:
+				$out = wfMsg( $bar );
+				if (wfEmptyMsg($bar, $out))
+					$txtOut = $bar;
+				else
+					$txtOut = $out;
+			} ?>
+			<li><a href="#"><?php print $txtOut; ?></a>
+<?php
+			# XXX JaTu fix
+			if ( $bar == 'SEARCH' ) { ?>
+			<ul>
+<?php			$this->searchBox(true); ?>
+			</ul>
+<?php		} elseif ( $bar == 'TOOLBOX' ) { ?>
+			<ul>
+<?php			$this->toolbox(true); ?>
+			</ul>
+<?php		} elseif ( $bar == 'LANGUAGES' ) { ?>
+ 			<ul>
+<?php			$this->languageBox(); ?>
+			</ul>
+<?php		} elseif ( $bar == 'ACTIONS' ) { ?>
+ 			<ul>
+<?php			$this->contentActionBox(true); ?>
+			</ul>
+<?php		} else {
+				# XXX JaTu fix ends
+				if ( is_array( $cont ) ) { ?>
+				<ul>
+<?php 				foreach($cont as $key => $val) { ?>
+ 					<li id="<?php echo Sanitizer::escapeId($val['id']) ?>"<?php
+ 						if ( $val['active'] ) { ?> class="active" <?php }
+ 						?>><a href="<?php echo htmlspecialchars($val['href']) ?>"<?php echo $this->data['skin']->tooltipAndAccesskey($val['id']) ?>><?php echo htmlspecialchars($val['text']) ?></a></li>
+<?php				} ?>
+				<li></li>
+ 				</ul>
+<?php   		} else {
+ 				# allow raw HTML block to be defined by extensions
+ 				//print $cont;
+				}
+			}
 ?>
-	<ul id="gumax-nav">
-	<?php foreach ($this->data['sidebar'] as $bar => $cont) { ?>
-		<li><a href="<?php $this->text('scriptpath') ?>/index.php?title=<?php echo str_replace(" ", "_", $bar); ?>"><?php $out = wfMsg( $bar ); if (wfEmptyMsg($bar, $out)) echo $bar; else echo $out; ?></a>
-<?php   if ( is_array( $cont ) ) { ?>
-		<ul>
-<?php 		foreach($cont as $key => $val) { ?>
-			<li id="<?php echo Sanitizer::escapeId($val['id']) ?>"<?php
-				if ( $val['active'] ) { ?> class="active" <?php }
-			?>><a href="<?php echo htmlspecialchars($val['href']) ?>"<?php echo $this->data['skin']->tooltipAndAccesskey($val['id']) ?>><?php echo htmlspecialchars($val['text']) ?></a></li>
-<?php		} ?>
-			<li></li>
-		</ul>
-<?php   } else {
-			# allow raw HTML block to be defined by extensions
-			//print $cont;
-		}
-?>
-		</li>
+			</li>
 <?php	} ?>
 	</ul>
 <?php
@@ -436,11 +507,13 @@ class GuMaxDDTemplate extends QuickTemplate {
 
 
 	/*************************************************************************************************/
-	function contentActionBox() {
+	function contentActionBox( $menu = false ) {
 		global $wgUser;
 		$skin = $wgUser->getSkin();
 ?>
-	<ul>
+<?php 	if(!$menu) { ?>
+		<ul>
+<?php 	} ?>
 <?php	foreach($this->data['content_actions'] as $key => $tab) {
 				echo '
 			 <li id="ca-' . Sanitizer::escapeId($key).'"';
@@ -462,7 +535,11 @@ class GuMaxDDTemplate extends QuickTemplate {
 				}
 				echo '>'.htmlspecialchars($tab['text']).'</a></li>';
 			} ?>
+
+<?php 	if(!$menu) { ?>
 		</ul>
+<?php 	} ?>
+
 <?php
 	}
 
@@ -471,8 +548,8 @@ class GuMaxDDTemplate extends QuickTemplate {
 	/*************************************************************************************************/
 	function articlePictureBox() {
 ?>
-<?php	
-		$pageClasses = split(" ", $this->data['pageclass']);
+<?php
+		$pageClasses = preg_split("/[\s]+/", $this->data['pageclass']); //echo $this->data['pageclass'];
 		$page_class = end( $pageClasses );  //echo end( $pageClasses );
 		$file_ext_collection = array('.jpg', '.gif', '.png');
 		$found = false;
@@ -483,7 +560,10 @@ class GuMaxDDTemplate extends QuickTemplate {
 				$found = true;
 				break;
 			} else {
-				// $gumax_article_picture_file = $this->data['stylepath'] . '/' . $this->data['stylename'] . '/images/pages/' . 'page-Default.gif'; // default site logo
+				$gumax_article_picture_file = $this->data['stylepath'] . '/' . $this->data['stylename'] . '/images/pages/' . 'page-Default.gif'; // default site logo
+				if( file_exists( $_SERVER['DOCUMENT_ROOT'] . '/' . $gumax_article_picture_file) ) {
+					$found = true;
+				}
 			}
 		}
 		if($found) { ?>
@@ -671,7 +751,7 @@ class GuMaxDDTemplate extends QuickTemplate {
 				<li id="t-ispermalink"><?php $this->msg('permalink') ?></li><?php
 		}
 
-		wfRunHooks( 'GuMaxTemplateToolboxEnd', array( &$this ) ); 
+		wfRunHooks( 'GuMaxTemplateToolboxEnd', array( &$this ) );
 		wfRunHooks( 'SkinTemplateToolboxEnd', array( &$this ) ); ?>
 			</ul>
 		</div>

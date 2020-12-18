@@ -40,17 +40,18 @@
 #gumax-nav ul ul { left: 201px; }
 
 /* theming */
-#gumax-nav { height: 29px; background: #1057A7;}
+/*#gumax-nav { height: 29px; background: #333; border-top: 1px solid #c7c7c7; border-bottom: 1px solid #e7e7e7;}/**/
+#gumax-nav { height: 29px; background: #333;}
 #gumax-nav *:hover { background-color: none; }
 #gumax-nav a {
 	font-weight: bold;
-	color: #fff;
+	color: #bbb;
 	padding: 8px 10px;
 	line-height: 1;
 	}
-#gumax-nav li.hover a, #gumax-nav ul li a { background-color: #6699CC; /* drop down background */ border-bottom: 1px solid #407FC0;}
+#gumax-nav li.hover a, #gumax-nav ul li, #gumax-nav ul li a { background-color: #5e5a5a; /* drop down background */ border-bottom: 1px solid #777;}
 #gumax-nav ul { top: 27px; }
 #gumax-nav ul li a { font-weight: bold; color: #fff; padding: 4px 10px; /* white-space: nowrap; /* wrap long item */ }
-#gumax-nav a.hover, #gumax-nav ul a.hover { background-color: #1057A7; }
+#gumax-nav a.hover, #gumax-nav ul a.hover { background-color: #999; color: #eee; }
 #gumax-nav ul { border: none; opacity: 0.9; filter: alpha(opacity=90); }
 

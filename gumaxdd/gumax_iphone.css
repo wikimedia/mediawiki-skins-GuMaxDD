@@ -1,0 +1,112 @@
+/*
+ * ----------------------------------------------------------------------------
+ * 'GuMaxDD' style sheet for CSS2-capable browsers.
+ *       Loosely based on the monobook style
+ *
+ * @Version 1.2
+ * @Author Paul Y. Gu, <gu.paul@gmail.com>
+ * @Copyright paulgu.com 2006 - http://www.paulgu.com/
+ * @License: GPL (http://www.gnu.org/copyleft/gpl.html)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ * ----------------------------------------------------------------------------
+ */
+
+
+@media handheld {
+	#p-logo { display: none }
+}
+
+@media handheld {
+	.nonessential {
+		/* Kill big bulky stuff that will clog up the screen */
+		display: none;
+	}
+}
+
+/* iPhone settings
+-----------------------------------------------------------------------------*/
+
+/*
+960 × 640 pixels -- 3.5 inch screen
+*/
+
+@media only screen and (max-device-width: 480px) {
+
+    body {
+    	font-size: 160%;
+    }
+
+    /* nav */
+    #gumax-nav { height: 59px;}
+    #gumax-nav a { font-size: 130%; }
+    #gumax-nav ul { min-width: 350px; width: 350px; }
+    #gumax-nav ul { top: 57px; }
+    
+    #gumax-page { width: 960px; /* page width */ }
+
+    #gumax-p-search {bottom: 10px;  }
+
+    /* article-picture */
+    #gumax-article-picture, .gumax-article-picture-spacer { display: none; }
+
+    /* login */
+    div#userloginForm form,
+    div#userlogin form#userlogin2 { width: 800px; }
+    #userloginForm form input { font-size: 110%; }
+    #userloginprompt, #languagelinks { font-size: 100%; }
+    #login-sectiontip { font-size: 100%; }
+
+    #gumax-p-login { font-size: 120%; }
+    #gumax-p-login #pt-watchlist,
+    #gumax-p-login #pt-mycontris { display: none; }
+
+    /* content-actions */
+    #gumax-content-actions { height: 37px; }
+    #gumax-content-actions ul li a {
+    	padding: 5px 10px 12px 10px;
+    }
+    #gumax-content-actions #ca-protect,
+    #gumax-content-actions #ca-watch { display: none; }
+    
+    #content .editsection { font-size: 100%; }
+
+    #toc .toctoggle { font-size: 100%; }
+    #contentSub, #contentSub2 { font-size: 100%; }
+    #siteNotice { font-size: 100%; }
+
+    #bodyContent pre { font-size: 100%; }
+    #bodyContent form input, #bodyContent form select { font-size: 110%; }
+
+    textarea { font-size: 120%; }
+    div.editOptions input { font-size: 110%; }
+    
+    /* special-tools */
+    #gumax-special-tools #t-whatlinkshere,
+    #gumax-special-tools #t-recentchangeslinked, 
+    #gumax-special-tools #t-print,
+    #gumax-special-tools #t-permalink { display: none; }
+    
+    #gumax-credit-list #privacy,
+    #gumax-credit-list #disclaimer,
+    #gumax-credit-list #f-poweredby { display: none; }
+
+    #gumax-special-tools a { font-size: 130%; }
+    
+    #gumax-footer {	height: 55px; }
+
+}
+
