@@ -47,24 +47,15 @@ class SkinGuMaxDD extends SkinTemplate {
 	public function initPage( OutputPage $out ) {
 		parent::initPage( $out );
 		$out->addModules( 'skins.gumaxdd.js' );
-	}
-
-	/**
-	 * Loads the skin's CSS files.
-	 *
-	 * @param OutputPage $out
-	 */
-	function setupSkinUserCss( OutputPage $out ) {
-		parent::setupSkinUserCss( $out );
 
 		// Add CSS via ResourceLoader
 		$out->addModuleStyles( 'skins.gumaxdd' );
 
 		// Add various ancient IE-specific files via the old-school way
-		$out->addStyle( 'GuMaxDD/resources/IE50Fixes.css', 'screen', 'lt IE 5.5000' );
-		$out->addStyle( 'GuMaxDD/resources/IE55Fixes.css', 'screen', 'IE 5.5000' );
-		$out->addStyle( 'GuMaxDD/resources/IE60Fixes.css', 'screen', 'IE 6' );
-		$out->addStyle( 'GuMaxDD/resources/IE70Fixes.css', 'screen', 'IE 7' );
+		$out->addStyle( __DIR__ . '/resources/IE50Fixes.css', 'screen', 'lt IE 5.5000' );
+		$out->addStyle( __DIR__ . '/GuMaxDD/resources/IE55Fixes.css', 'screen', 'IE 5.5000' );
+		$out->addStyle( __DIR__ . '/GuMaxDD/resources/IE60Fixes.css', 'screen', 'IE 6' );
+		$out->addStyle( __DIR__ . '/GuMaxDD/resources/IE70Fixes.css', 'screen', 'IE 7' );
 	}
 }
 
