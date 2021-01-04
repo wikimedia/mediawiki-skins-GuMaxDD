@@ -1,9 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Jack Phoenix"
+			"Jack Phoenix",
+			"Verdy p"
 		]
 	},
-	"gumaxdd-desc": "Habillage GuMax, vérsion menu liste déroulante",
-	"gumaxdd-no-languages": "Cette page n'a pas de vérsions interlangue"
+	"gumaxdd-desc": "Habillage GuMax, variante à menus déroulants",
+	"gumaxdd-no-languages": "Cette page n’existe dans aucune autre langue"
 }

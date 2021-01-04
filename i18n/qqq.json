@@ -1,7 +1,6 @@
 {
 	"@metadata": {
-		"authors": [
-		]
+		"authors": []
 	},
 	"gumaxdd-desc": "{{desc|what=skin|name=GuMaxDD|url=https://www.mediawiki.org/wiki/Skin:GuMaxDD}}",
 	"gumaxdd-no-languages": "Shown on the top navigation menu, in the \"In other languages\" ({{msg-mw|otherlanguages}}) portlet, when a page does not have any interlanguage links"
