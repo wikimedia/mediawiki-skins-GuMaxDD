@@ -1036,20 +1036,6 @@ span.updatedmarker {
 	background-color: #0f0;
 }
 
-.editExternally {
-	border: 1px solid gray;
-	background-color: #fff;
-	padding: 3px;
-	margin-top: 0.5em;
-	float: left;
-	font-size: small;
-	text-align: center;
-}
-.editExternallyHelp {
-	font-style: italic;
-	color: gray;
-}
-
 .toggle {
 	margin-left: 2em;
 	text-indent: -2em;
