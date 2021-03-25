@@ -36,9 +36,6 @@ div#footer {
 	border-right: 1px solid #fabd23;
 }
 
- /* the tabs */
-
-
 /* the tabs */
 
 #p-cactions {
@@ -106,9 +103,4 @@ textarea {
 div.tright,
 div.tleft {
 	position: relative;
-}
-
-/* bug 12846 */
-body.rtl #preftoc a, body.rtl #preftoc a:active {
-	float: left;
 }
