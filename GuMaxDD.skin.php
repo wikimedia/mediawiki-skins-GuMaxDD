@@ -524,7 +524,9 @@ class GuMaxDDTemplate extends BaseTemplate {
 				}
 
 				$skin = $this->getSkin();
-				foreach ( $this->getFooterIcons( 'nocopyright' ) as $blockName => $footerIcons ) {
+				$footerIcons = $this->get( 'footericons' );
+				unset( $footerIcons['copyright'] );
+				foreach ( $footerIcons as $blockName => $footerIcons ) {
 					echo '<li id="f-' . htmlspecialchars( $blockName ) . '">';
 					foreach ( $footerIcons as $icon ) {
 						// Copyright icon array can be empty
