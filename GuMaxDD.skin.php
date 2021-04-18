@@ -193,7 +193,7 @@ class GuMaxDDTemplate extends BaseTemplate {
 			<ul>
 <?php	}
 
-		foreach ( $this->getToolbox() as $key => $tbitem ) {
+		foreach ( $this->data['sidebar']['TOOLBOX'] as $key => $tbitem ) {
 			// ashley 24 October 2020: quick 'n' dirty duplicate ID fix
 			if ( isset( $tbitem['id'] ) && $tbitem['id'] ) {
 				$tbitem['id'] = $tbitem['id'] . '-nav-menu';
@@ -487,7 +487,7 @@ class GuMaxDDTemplate extends BaseTemplate {
 		<div id="gumax-special-tools">
 			<ul>
 <?php
-		foreach ( $this->getToolbox() as $key => $tbItem ) {
+		foreach ( $this->data['sidebar']['TOOLBOX'] as $key => $tbItem ) {
 			echo $this->makeListItem( $key, $tbItem );
 		}
 ?>
