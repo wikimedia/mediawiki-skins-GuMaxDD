@@ -12,15 +12,21 @@ body {
 	padding-bottom: 10px;
 }
 
+.gumax-firstHeading {
+	font-size: 200%;
+}
+
 #gumax-header,
 #gumax-p-login,
 #gumax_mainmenu_spacer,
 #gumax-p-navigation,
 #gumax-article-picture,
 #gumax-content-actions,
+#jump-to-nav,
 #gumax_footer_spacer,
 #gumax-footer,
-#gumax-f-list {
+#gumax-f-list,
+#f-poweredby {
 	display: none; /* Hides all the elements irrelevant for printing */
 }
 
