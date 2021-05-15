@@ -31,14 +31,14 @@
 	"ResourceModules": {
 		"skins.gumaxdd": {
 			"class": "ResourceLoaderSkinModule",
-			"features": [
-				"normalize",
-				"elements",
-				"content",
-				"interface",
-				"logo",
-				"legacy"
-			],
+			"features": {
+				"normalize": true,
+				"elements": true,
+				"content": true,
+				"interface": true,
+				"logo": true,
+				"legacy": true
+			},
 			"styles": {
 				"main.css": {
 					"media": "screen"
