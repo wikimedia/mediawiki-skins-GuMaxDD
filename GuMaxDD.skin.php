@@ -31,35 +31,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 /**
- * Inherit main code from SkinTemplate, set the CSS and template filter.
- *
- * @ingroup Skins
- */
-class SkinGuMaxDD extends SkinTemplate {
-	public $skinname = 'gumaxdd', $stylename = 'gumaxdd',
-		$template = 'GuMaxDDTemplate';
-
-	/**
-	 * Loads JavaScript via ResourceLoader.
-	 *
-	 * @param OutputPage $out
-	 */
-	public function initPage( OutputPage $out ) {
-		parent::initPage( $out );
-		$out->addModules( 'skins.gumaxdd.js' );
-
-		// Add CSS via ResourceLoader
-		$out->addModuleStyles( 'skins.gumaxdd' );
-
-		// Add various ancient IE-specific files via the old-school way
-		$out->addStyle( __DIR__ . '/resources/IE50Fixes.css', 'screen', 'lt IE 5.5000' );
-		$out->addStyle( __DIR__ . '/GuMaxDD/resources/IE55Fixes.css', 'screen', 'IE 5.5000' );
-		$out->addStyle( __DIR__ . '/GuMaxDD/resources/IE60Fixes.css', 'screen', 'IE 6' );
-		$out->addStyle( __DIR__ . '/GuMaxDD/resources/IE70Fixes.css', 'screen', 'IE 7' );
-	}
-}
-
-/**
  * @ingroup Skins
  */
 class GuMaxDDTemplate extends BaseTemplate {
@@ -70,7 +41,6 @@ class GuMaxDDTemplate extends BaseTemplate {
 	 * outputs a formatted page.
 	 */
 	public function execute() {
-		$this->html( 'headelement' );
 ?><div id="gumax-page">
 	<div id="gumax-header">
 
@@ -131,10 +101,6 @@ class GuMaxDDTemplate extends BaseTemplate {
 	<div class="visualClear"></div>
 
 	<div id="gumax_page_spacer"></div>
-
-<?php $this->printTrail(); ?>
-</body>
-</html>
 <?php
 	} // end of execute() method
 
@@ -422,15 +388,14 @@ class GuMaxDDTemplate extends BaseTemplate {
 
 		$file_ext_collection = [ '.jpg', '.gif', '.png' ];
 		$found = false;
+		$stylepath =  $this->getSkin()->getConfig()->get( 'StylePath' ) . '/GuMaxDD/resources/';
 		foreach ( $file_ext_collection as $file_ext ) {
-			$gumax_article_picture_file = $this->data['stylepath'] . '/' .
-				$this->data['stylename'] . '/images/pages/' . $page_class . $file_ext;
+			$gumax_article_picture_file = $stylepath . '/images/pages/' . $page_class . $file_ext;
 			if ( file_exists( $_SERVER['DOCUMENT_ROOT'] . '/'  . $gumax_article_picture_file ) ) {
 				$found = true;
 				break;
 			} else {
-				$gumax_article_picture_file = $this->data['stylepath'] . '/' .
-					$this->data['stylename'] . '/images/pages/page-Default.gif'; // default site logo
+				$gumax_article_picture_file = $stylepath . '/images/pages/page-Default.gif'; // default site logo
 				if ( file_exists( $_SERVER['DOCUMENT_ROOT'] . '/' . $gumax_article_picture_file ) ) {
 					$found = true;
 				}

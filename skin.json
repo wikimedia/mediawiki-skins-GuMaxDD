@@ -10,10 +10,25 @@
 	"license-name": "GPL-2.0-or-later",
 	"type": "skin",
 	"requires": {
-		"MediaWiki": ">= 1.35.0"
+		"MediaWiki": ">= 1.39.0"
 	},
 	"ValidSkinNames": {
-		"gumaxdd": "GuMaxDD"
+		"gumaxdd": {
+			"class": "SkinTemplate",
+			"args": [
+				{
+					"name": "gumaxdd",
+					"bodyOnly": true,
+					"styles": [
+						"skins.gumaxdd"
+					],
+					"scripts": [
+						"skins.gumaxdd.js"
+					],
+					"template": "GuMaxDDTemplate"
+				}
+			]
+		}
 	},
 	"MessagesDirs": {
 		"SkinGuMaxDD": [
@@ -21,7 +36,6 @@
 		]
 	},
 	"AutoloadClasses": {
-		"SkinGuMaxDD": "GuMaxDD.skin.php",
 		"GuMaxDDTemplate": "GuMaxDD.skin.php"
 	},
 	"ResourceFileModulePaths": {
@@ -34,10 +48,16 @@
 			"features": {
 				"normalize": true,
 				"elements": true,
-				"content": true,
 				"interface": true,
 				"logo": true,
-				"legacy": true
+				"content-links": true,
+				"content-media": true,
+				"interface-message-box": true,
+				"interface-category": true,
+				"content-tables": true,
+				"i18n-ordered-lists": true,
+				"i18n-all-lists-margins": true,
+				"i18n-headings": true
 			},
 			"styles": {
 				"main.css": {
