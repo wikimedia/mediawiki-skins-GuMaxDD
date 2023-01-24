@@ -123,8 +123,16 @@ class GuMaxDDTemplate extends BaseTemplate {
 			<form action="<?php $this->text( 'searchaction' ) ?>" id="searchform<?php echo ( $menu ? '-menu' : '' ) ?>"><div>
 			<?php
 				echo $this->makeSearchInput( [ 'id' => 'searchInput' . ( $menu ? '-menu' : '' ) ] );
-				echo $this->makeSearchButton( 'go', [ 'id' => 'searchGoButton' . ( $menu ? '-menu' : '' ), 'class' => 'searchButton' ] );
-				echo $this->makeSearchButton( 'fulltext', [ 'id' => 'mw-searchButton' . ( $menu ? '-menu' : '' ), 'class' => 'searchButton' ] );
+				echo $this->makeSearchButton( 'go', [
+					'id' => 'searchGoButton' . ( $menu ? '-menu' : '' ),
+					'class' => 'searchButton',
+					'value' => $this->getMsg( 'searcharticle' )->text()
+				] );
+				echo $this->makeSearchButton( 'fulltext', [
+					'id' => 'mw-searchButton' . ( $menu ? '-menu' : '' ),
+					'class' => 'searchButton',
+					'value' => $this->getMsg( 'searchbutton' )->text()
+				] );
 			?>
 			</div></form>
 			</li>
@@ -139,8 +147,16 @@ class GuMaxDDTemplate extends BaseTemplate {
 				<div>
 				<?php
 					echo $this->makeSearchInput( [ 'id' => 'searchInput' ] );
-					echo $this->makeSearchButton( 'go', [ 'id' => 'searchGoButton', 'class' => 'searchButton' ] );
-					echo $this->makeSearchButton( 'fulltext', [ 'id' => 'mw-searchButton', 'class' => 'searchButton' ] );
+					echo $this->makeSearchButton( 'go', [
+						'id' => 'searchGoButton',
+						'class' => 'searchButton',
+						'value' => $this->getMsg( 'searcharticle' )->text()
+					] );
+					echo $this->makeSearchButton( 'fulltext', [
+						'id' => 'mw-searchButton',
+						'class' => 'searchButton',
+						'value' => $this->getMsg( 'searchbutton' )->text()
+					] );
 				?>
 				</div>
 			</form>
