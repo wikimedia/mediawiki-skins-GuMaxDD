@@ -1,7 +1,7 @@
 /*
  * Right-to-left fixes for GuMax
  */
- 
+
 #gumax-nav li { float: right; }
 
 #p-logo { float: right; }
