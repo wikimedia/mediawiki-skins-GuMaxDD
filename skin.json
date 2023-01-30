@@ -1,6 +1,6 @@
 {
 	"name": "GuMaxDD",
-	"version": "1.6",
+	"version": "1.6.1",
 	"author": [
 		"[http://paulgu.com/ Paul Y. Gu]",
 		"Jack Phoenix"
@@ -83,7 +83,10 @@
 	},
 	"ResourceModuleSkinStyles": {
 		"gumaxdd": {
-			"+ext.echo.styles.badge": "skinStyles/echo.badge.css"
+			"+ext.echo.styles.badge": "skinStyles/echo.badge.css",
+			"+mediawiki.action.view.filepage": "skinStyles/mediawiki.action.view.filepage.css",
+			"+mediawiki.action.view.redirectPage": "skinStyles/mediawiki.action.view.redirectPage.css",
+			"+mediawiki.special.userlogin.common.styles": "skinStyles/mediawiki.special.userlogin.common.styles.css"
 		}
 	},
 	"manifest_version": 2

@@ -922,55 +922,6 @@ div#footer li {
 	margin-right: 2em;
 }
 
-div#userloginForm form,
-div#userlogin form#userlogin2 {
-	margin: 0 3em 1em 0;
-	border: 1px solid #aaa;
-	clear: both;
-	padding: 1.5em 2em;
-	background-color: #f9f9f9;
-	float: left;
-}
-
-div#userloginForm table,
-div#userlogin form#userlogin2 table {
-	background-color: #f9f9f9;
-}
-
-div#userloginForm h2,
-div#userlogin form#userlogin2 h2 {
-	padding-top: 0;
-}
-
-div#userlogin .captcha,
-div#userloginForm .captcha {
-	border: 1px solid #bbb;
-	padding: 1.5em 2em;
-	background-color: white;
-}
-
-#loginend, #signupend {
-	clear: both;
-}
-
-#userloginprompt, #languagelinks {
-	font-size: 85%;
-}
-
-#login-sectiontip {
-	font-size: 85%;
-	line-height: 1.2;
-	padding-top: 2em;
-}
-
-#userlogin .loginText, #userlogin .loginPassword {
-	width: 12em;
-}
-
-#userloginlink a, #wpLoginattempt, #wpCreateaccount {
-	font-weight: bold;
-}
-
 /*
 ** IE/Mac fixes, hope to find a validating way to move this
 ** to a separate stylesheet. This would work but doesn't validate:
@@ -1014,10 +965,6 @@ div#userloginForm .captcha {
 * > html div#footer {
 	margin-left: 13.2em;
 }
-.redirectText {
-	font-size: 150%;
-	margin: 5px;
-}
 
 .printfooter {
 	display: none;
@@ -1058,59 +1005,8 @@ div.noarticletext {
 	color: #000;
 }
 
-div#searchTargetContainer {
-	left: 10px;
-	top: 10px;
-	width: 90%;
-	background: #fff;
-}
-
-div#searchTarget {
-	padding: 3px;
-	margin: 5px;
-	background: #f0f0f0;
-	border: solid 1px blue;
-}
-
-div#searchTarget ul li {
-	list-style: none;
-}
-
-div#searchTarget ul li:before {
-	color: orange;
-	content: "\00BB \0020";
-}
-
-div#searchTargetHide {
-	float: right;
-	border: solid 1px #000;
-	background: #dcdcdc;
-	padding: 2px;
-}
-
 #powersearch p {
 	margin-top: 0;
-}
-
-div.multipageimagenavbox {
-	border: solid 1px silver;
-	padding: 4px;
-	margin: 1em;
-	background: #f0f0f0;
-}
-
-div.multipageimagenavbox div.thumb {
-	border: none;
-	margin-left: 2em;
-	margin-right: 2em;
-}
-
-div.multipageimagenavbox hr {
-	margin: 6px;
-}
-
-table.multipageimage td {
-	text-align: center;
 }
 
 .templatesUsed { margin-top: 1.5em; }
