@@ -507,8 +507,11 @@ pre {
 
 #gumax-credit-list ul li a {
 	color: #555;
-	padding: 3px 0 3px 10px;
 	text-decoration: none;
+}
+
+#gumax-credit-list ul li:not(#copyright) a {
+	padding: 3px 0 3px 10px;
 }
 
 #gumax-credit-list ul li a:hover {
