@@ -33,7 +33,7 @@
     #gumax-nav a { font-size: 130%; }
     #gumax-nav ul { min-width: 350px; width: 350px; }
     #gumax-nav ul { top: 57px; }
-    
+
     #gumax-page { width: 960px; /* page width */ }
 
     #gumax-p-search { bottom: 10px; }
@@ -59,7 +59,7 @@
     }
     #gumax-content-actions #ca-protect,
     #gumax-content-actions #ca-watch { display: none; }
-    
+
     #content .editsection { font-size: 100%; }
 
     #toc .toctoggle { font-size: 100%; }
@@ -71,19 +71,19 @@
 
     textarea { font-size: 120%; }
     div.editOptions input { font-size: 110%; }
-    
+
     /* special-tools */
     #gumax-special-tools #t-whatlinkshere,
-    #gumax-special-tools #t-recentchangeslinked, 
+    #gumax-special-tools #t-recentchangeslinked,
     #gumax-special-tools #t-print,
     #gumax-special-tools #t-permalink { display: none; }
-    
+
     #gumax-credit-list #privacy,
     #gumax-credit-list #disclaimer,
     #gumax-credit-list #f-poweredby { display: none; }
 
     #gumax-special-tools a { font-size: 130%; }
-    
+
     #gumax-footer {	height: 55px; }
 
 }
