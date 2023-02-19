@@ -381,24 +381,20 @@ pre {
 .TablePager tr:hover td { background-color: #eeeeff; }
 
 
-/* edit section
+/* section edit links
 -----------------------------------------------------------------------------*/
-* html div.editsection {
-	font-size: 90%;
-}
-
-.editsection {
+.mw-editsection {
 	font-size: 90%;
 	margin-top: 1px;
 	color: #ddd; /* color for [] */
 }
 
-.editsection a,
-.editsection a:visited {
+.mw-editsection a,
+.mw-editsection a:visited {
 	color: #cc6600;
 }
 
-.editsection a:hover {
+.mw-editsection a:hover {
 	color: #ff3300;
 }
 
