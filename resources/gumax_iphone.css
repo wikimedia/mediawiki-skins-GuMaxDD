@@ -60,7 +60,7 @@
     #gumax-content-actions #ca-protect,
     #gumax-content-actions #ca-watch { display: none; }
 
-    #content .editsection { font-size: 100%; }
+    #content .mw-editsection { font-size: 100%; }
 
     #toc .toctoggle { font-size: 100%; }
     #contentSub, #contentSub2 { font-size: 100%; }
