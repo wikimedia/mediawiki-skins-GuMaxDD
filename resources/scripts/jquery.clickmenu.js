@@ -1,8 +1,10 @@
-/* clickMenu - v0.1.6
+/* clickMenu - v0.1.7
  * Copyright (c) 2007 Roman Weich
  * http://p.sohei.org
  *
  * Changelog:
+ * v 0.1.7 - 19 February 2023 -- Jack Phoenix
+ * -change: removed IE6 support (which was broken anyway) and added some newlines for readability
  * 5 October 2013 -- Jack Phoenix
  * -swapped click/mouseover/etc. to on( 'click', etc. and unbind to off
  * v 0.1.6 - 2007-09-06
@@ -61,6 +63,7 @@
 				// hide-timer already running
 				return;
 			}
+
 			if ( div.isVisible ) {
 				div.timer = setTimeout( function () {
 					// remove events
@@ -68,8 +71,10 @@
 						.off( 'mouseover', liHoverIn )
 						.off( 'mouseout', liHoverOut )
 						.off( 'click', settings.onClick );
+
 					// hide it
 					$( div ).hide();
+
 					div.isVisible = false;
 					div.timer = null;
 				}, delay );
@@ -80,32 +85,30 @@
 			if ( div.timer ) {
 				clearTimeout( div.timer );
 			}
+
 			if ( !div.isVisible ) {
 				div.timer = setTimeout( function () {
 					// check if the mouse is still over the parent item - if not, don't show the submenu
 					if ( !checkClass( div.parentNode, 'hover' ) ) {
 						return;
 					}
+
 					// assign events to all div>ul>li-elements
 					$( getAllChilds( getOneChild( div, 'UL' ), 'LI' ) ).on( {
 						'mouseover': liHoverIn,
 						'mouseout': liHoverOut,
 						'click': settings.onClick
 					} );
+
 					// positioning
 					if ( !checkClass( div.parentNode, 'main' ) ) {
 						$( div ).css( 'left', div.parentNode.offsetWidth - liOffset );
 					}
+
 					// show it
 					div.isVisible = true; // we use this over :visible to speed up traversing
 					$( div ).show();
-					if ( $.browser.msie ) { // fixing a display bug in IE6 and adding min-width
-						var cW = $( getOneChild( div, 'UL' ) ).width();
-						if ( cW < 100 ) {
-							cW = 100;
-						}
-						$( div ).css( 'width', cW );
-					}
+
 					div.timer = null;
 				}, delay );
 			}
@@ -115,6 +118,7 @@
 		var testHandleHover = function ( e ) {
 			// Check if mouse(over|out) are still within the same parent element
 			var p = ( e.type == 'mouseover' ? e.fromElement : e.toElement ) || e.relatedTarget;
+
 			// Traverse up the tree
 			while ( p && p != this ) {
 				try {
@@ -123,10 +127,12 @@
 					p = this;
 				}
 			}
+
 			// If we actually just moused on to a sub-element, ignore it
 			if ( p == this ) {
 				return false;
 			}
+
 			return true;
 		};
 
@@ -135,12 +141,15 @@
 			// it's possible that a main menu item still has hover (if it has no submenu) - thus remove it
 			var lis = getAllChilds( this.parentNode, 'LI' );
 			var pattern = new RegExp( "(^|\\s)hover(\\s|$)" );
+
 			for ( var i = 0; i < lis.length; i++ ) {
 				if ( pattern.test( lis[i].className ) ) {
 					$( lis[i] ).removeClass( 'hover' );
 				}
 			}
+
 			$( this ).addClass( 'hover' );
+
 			if ( shown ) {
 				hoverIn( this, settings.mainDelay );
 			}
@@ -150,17 +159,20 @@
 			if ( !testHandleHover( e ) ) {
 				return false;
 			}
+
 			if ( e.target != this ) {
 				// look whether the target is a direct child of this (maybe an image)
 				if ( !isChild( this, e.target ) ) {
 					return;
 				}
 			}
+
 			hoverIn( this, settings.subDelay );
 		};
 
 		var hoverIn = function ( li, delay ) {
 			var innerDiv = getOneChild( li, 'DIV' );
+
 			// stop running timers from the other menus on the same level - a little faster than $('>*>div', li.parentNode)
 			var n = li.parentNode.firstChild;
 			for ( ; n; n = n.nextSibling ) {
@@ -172,6 +184,7 @@
 					}
 				}
 			}
+
 			// is there a timer running to hide one of the parent divs? stop it
 			var pNode = li.parentNode;
 			for ( ; pNode; pNode = pNode.parentNode ) {
@@ -183,8 +196,10 @@
 					}
 				}
 			}
+
 			// highlight the current element
 			$( li ).addClass( 'hover' );
+
 			// is the submenu already visible?
 			if ( innerDiv && innerDiv.isVisible ) {
 				// hide-timer running?
@@ -195,6 +210,7 @@
 					return;
 				}
 			}
+
 			// hide all open menus on the same level and below and unhighlight the li item (but not the current submenu!)
 			$( li.parentNode.getElementsByTagName( 'DIV' ) ).each( function () {
 				if ( this != innerDiv && this.isVisible ) {
@@ -202,6 +218,7 @@
 					$( this.parentNode ).removeClass( 'hover' );
 				}
 			} );
+
 			// show the submenu, if there is one
 			if ( innerDiv ) {
 				showDIV( innerDiv, delay );
@@ -212,12 +229,14 @@
 			if ( !testHandleHover( e ) ) {
 				return false;
 			}
+
 			if ( e.target != this ) {
 				if ( !isChild( this, e.target ) ) {
 					// return only if the target is no direct child of this
 					return;
 				}
 			}
+
 			// remove the hover from the submenu item, if the mouse is hovering out of the menu (this is only for the last open (levelwise) (sub-)menu)
 			var div = getOneChild( this, 'DIV' );
 			if ( !div ) {
@@ -235,6 +254,7 @@
 			var div = getOneChild( this, 'DIV' );
 			var relTarget = e.relatedTarget || e.toElement; // this is undefined sometimes (e.g. when the mouse moves out of the window), so don't remove hover then
 			var p;
+
 			if ( !shown ) {
 				$( this ).removeClass( 'hover' );
 			} else if ( !div && relTarget ) { // menu item has no submenu, so don't remove the hover if the mouse goes outside the menu
@@ -293,7 +313,9 @@
 					this.isVisible = false;
 				}
 			} );
+
 			$( 'ul.clickMenu li' ).removeClass( 'hover' );
+
 			// remove events
 			$( 'ul.clickMenu > li li' )
 				.off( 'mouseover', liHoverIn )
@@ -307,12 +329,14 @@
 			if ( !elem ) {
 				return null;
 			}
+
 			var n = elem.firstChild;
 			for ( ; n; n = n.nextSibling ) {
 				if ( n.nodeType == 1 && n.nodeName.toUpperCase() == name ) {
 					return n;
 				}
 			}
+
 			return null;
 		};
 
@@ -320,6 +344,7 @@
 			if ( !elem ) {
 				return [];
 			}
+
 			var r = [];
 			var n = elem.firstChild;
 			for ( ; n; n = n.nextSibling ) {
@@ -327,6 +352,7 @@
 					r[r.length] = n;
 				}
 			}
+
 			return r;
 		};
 
@@ -370,26 +396,18 @@
 					return !!( this.compareDocumentPosition( arg ) & 16 );
 				};
 			}
+
 			// add class
 			if ( !checkClass( this, 'clickMenu' ) ) {
 				$( this ).addClass( 'clickMenu' );
 			}
+
 			// add shadows
 			$( 'ul', this ).shadowBox();
-			// IE6? - add iframes
-			if ( $.browser.msie && ( !$.browser.version || parseInt( $.browser.version ) <= 6 ) ) {
-				if ( $.fn.bgiframe ) {
-					$( 'div.outerbox', this ).bgiframe();
-				} else {
-					/* thanks to Mark Gibson - http://www.nabble.com/forum/ViewPost.jtp?post=6504414&framed=y */
-					$( 'div.outerbox', this ).append(
-						'<iframe style="display:block;position:absolute;top:0;left:0;z-index:-1;filter:mask();' +
-						'width:expression(this.parentNode.offsetWidth);height:expression(this.parentNode.offsetHeight)"/>'
-					);
-				}
-			}
+
 			// assign events
 			$( this ).on( 'closemenu', function () { clean(); } ); // assign closemenu event, through which the menu can be closed from outside the plugin
+
 			// add click event handling, if there are any elements inside the main menu
 			var liElems = getAllChilds( this, 'LI' );
 			for ( var j = 0; j < liElems.length; j++ ) {
@@ -397,8 +415,10 @@
 					$( liElems[j] ).on( 'click', mainClick );
 				}
 			}
+
 			// add hover event handling and assign classes
 			$( liElems ).hover( mainHoverIn, mainHoverOut ).addClass( 'main' ).find( '>div' ).addClass( 'inner' );
+
 			// add the little arrow before each submenu
 			if ( settings.arrowSrc ) {
 				$( 'div.inner div.outerbox', this ).before( '<img src="' + settings.arrowSrc + '" class="liArrow" />' );
