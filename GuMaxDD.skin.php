@@ -433,13 +433,13 @@ class GuMaxDDTemplate extends BaseTemplate {
 	function getMainContentBox() {
 ?>
 	<div id="gumax-content-body">
+		<?php if ( $this->data['sitenotice'] ) { ?><div id="siteNotice"><?php $this->html( 'sitenotice' ) ?></div><?php } ?>
 		<?php echo $this->getIndicators(); ?>
 		<div class="gumax-firstHeading"><?php $this->html( 'title' ) ?></div>
 		<div class="visualClear"></div>
 		<!-- content -->
 		<div id="content" class="mw-body-primary">
 			<a id="top"></a>
-			<?php if ( $this->data['sitenotice'] ) { ?><div id="siteNotice"><?php $this->html( 'sitenotice' ) ?></div><?php } ?>
 			<div id="bodyContent" class="gumax-bodyContent mw-body">
 				<h3 id="siteSub"><?php $this->msg( 'tagline' ) ?></h3>
 				<div id="contentSub"><?php $this->html( 'subtitle' ) ?></div>
