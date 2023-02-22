@@ -117,6 +117,11 @@ class GuMaxDDTemplate extends BaseTemplate {
 	}
 
 	/*************************************************************************************************/
+	/**
+	 * @suppress PhanRedundantCondition Phan dislikes the "if $menu append '-menu' to IDs" code
+	 * @param bool $menu Append "-menu" to the <form> element ID?
+	 * @return void
+	 */
 	function searchBox( $menu = false ) {
 		if ( $menu ) { ?>
 			<li>
