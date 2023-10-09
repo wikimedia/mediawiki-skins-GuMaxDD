@@ -123,9 +123,10 @@ class GuMaxDDTemplate extends BaseTemplate {
 	 * @return void
 	 */
 	function searchBox( $menu = false ) {
+		$user = $this->getSkin()->getUser();
 		if ( $menu ) { ?>
 			<li>
-			<form action="<?php $this->text( 'searchaction' ) ?>" id="searchform<?php echo ( $menu ? '-menu' : '' ) ?>"><div>
+			<form action="<?php echo SpecialPage::newSearchPage( $user )->getLocalURL() ?>" id="searchform<?php echo ( $menu ? '-menu' : '' ) ?>"><div>
 			<?php
 				echo $this->makeSearchInput( [ 'id' => 'searchInput' . ( $menu ? '-menu' : '' ) ] );
 				echo $this->makeSearchButton( 'go', [
@@ -148,7 +149,7 @@ class GuMaxDDTemplate extends BaseTemplate {
 	<div id="gumax-p-search">
 		<!--h5><label for="searchInput"><?php $this->msg( 'search' ) ?></label></h5-->
 		<div id="gumax-searchBody">
-			<form action="<?php $this->text( 'searchaction' ) ?>" id="searchform">
+			<form action="<?php echo SpecialPage::newSearchPage( $user )->getLocalURL() ?>" id="searchform">
 				<div>
 				<?php
 					echo $this->makeSearchInput( [ 'id' => 'searchInput' ] );
