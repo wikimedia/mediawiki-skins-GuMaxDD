@@ -281,32 +281,39 @@ class GuMaxDDTemplate extends BaseTemplate {
 			$sidebar['ACTIONS'] = true;
 		}
 
-		// @todo FIXME: do not render "in other languages" box for NS_SPECIAL
-		// $isSpecial = $this->getSkin()->getTitle()->inNamespace( NS_SPECIAL );
+		$skin = $this->getSkin();
+		$isSpecial = $skin->getTitle()->inNamespace( NS_SPECIAL );
 ?>
  	<ul id="gumax-nav">
 <?php 	foreach ( $this->data['sidebar'] as $bar => $cont ) {
 			switch ( $bar ) {
 				case 'SEARCH':
-					$txtOut = wfMessage( 'search' )->escaped();
+					$txtOut = $skin->msg( 'search' )->escaped();
 					break;
 				case 'TOOLBOX':
-					$txtOut = wfMessage( 'toolbox' )->escaped();
+					$txtOut = $skin->msg( 'toolbox' )->escaped();
 					break;
-				case 'LANGUAGES':
-					$txtOut = wfMessage( 'otherlanguages' )->escaped();
+				case 'LANGUAGES' && !$isSpecial:
+					$txtOut = $skin->msg( 'otherlanguages' )->escaped();
 					break;
 				case 'ACTIONS':
-					$txtOut = wfMessage( 'views' )->escaped();
+					$txtOut = $skin->msg( 'views' )->escaped();
 					break;
 				default:
-					$out = wfMessage( $bar );
+					$out = $skin->msg( $bar );
 					if ( $out->isDisabled() ) {
 						$txtOut = $bar;
 					} else {
 						$txtOut = $out->escaped();
 					}
 				}
+				// Unconditionally skipping the interlanguage links for NS_SPECIAL
+				// isn't 100% correct because some special pages can have and often *do*
+				// have interlanguage links - Special:RecentChanges comes to mind as a
+				// good example of this. That said, I don't think we can detect that,
+				// so without these checks here, we'd ALWAYS render a (most likely) empty
+				// "in other languages" menu on NS_SPECIAL and that'd be ugly.
+				if ( !empty( $txtOut ) && !( $isSpecial && $bar === 'LANGUAGES' ) ) {
 ?>
 			<li><a class="gumax-nav-heading gumax-nav-heading-<?php echo mb_strtolower( Sanitizer::escapeIdForAttribute( $bar ) ) ?>" href="#"><?php echo $txtOut; ?> &raquo;</a>
 <?php
@@ -319,7 +326,7 @@ class GuMaxDDTemplate extends BaseTemplate {
 			<ul class="gumax-nav-box gumax-nav-toolbox">
 <?php			$this->toolbox( true ); ?>
 			</ul>
-<?php		} elseif ( $bar == 'LANGUAGES' ) { ?>
+<?php		} elseif ( $bar == 'LANGUAGES' && !$isSpecial ) { ?>
  			<ul class="gumax-nav-box gumax-nav-language-box">
 <?php			$this->languageBox( true ); ?>
 			</ul>
@@ -345,6 +352,7 @@ class GuMaxDDTemplate extends BaseTemplate {
 			}
 ?>
 			</li>
+<?php		} // not empty $txtOut ?>
 <?php	} ?>
 	</ul>
 <?php
