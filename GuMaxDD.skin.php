@@ -184,7 +184,7 @@ class GuMaxDDTemplate extends BaseTemplate {
 		foreach ( $this->data['sidebar']['TOOLBOX'] as $key => $tbitem ) {
 			// ashley 24 October 2020: quick 'n' dirty duplicate ID fix
 			if ( isset( $tbitem['id'] ) && $tbitem['id'] ) {
-				$tbitem['id'] = $tbitem['id'] . '-nav-menu';
+				$tbitem['id'] .= '-nav-menu';
 			}
 			echo $this->makeListItem( $key, $tbitem );
 		}
@@ -313,7 +313,7 @@ class GuMaxDDTemplate extends BaseTemplate {
 				// good example of this. That said, I don't think we can detect that,
 				// so without these checks here, we'd ALWAYS render a (most likely) empty
 				// "in other languages" menu on NS_SPECIAL and that'd be ugly.
-				if ( !empty( $txtOut ) && !( $isSpecial && $bar === 'LANGUAGES' ) ) {
+				if ( $txtOut && !( $isSpecial && $bar === 'LANGUAGES' ) ) {
 ?>
 			<li><a class="gumax-nav-heading gumax-nav-heading-<?php echo mb_strtolower( Sanitizer::escapeIdForAttribute( $bar ) ) ?>" href="#"><?php echo $txtOut; ?> &raquo;</a>
 <?php
@@ -527,7 +527,7 @@ class GuMaxDDTemplate extends BaseTemplate {
 						// Copyright icon array can be empty
 						// Trying to generate an icon from such an array generates this E_NOTICE on MW 1.35:
 						// PHP Notice:  Undefined index: alt in <path to MW>/includes/skins/Skin.php on line 1007
-						if ( !empty( $icon ) ) {
+						if ( $icon ) {
 							echo $skin->makeFooterIcon( $icon, 'withoutImage' );
 						}
 					}
