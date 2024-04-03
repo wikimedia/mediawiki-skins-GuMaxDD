@@ -302,13 +302,13 @@ class GuMaxDDTemplate extends BaseTemplate {
 				default:
 					$out = wfMessage( $bar );
 					if ( $out->isDisabled() ) {
-						$txtOut = $bar;
+						$txtOut = htmlspecialchars( $bar, ENT_QUOTES );
 					} else {
 						$txtOut = $out->escaped();
 					}
 				}
 ?>
-			<li><a class="gumax-nav-heading gumax-nav-heading-<?php echo mb_strtolower( Sanitizer::escapeIdForAttribute( $bar ) ) ?>" href="#"><?php echo $txtOut; ?> &raquo;</a>
+			<li><a class="gumax-nav-heading gumax-nav-heading-<?php echo mb_strtolower( htmlspecialchars( Sanitizer::escapeIdForAttribute( $bar ), ENT_QUOTES ) ) ?>" href="#"><?php echo $txtOut; ?> &raquo;</a>
 <?php
 			# XXX JaTu fix
 			if ( $bar == 'SEARCH' ) { ?>
