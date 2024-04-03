@@ -302,7 +302,7 @@ class GuMaxDDTemplate extends BaseTemplate {
 				default:
 					$out = $skin->msg( $bar );
 					if ( $out->isDisabled() ) {
-						$txtOut = $bar;
+						$txtOut = htmlspecialchars( $bar, ENT_QUOTES );
 					} else {
 						$txtOut = $out->escaped();
 					}
@@ -315,7 +315,7 @@ class GuMaxDDTemplate extends BaseTemplate {
 				// "in other languages" menu on NS_SPECIAL and that'd be ugly.
 				if ( $txtOut && !( $isSpecial && $bar === 'LANGUAGES' ) ) {
 ?>
-			<li><a class="gumax-nav-heading gumax-nav-heading-<?php echo mb_strtolower( Sanitizer::escapeIdForAttribute( $bar ) ) ?>" href="#"><?php echo $txtOut; ?> &raquo;</a>
+			<li><a class="gumax-nav-heading gumax-nav-heading-<?php echo mb_strtolower( htmlspecialchars( Sanitizer::escapeIdForAttribute( $bar ), ENT_QUOTES ) ) ?>" href="#"><?php echo $txtOut; ?> &raquo;</a>
 <?php
 			# XXX JaTu fix
 			if ( $bar == 'SEARCH' ) { ?>
