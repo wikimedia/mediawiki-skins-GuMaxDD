@@ -281,6 +281,7 @@ class GuMaxDDTemplate extends BaseTemplate {
 			$sidebar['ACTIONS'] = true;
 		}
 
+		$txtOut = '';
 		$skin = $this->getSkin();
 		$isSpecial = $skin->getTitle()->inNamespace( NS_SPECIAL );
 ?>
@@ -293,8 +294,10 @@ class GuMaxDDTemplate extends BaseTemplate {
 				case 'TOOLBOX':
 					$txtOut = $skin->msg( 'toolbox' )->escaped();
 					break;
-				case 'LANGUAGES' && !$isSpecial:
-					$txtOut = $skin->msg( 'otherlanguages' )->escaped();
+				case 'LANGUAGES':
+					if ( !$isSpecial ) {
+						$txtOut = $skin->msg( 'otherlanguages' )->escaped();
+					}
 					break;
 				case 'ACTIONS':
 					$txtOut = $skin->msg( 'views' )->escaped();
