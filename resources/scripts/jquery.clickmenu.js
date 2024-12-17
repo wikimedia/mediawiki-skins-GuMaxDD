@@ -421,7 +421,9 @@
 
 			// add the little arrow before each submenu
 			if ( settings.arrowSrc ) {
-				$( 'div.inner div.outerbox', this ).before( '<img src="' + settings.arrowSrc + '" class="liArrow" />' );
+				$img = $( '<img class="liArrow" />' );
+				$img.attr( 'src', settings.arrowSrc );
+				$( 'div.inner div.outerbox', this ).before( $img );
 			}
 
 			// the floating list elements are destroying the layout..so make it nice again..
