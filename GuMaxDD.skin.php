@@ -30,6 +30,9 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( -1 );
 }
 
+use MediaWiki\Html\Html;
+use MediaWiki\Linker\Linker;
+
 /**
  * @ingroup Skins
  */
