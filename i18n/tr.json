@@ -1,9 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"MuratTheTurkish"
+			"MuratTheTurkish",
+			"HakanIST"
 		]
 	},
+	"gumaxdd-prefs-talkpage": "[[mw:Skin talk:GuMaxDD|{{int:talk}}]]",
+	"skinname-gumaxdd": "GuMaxDD",
 	"gumaxdd-desc": "GuMax görünümü, açılır menü çeşidi",
 	"gumaxdd-no-languages": "Bu sayfanın dil sürümleri yok"
 }
