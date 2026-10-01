@@ -225,7 +225,7 @@ class GuMaxDDTemplate extends BaseTemplate {
 			}
 		} else {
 ?>
-			<li><?php echo $this->msg( 'gumaxdd-no-languages' ) ?></li>
+			<li><?php echo $this->getMsg( 'gumaxdd-no-languages' )->escaped() ?></li>
 <?php
 		}
 	}
